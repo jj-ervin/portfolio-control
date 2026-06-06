@@ -51,6 +51,8 @@ $SyncFiles = @(
     "validate-pointers.ps1",
     "protect-sources.ps1",
     "docs\planning-normalization.md",
+    "docs\PITCH.md",
+    "ONBOARDING.md",
     "docs\templates\README.md",
     "docs\templates\DEV-PLAN.template.md",
     "docs\templates\DEV-PATH.template.md",
