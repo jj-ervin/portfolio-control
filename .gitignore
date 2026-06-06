@@ -1,3 +1,6 @@
+# ── DCP distribution repo (clean stub, tracked separately) ──
+devx-control-plane/
+
 # ── Project repos (tracked separately, not as submodules) ──
 .eco/
 arche/

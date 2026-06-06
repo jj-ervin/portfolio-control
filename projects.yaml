@@ -13,6 +13,18 @@ root: "c:/dev"
 
 projects:
 
+  # ─── DEVX CONTROL PLANE ─────────────────────────────────────────────────────
+
+  - name: devx-control-plane
+    path: devx-control-plane
+    group: dcp
+    description: "DevX Control Plane — distributable product repo (clean stub of C:\\dev)"
+    status: active
+    branch: main
+    planning:
+      canonical: devx-control-plane/DEVPLAN.md
+      path: devx-control-plane/DEVPATH.md
+
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
 
   - name: eco
