@@ -202,16 +202,16 @@ projects:
     planning:
       implementation_plan: devtoolkit/docs/DevToolkit-V1.0-ImplementationPlan.md
 
-  - name: devxtoolkit
-    path: devxtoolkit
+  - name: devx-toolkit
+    path: devx-toolkit
     group: dev-tools
     description: "TypeScript CLI integration layer for eco governance"
     status: active
     branch: ~
     depends_on: eco
     planning:
-      project: devxtoolkit/governance/project.yaml
-      changelog: devxtoolkit/governance/passchangelog.md
+      project: devx-toolkit/governance/project.yaml
+      changelog: devx-toolkit/governance/passchangelog.md
 
   - name: powershell
     path: powershell
