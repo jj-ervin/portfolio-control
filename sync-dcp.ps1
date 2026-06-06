@@ -47,6 +47,7 @@ $SyncFiles = @(
     "DEV-CONTROL-PLANE.md",
     "DEVPLAN.md",
     "DEVPATH.md",
+    "dcp-setup.ps1",
     "dev-status.ps1",
     "validate-pointers.ps1",
     "protect-sources.ps1",
