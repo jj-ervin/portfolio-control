@@ -160,7 +160,19 @@ projects:
     status: active
     branch: main
     planning:
-      notes: "No active roadmap/dev plan found in scan; status inferred from README/version/changelog."
+      canonical: governance-commons/agent-matrix/DEVPLAN.md
+      path: governance-commons/agent-matrix/DEVPATH.md
+      tracks: governance-commons/agent-matrix/TRACKS.md
+
+  - name: agent-team-protocol
+    path: governance-commons/agent-team-protocol
+    group: governance-commons
+    description: "Fleet-level governance — agent delegation, trust topology, shared audit trail, fleet escalation"
+    status: scaffold
+    branch: main
+    successor_to: agent-matrix
+    planning:
+      notes: "Planned. Successor spec to agent-matrix for fleet governance. DCP.40 Team Kit is the human-governance counterpart."
 
   - name: governance-commons-www
     path: governance-commons/governance-commons-www
