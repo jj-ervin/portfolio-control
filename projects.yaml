@@ -1,5 +1,11 @@
 version: "1.0"
-updated: "2026-06-05"  # pointers normalized; all planning paths verified
+updated: "2026-06-06"  # DCP planning docs added; README + --help complete
+
+# ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
+#
+# DCP is C:\dev itself — the portfolio control plane.
+# It is not listed as a child project; it IS the registry.
+# Planning docs live at root: DEVPLAN.md, DEVPATH.md, DEV-CONTROL-PLANE.md
 root: "c:/dev"
 
 # Status values: active | stable | wip | scaffold | archive

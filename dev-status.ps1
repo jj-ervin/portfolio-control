@@ -8,16 +8,60 @@
 .PARAMETER DirtyOnly
     Show only repos with uncommitted changes.
 
+.PARAMETER Help
+    Show help and exit.
+
 .EXAMPLE
     .\dev-status.ps1
     .\dev-status.ps1 -DirtyOnly
     .\dev-status.ps1 -Group eco-ecosystem
     .\dev-status.ps1 -Group archive
+    .\dev-status.ps1 -Help
 #>
 param(
     [string] $Group     = "",
-    [switch] $DirtyOnly
+    [switch] $DirtyOnly,
+    [switch] $Help
 )
+
+if ($Help) {
+    Write-Host ""
+    Write-Host "  dev-status.ps1 — DevX Control Plane portfolio dashboard" -ForegroundColor White
+    Write-Host ""
+    Write-Host "  USAGE" -ForegroundColor Cyan
+    Write-Host "    .\dev-status.ps1 [flags]"
+    Write-Host ""
+    Write-Host "  FLAGS" -ForegroundColor Cyan
+    Write-Host "    -Group <name>    Filter to one group (see groups below)"
+    Write-Host "    -DirtyOnly       Show only repos with uncommitted changes"
+    Write-Host "    -Help            Show this help"
+    Write-Host ""
+    Write-Host "  GROUPS" -ForegroundColor Cyan
+    Write-Host "    eco-ecosystem    governance-commons    dev-tools"
+    Write-Host "    cockpit          apps                  docs        archive"
+    Write-Host ""
+    Write-Host "  COLUMNS" -ForegroundColor Cyan
+    Write-Host "    name        Project name (from projects.yaml)"
+    Write-Host "    status      active | wip | scaffold | stable  (project lifecycle)"
+    Write-Host "    branch      Current git branch"
+    Write-Host "    dirty       ✓ clean | ● N work | ◇ N env  (working tree state)"
+    Write-Host "    plan        plan = file-based docs  notes = notes-only  blank = none"
+    Write-Host "    +N/-N       Commits ahead/behind upstream"
+    Write-Host "    hash        Last commit short hash"
+    Write-Host "    msg         Last commit message (truncated)"
+    Write-Host "    time        Time since last commit"
+    Write-Host ""
+    Write-Host "  RELATED TOOLS" -ForegroundColor Cyan
+    Write-Host "    .\validate-pointers.ps1     Verify all planning pointers resolve on disk"
+    Write-Host "    .\protect-sources.ps1       Run source corpus integrity check manually"
+    Write-Host ""
+    Write-Host "  DOCS" -ForegroundColor Cyan
+    Write-Host "    README.md                   Portfolio overview and quick start"
+    Write-Host "    DEV-CONTROL-PLANE.md        Boundary doctrine — what lives where"
+    Write-Host "    docs/planning-normalization.md  Planning standard and vocabulary"
+    Write-Host ""
+    exit 0
+}
 
 $Root     = $PSScriptRoot
 $YamlFile = Join-Path $Root "projects.yaml"
