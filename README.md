@@ -6,9 +6,9 @@
 
 ## What is this?
 
-DCP is the governance and operational layer that sits above a collection of project repos. It is not a monorepo. It is not a project. It is the root from which projects are indexed, navigated, validated, and operated — with first-class support for AI agent workflows.
+DCP is the governance and operational layer that sits above a collection of project repos. It is not a monorepo. It is not an application project. It is the root from which projects are indexed, navigated, validated, and operated.
 
-`C:\dev` is the reference implementation. The pattern is portable and replicable.
+This repo is the portable Core template. Clone it into a portfolio root, edit `projects.yaml`, and run the dashboard.
 
 ---
 
@@ -31,16 +31,15 @@ You are not behind. Most teams doing this work are still cobbling it together. T
 Three layers. Hard boundaries between them.
 
 ```
-governance-commons/         Portable governance standards
+governance standards        Portable standards, schemas, and contracts
                             Naming, contracts, schemas, RFCs, trust boundaries
                             Portable across organizations and portfolios
 
-C:\dev  ← you are here     Portfolio control plane
-                            Registry, status tools, indexes, planning templates,
-                            pointers to canonical plans, local operational conventions
+DCP control plane           Registry, status tools, indexes, planning templates,
+                            pointers to canonical plans, operating conventions
 
 project repos/              Project execution
-eco/ eco-edge/ niji/ ...    Canonical DEV-PLAN, DEV-PATH, TRACKS per project
+my-app/ my-lib/ ...         Canonical DEV-PLAN, DEV-PATH, TRACKS per project
                             Project owns its own execution state
 
 runtime workspace           Live agent state
@@ -49,8 +48,8 @@ runtime workspace           Live agent state
 ```
 
 **Portability rule:**
-If a standard should be portable across organizations → `governance-commons/`
-If it is local to this portfolio and machine → `C:\dev`
+If a standard should be portable across organizations, package it outside the local DCP instance.
+If it describes this portfolio's registry, tooling, or operating convention, it belongs in the DCP control plane.
 
 ---
 
@@ -63,8 +62,10 @@ If it is local to this portfolio and machine → `C:\dev`
 | Pointer validator | `validate-pointers.ps1` | Verifies all planning file pointers in registry resolve on disk |
 | Source guard | `protect-sources.ps1` | Pre-commit hook — blocks bulk writes to research corpus |
 | Boundary doctrine | `DEV-CONTROL-PLANE.md` | Defines what belongs in each layer and why |
+| Governance Kit | `docs/GOVERNANCE-KIT.md` | Planning normalization package overview |
 | Planning templates | `docs/templates/` | DEV-PLAN, DEV-PATH, TRACKS, PROJECT-STATUS templates |
 | Planning standard | `docs/planning-normalization.md` | Vocabulary, pointer shape, and canonical patterns |
+| Planning audit | `docs/PLANNING-AUDIT.md` | Normalization and adversarial review checklist |
 
 ---
 
@@ -75,7 +76,7 @@ If it is local to this portfolio and machine → `C:\dev`
 .\dev-status.ps1
 
 # Filter to a group
-.\dev-status.ps1 -Group eco-ecosystem
+.\dev-status.ps1 -Group apps
 
 # Show only repos with uncommitted changes
 .\dev-status.ps1 -DirtyOnly
@@ -93,9 +94,9 @@ If it is local to this portfolio and machine → `C:\dev`
 
 ```
   name             status    branch     dirty       plan    ahead/behind  hash    commit msg               time
-  eco              active    main       ✓ clean     plan                  c3f4497 feat: add governance...  3h ago
-  agent-matrix     active    main       ● 4 work    notes                 6c92df4 chore: ignore .vscode   15h ago
-  elan             scaffold  main       ✓ clean                           8944204 Add devcontainer...      3mo ago
+  my-app           active    main       ✓ clean     plan                  c3f4497 feat: add dashboard...   3h ago
+  my-lib           stable    main       ● 4 work    notes                 6c92df4 chore: update package    15h ago
+  old-tool         archive   main       ✓ clean                           8944204 Initial commit            3mo ago
 ```
 
 - **status** — `active` (green) · `wip` (yellow) · `scaffold` / `stable` (gray/cyan)
@@ -127,7 +128,7 @@ Four templates in `docs/templates/` derived from real project conventions:
 | Template | Use for |
 |----------|---------|
 | `DEV-PLAN.template.md` | Active project — milestones, release targets, blockers |
-| `DEV-PATH.template.md` | Phase history, PASS registry, agent onboarding |
+| `DEV-PATH.template.md` | Phase history, decisions, task registry |
 | `TRACKS.template.md` | Parallel workstreams, dependency map |
 | `PROJECT-STATUS.template.md` | Scaffold or small projects (minimum viable plan) |
 
@@ -139,18 +140,20 @@ DCP is designed to be modular. Each layer is independently useful.
 
 | Module | Contents | Audience |
 |--------|----------|---------|
-| **DCP Core** | Registry schema + dashboard + boundary doctrine | Any multi-repo developer |
+| **DCP Core** | Registry schema, dashboard, pointer validator, source guard, boundary doctrine, onboarding | Any multi-repo developer |
 | **DCP Governance Kit** | Planning templates + normalization standard + validator | Teams with 3+ active projects |
-| **DCP Agent Kit** | PASS templates + model routing patterns + agent onboarding | AI-augmented development workflows |
+| **DCP Agent Kit** | Task governance templates + model routing patterns + agent onboarding | AI-augmented development workflows |
 | **DCP Studio** | All modules bundled | Solo developers running multi-agent workflows |
 | **DCP Consulting** | Custom setup, training, workflow design | Teams adopting AI-augmented development |
+
+See `docs/SKU-BOUNDARIES.md` for the explicit packaging boundary.
 
 ---
 
 ## File Map
 
 ```
-C:\dev\
+devx-control-plane\
   README.md                     This file
   DEV-CONTROL-PLANE.md          Boundary doctrine
   DEVPLAN.md                    DCP execution plan and release roadmap
@@ -163,7 +166,6 @@ C:\dev\
     planning-normalization.md   Planning standard
     templates/                  Planning templates
     sources/                    Research corpus (protected)
-  governance-commons/           Portable governance standards (separate repo)
   [project repos]/              Individual projects (separate repos, gitignored here)
 ```
 

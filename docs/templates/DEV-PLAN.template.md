@@ -9,7 +9,7 @@
 ## CANONICAL DOC RULE
 
 `DEVPLAN.md` owns: current execution state, active milestones, priority work queue, release targets.
-`DEVPATH.md` owns: phase history, design decisions, PASS registry, agent onboarding.
+`DEVPATH.md` owns: phase history, design decisions, and task registry.
 
 Do not create competing root planning files with alternate names (`devplan`, `DEV-PLAN`, etc.).
 Non-canonical copies must either redirect here or be archived.
@@ -59,3 +59,11 @@ Status key: ✅ Done · 🔄 In progress · ⬜ Planned · ❌ Blocked
 ## DEFERRED / OUT OF SCOPE
 
 - {{item}} — deferred to {{vX.Y.Z}} or reason
+
+---
+
+## NORMALIZATION NOTES
+
+- Registry pointer: `planning.canonical`
+- Companion history file: `DEVPATH.md`
+- Tracks file required: {{yes/no}}

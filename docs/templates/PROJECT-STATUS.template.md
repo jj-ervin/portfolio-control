@@ -2,7 +2,7 @@
 
 **Status:** {{scaffold | wip | active | stable | archive}}
 **Updated:** {{YYYY-MM-DD}}
-**Group:** {{eco-ecosystem | governance-commons | dev-tools | apps}}
+**Group:** {{apps | libraries | services | dev-tools | docs}}
 
 ---
 
@@ -27,4 +27,4 @@
 ## Links
 
 - Canonical plan pointer: see `projects.yaml`
-- Changelog: `{{path/to/passchangelog.md}}` *(if applicable)*
+- Changelog: `{{path/to/changelog.md}}` *(if applicable)*

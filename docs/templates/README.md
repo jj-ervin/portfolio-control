@@ -1,11 +1,11 @@
 # Planning Templates
 
-Standard templates for project planning in this portfolio. See `docs/planning-normalization.md` for the full standard.
+Standard templates for project planning in a DCP portfolio. See `docs/planning-normalization.md` for the full standard.
 
 | Template | Use for |
 |----------|---------|
 | `DEV-PLAN.template.md` | Current execution plan — active milestones, release targets, blockers |
-| `DEV-PATH.template.md` | Historical path — phase history, PASS registry, agent onboarding |
+| `DEV-PATH.template.md` | Historical path — phase history, decisions, task registry |
 | `TRACKS.template.md` | Parallel workstreams — portfolio overview, dependency map |
 | `PROJECT-STATUS.template.md` | Minimum plan for scaffold or small projects |
 

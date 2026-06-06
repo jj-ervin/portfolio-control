@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-    Shows git status for all c:/dev projects, driven by projects.yaml.
+    Shows git status for all projects listed in projects.yaml.
 
 .PARAMETER Group
-    Filter to a specific group: eco-ecosystem, cockpit, governance-commons, dev-tools, apps, docs, archive
+    Filter to a specific project group from projects.yaml.
 
 .PARAMETER DirtyOnly
     Show only repos with uncommitted changes.
@@ -14,7 +14,7 @@
 .EXAMPLE
     .\dev-status.ps1
     .\dev-status.ps1 -DirtyOnly
-    .\dev-status.ps1 -Group eco-ecosystem
+    .\dev-status.ps1 -Group apps
     .\dev-status.ps1 -Group archive
     .\dev-status.ps1 -Help
 #>
@@ -37,8 +37,16 @@ if ($Help) {
     Write-Host "    -Help            Show this help"
     Write-Host ""
     Write-Host "  GROUPS" -ForegroundColor Cyan
-    Write-Host "    eco-ecosystem    governance-commons    dev-tools"
-    Write-Host "    cockpit          apps                  docs        archive"
+    if (Test-Path (Join-Path $PSScriptRoot "projects.yaml")) {
+        $helpYaml = Get-Content (Join-Path $PSScriptRoot "projects.yaml") -Raw
+        $helpGroups = [regex]::Matches($helpYaml, '(?m)^\s+group:\s+(.+)$') |
+            ForEach-Object { $_.Groups[1].Value.Trim().Trim('"').Trim("'") } |
+            Where-Object { $_ } |
+            Select-Object -Unique
+        Write-Host "    $($helpGroups -join '    ')"
+    } else {
+        Write-Host "    Defined by projects.yaml"
+    }
     Write-Host ""
     Write-Host "  COLUMNS" -ForegroundColor Cyan
     Write-Host "    name        Project name (from projects.yaml)"
@@ -63,10 +71,6 @@ if ($Help) {
     exit 0
 }
 
-$Root     = $PSScriptRoot
-$YamlFile = Join-Path $Root "projects.yaml"
-$RawYaml  = Get-Content $YamlFile -Raw
-
 # ── Parse projects.yaml (no external module needed) ──────────────────────────
 function Read-Projects([string]$yamlPath) {
     $content = Get-Content $yamlPath -Raw
@@ -86,18 +90,22 @@ function Read-Projects([string]$yamlPath) {
     }
 }
 
+$Root     = $PSScriptRoot
+$YamlFile = Join-Path $Root "projects.yaml"
+$RawYaml  = Get-Content $YamlFile -Raw
+$RootDisplay = try { (Resolve-Path $Root).Path } catch { $Root }
+
 # ── Group display config ──────────────────────────────────────────────────────
 $GroupMeta = @{
-    "eco-ecosystem"      = @{ Label = "ECO ECOSYSTEM";      Color = "Green"   }
-    "cockpit"            = @{ Label = "COCKPIT";            Color = "Cyan"    }
-    "governance-commons" = @{ Label = "GOVERNANCE COMMONS"; Color = "Yellow"  }
-    "dev-tools"          = @{ Label = "DEV TOOLS";          Color = "Magenta" }
-    "apps"               = @{ Label = "APPS & PRODUCTS";    Color = "Blue"    }
-    "docs"               = @{ Label = "DOCS";               Color = "DarkCyan"}
-    "archive"            = @{ Label = "ARCHIVES";           Color = "DarkGray"}
+    "control-plane" = @{ Label = "CONTROL PLANE"; Color = "Green"   }
+    "apps"          = @{ Label = "APPS";          Color = "Blue"    }
+    "libraries"     = @{ Label = "LIBRARIES";     Color = "Cyan"    }
+    "services"      = @{ Label = "SERVICES";      Color = "Yellow"  }
+    "dev-tools"     = @{ Label = "DEV TOOLS";     Color = "Magenta" }
+    "docs"          = @{ Label = "DOCS";          Color = "DarkCyan"}
+    "archive"       = @{ Label = "ARCHIVES";      Color = "DarkGray"}
 }
-
-$GroupOrder = @("eco-ecosystem","cockpit","governance-commons","dev-tools","apps","docs","archive")
+$FallbackColors = @("Green", "Cyan", "Yellow", "Magenta", "Blue", "DarkCyan", "Gray")
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 function Get-RelativeTime([datetime]$date) {
@@ -149,7 +157,7 @@ function Get-DirtyCounts([string]$fullPath) {
 }
 
 function Get-PlanHealth([string]$projectName) {
-    $fileKeys = 'canonical|path|tracks|roadmap|implementation_plan|domain_plan|project|changelog'
+    $fileKeys = 'canonical|path|tracks|roadmap|implementation_plan|domain_plan|project|changelog|alternate_status|onboarding'
     $blocks   = [regex]::Split($RawYaml, '(?m)^  - (?=name:)')
     $block    = $blocks | Where-Object { $_ -match "^name:\s+[`"']?$([regex]::Escape($projectName))[`"']?" } | Select-Object -First 1
     if (-not $block -or $block -notmatch 'planning:') { return "none" }
@@ -268,6 +276,29 @@ if (-not $allProjects) {
     exit 1
 }
 
+$GroupOrder = @(
+    $allProjects |
+        ForEach-Object { $_.group } |
+        Where-Object { $_ } |
+        Select-Object -Unique |
+        Where-Object { $_ -ne "archive" }
+)
+if ($allProjects | Where-Object { $_.group -eq "archive" }) {
+    $GroupOrder += "archive"
+}
+
+$colorIndex = 0
+foreach ($groupName in $GroupOrder) {
+    if (-not $GroupMeta.ContainsKey($groupName)) {
+        $label = ($groupName -replace "[-_]", " ").ToUpperInvariant()
+        $GroupMeta[$groupName] = @{
+            Label = $label
+            Color = $FallbackColors[$colorIndex % $FallbackColors.Count]
+        }
+        $colorIndex++
+    }
+}
+
 # ── Validate group filter ─────────────────────────────────────────────────────
 if ($Group -and -not $GroupMeta.ContainsKey($Group)) {
     Write-Host "Unknown group '$Group'. Valid: $($GroupOrder -join ', ')" -ForegroundColor Red
@@ -278,7 +309,7 @@ $scanGroups = if ($Group) { @($Group) } else { $GroupOrder | Where-Object { $_ -
 
 # ── Header ────────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "  c:/dev  " -ForegroundColor White -BackgroundColor DarkGreen -NoNewline
+Write-Host "  $RootDisplay  " -ForegroundColor White -BackgroundColor DarkGreen -NoNewline
 Write-Host "  $(Get-Date -Format 'yyyy-MM-dd HH:mm')  " -ForegroundColor DarkGreen
 Write-Host ""
 

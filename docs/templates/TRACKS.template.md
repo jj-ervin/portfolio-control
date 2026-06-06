@@ -1,7 +1,7 @@
 # TRACKS — {{Project Name}} Portfolio Overview
 
 **Last updated:** {{YYYY-MM-DDThh:mm:ssZ}}
-**Authority:** Master product/release portfolio view. For PASS governance history see `DEVPATH.md`; for active execution planning see `DEVPLAN.md`.
+**Authority:** Master product/release portfolio view. For governance history see `DEVPATH.md`; for active execution planning see `DEVPLAN.md`.
 
 ---
 
@@ -34,7 +34,7 @@ Track B ({{name}})
 ### Track A — {{Name}}
 
 **Goal:** {{goal}}
-**Owner:** {{team/agent or "unassigned"}}
+**Owner:** {{team/role or "unassigned"}}
 **Status:** 🔴 Not started
 
 | ID | Task | Priority | Status |
@@ -46,7 +46,7 @@ Track B ({{name}})
 ### Track B — {{Name}}
 
 **Goal:** {{goal}}
-**Owner:** {{team/agent or "unassigned"}}
+**Owner:** {{team/role or "unassigned"}}
 **Status:** 🔴 Not started
 
 | ID | Task | Priority | Status |

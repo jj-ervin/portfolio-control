@@ -9,33 +9,33 @@
 
 ## CANONICAL DOC RULE
 
-`DEVPATH.md` owns: phase history, design decisions, PASS registry, model routing, agent onboarding.
+`DEVPATH.md` owns: phase history, design decisions, and task registry.
 `DEVPLAN.md` owns: current execution state, active milestones, release targets.
 
 Do not create or revive alternate root files named `devpath`, `DEV-PATH`, etc.
 
 ---
 
-## AGENT ONBOARDING — Read this first
+## MAINTAINER ONBOARDING — Read this first
 
 Before starting any task in this repo, read in order:
 
 1. {{link to global invariants or governance doc, if applicable}}
-2. {{link to PASS index or task registry, if applicable}}
-3. **This file** — current phase, your task ID, model suggestion
-4. The relevant implementation PASS or task file
+2. {{link to task index or registry, if applicable}}
+3. **This file** — current phase, task lineage, and relevant decisions
+4. The relevant implementation task file
 
 ---
 
-## MODEL ROUTING
+## OPTIONAL AGENT KIT CONTEXT
 
-{{Optional — remove if not using multi-agent workflow.}}
+{{Optional — remove this section unless the project uses Agent Kit.}}
 
 | Task type | Assigned window | Model |
 |-----------|----------------|-------|
-| Architecture / governance | Window 1 — Claude Code | Claude |
-| Structured code generation | Window 2 — Codex | GPT |
-| In-editor edits | Window 3 — Copilot | Copilot |
+| Architecture / governance | {{agent or role}} | {{model family}} |
+| Structured code generation | {{agent or role}} | {{model family}} |
+| In-editor edits | {{agent or role}} | {{model family}} |
 
 ---
 
@@ -62,7 +62,7 @@ Before starting any task in this repo, read in order:
 
 ---
 
-## PASS / TASK REGISTRY
+## TASK REGISTRY
 
 | ID | Name | Status | Phase | Notes |
 |----|------|--------|-------|-------|
@@ -75,5 +75,13 @@ Status values: `planned` · `in_progress` · `blocked` · `done` · `deferred` �
 
 ## CHANGELOG LINKS
 
-- `{{path/to/passchangelog.md}}` — session handoff log
+- `{{path/to/handoff-log.md}}` — session handoff log
 - `{{path/to/CHANGELOG.md}}` — public-facing release changelog
+
+---
+
+## NORMALIZATION NOTES
+
+- Registry pointer: `planning.path`
+- Current plan file: `DEVPLAN.md`
+- Tracks file required: {{yes/no}}

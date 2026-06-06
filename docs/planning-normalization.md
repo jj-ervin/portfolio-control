@@ -1,8 +1,8 @@
 # Planning Normalization Standard
 
-Updated: 2026-06-05
+Updated: 2026-06-06
 
-This standard defines how `C:\dev` should unify project direction without forcing every repo into the same internal structure.
+This standard defines how a DCP portfolio should unify project direction without forcing every repo into the same internal structure.
 
 ## Portfolio Source Of Truth
 
@@ -30,12 +30,14 @@ planning:
   tracks: path/to/tracks.md
   roadmap: path/to/roadmap.md
   implementation_plan: path/to/implementation-plan.md
+  alternate_status: path/to/alternate-status.md
+  onboarding: path/to/onboarding.md
   project: path/to/project.yaml
-  changelog: path/to/passchangelog.md
+  changelog: path/to/changelog.md
   notes: "Short explanation when direction is inherited, absent, archived, or intentionally deferred."
 ```
 
-Prefer `canonical` for the current execution plan. Use `path` for history, phase lineage, or longer development path. Use `tracks` when parallel workstreams exist. Use `changelog` only as an audit link.
+Prefer `canonical` for the current execution plan. Use `path` for history, phase lineage, or longer development path. Use `tracks` when parallel workstreams exist. Use `alternate_status` only when a secondary status surface must remain discoverable. Use `changelog` only as an audit link.
 
 ## Canonical Project Planning Pattern
 
@@ -44,10 +46,10 @@ For mature active projects, prefer this triad:
 | File Role | Purpose |
 | --- | --- |
 | Current plan | Current execution state, next milestones, active blockers |
-| Development path | Historical phases, major decisions, PASS/task lineage |
+| Development path | Historical phases, major decisions, task lineage |
 | Tracks | Parallel workstreams and dependencies |
 
-The file names may vary by repo. The manager registry records the actual paths.
+The file names may vary by repo. The DCP registry records the actual paths.
 
 ## Minimum Plan For Small Projects
 
@@ -85,3 +87,4 @@ Task/milestone status:
 3. Do not use changelogs as the only current-status surface for active projects.
 4. If a project inherits direction from a parent track, say so in `projects.yaml`.
 5. If a project has duplicate status docs, choose one canonical file and mark the other as alternate or archive.
+6. Keep model routing, live handoff state, and execution traces out of Governance Kit docs unless clearly marked as optional Agent Kit context.
