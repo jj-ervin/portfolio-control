@@ -192,16 +192,16 @@ projects:
     planning:
       notes: "No git repo or active plan found yet."
 
-  - name: project-orchestrator-agent
-    path: governance-commons/project-orchestrator-agent
+  - name: agent-project-orchestrator
+    path: governance-commons/agent-project-orchestrator
     group: governance-commons
     description: "Runtime orchestration contract — task graph, dispatch, handoff, audit"
     status: active
     branch: main
     planning:
-      canonical: governance-commons/project-orchestrator-agent/DEVPLAN.md
-      path: governance-commons/project-orchestrator-agent/DEVPATH.md
-      tracks: governance-commons/project-orchestrator-agent/Tracks.md
+      canonical: governance-commons/agent-project-orchestrator/DEVPLAN.md
+      path: governance-commons/agent-project-orchestrator/DEVPATH.md
+      tracks: governance-commons/agent-project-orchestrator/Tracks.md
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 
