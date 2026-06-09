@@ -6,9 +6,19 @@ Portfolio-level documentation for `c:/dev`.
 
 ```
 docs/
+  agent-kit/     Agent handoff, routing, and onboarding patterns
+  team-kit/      Team review, routing, and onboarding patterns
+  sessions/      Captured synthesis sessions and reusable analysis outputs
   sources/       Research articles — industry standards, AI governance, platform direction
+  templates/     Reusable planning and status templates
+  gap-analysis-framework.md
   README.md      This file
 ```
+
+## Key docs
+
+- [`gap-analysis-framework.md`](gap-analysis-framework.md) — portable 12-question gap-analysis framework for eco, governance-commons, DCP, and comparable AI governance platforms.
+- [`sessions/2026-06-09-research-synthesis.md`](sessions/2026-06-09-research-synthesis.md) — synthesis across 102 sources that produced the current gap inventory.
 
 ## sources/
 
