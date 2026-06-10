@@ -11,7 +11,7 @@ Standard templates for project planning in a DCP portfolio. See `docs/planning-n
 
 ## Which template to use
 
-- **Active project with parallel workstreams** → all three: DEVPLAN + DEVPATH + TRACKS
-- **Active project, single workstream** → DEVPLAN + DEVPATH
+- **Active project with parallel workstreams** → all three: DEV-PLAN + DEV-PATH + TRACKS
+- **Active project, single workstream** → DEV-PLAN + DEV-PATH
 - **Scaffold or small project** → PROJECT-STATUS only
 - **Project inheriting direction from a parent track** → no local plan needed; record the pointer in `projects.yaml`

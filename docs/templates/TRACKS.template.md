@@ -1,7 +1,7 @@
 # TRACKS — {{Project Name}} Portfolio Overview
 
 **Last updated:** {{YYYY-MM-DDThh:mm:ssZ}}
-**Authority:** Master product/release portfolio view. For governance history see `DEVPATH.md`; for active execution planning see `DEVPLAN.md`.
+**Authority:** Master product/release portfolio view. For governance history see `DEV-PATH.md`; for active execution planning see `DEV-PLAN.md`.
 
 ---
 

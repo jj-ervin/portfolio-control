@@ -45,8 +45,8 @@ if (-not (Test-Path $Dest)) {
 $SyncFiles = @(
     "README.md",
     "DEV-CONTROL-PLANE.md",
-    "DEVPLAN.md",
-    "DEVPATH.md",
+    "DEV-PLAN.md",
+    "DEV-PATH.md",
     "dcp.ps1",
     "dcp-setup.ps1",
     "dev-status.ps1",

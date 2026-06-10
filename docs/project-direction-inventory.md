@@ -11,7 +11,7 @@ This is the `C:\dev` manager-level index of planning, roadmap, track, milestone,
 | Portfolio registry | Cross-project inventory and relationships | `projects.yaml` |
 | Portfolio planning index | Manager-level map of planning sources | this file |
 | Project canonical plan | Current execution source for one project | `eco/DEV-PLAN.md`, `project-orchestrator-agent/DevPlan-v1.0.md` |
-| Project path/history | Phase history, PASS/task lineage, historical path | `eco/DEV-PATH.md`, `kinjuu/devpath.md` |
+| Project path/history | Phase history, PASS/task lineage, historical path | `eco/DEV-PATH.md`, `kinjuu/dev-path.md` |
 | Track/workstream docs | Parallel workstreams or release lanes | `eco/TRACKS.md`, `eco/tracks/TRACK-A.md` |
 | Changelog/PASS history | Audit trail, not current direction by default | `passchangelog.md`, `docs/passchangelog/*` |
 | Archive/snapshot/template | Non-authoritative unless explicitly restored | `state-snapshots`, `docs/archive`, `templates` |
@@ -25,7 +25,7 @@ This is the `C:\dev` manager-level index of planning, roadmap, track, milestone,
 | eco-slate | none found | `eco-slate/docs/roadmap.md` | v0.1/v0.2/v1.0 roadmap | Lightweight roadmap only. |
 | eco-slate-www | `eco-slate-www/docs/DEV_PLAN.md` | `eco-slate-www/docs/DEV_PATH.md` | migration milestones | Has actionable migration plan. |
 | eco.vs | `eco/tracks/TRACK-B.md` | none found in `eco.vs` | Track B | Direction currently inherited from eco platform/SKU track. |
-| .eco | none for product direction | `.eco/devpath.md` | `.eco/passchangelog.md` | Runtime-kernel path only; eco docs warn this is not the product roadmap. |
+| .eco | none for product direction | `.eco/dev-path.md` | `.eco/passchangelog.md` | Runtime-kernel path only; eco docs warn this is not the product roadmap. |
 | eos | `eco/DEV-PLAN.md` by inheritance | none found in `eos` | eco runtime/governance work | No standalone direction doc found. |
 | cockpit | `eco/tracks/TRACK-B.md` by inheritance | none found in `cockpit` | Track B | No standalone direction doc found. |
 | agent-dossier | none found | `governance-commons/agent-dossier/ROADMAP.md` | v1.1.0 roadmap sections | Focused standard roadmap. |
@@ -35,7 +35,7 @@ This is the `C:\dev` manager-level index of planning, roadmap, track, milestone,
 | project-orchestrator-agent | `governance-commons/project-orchestrator-agent/DevPlan-v1.0.md` | `governance-commons/project-orchestrator-agent/DevPath-v1.0.md` | `governance-commons/project-orchestrator-agent/Tracks.md` | Complete plan/path/tracks triad. |
 | devtoolkit | none current found | `devtoolkit/docs/DevToolkit-V1.0-ImplementationPlan.md` | implementation phases | Older implementation plan; README says current version is V1.2. |
 | devxtoolkit | `devxtoolkit/governance/project.yaml` | none found | `devxtoolkit/governance/passchangelog.md` | Governance metadata exists; no current roadmap found. |
-| kinjuu | none found | `kinjuu/devpath.md` | `kinjuu/project.yaml`, `kinjuu/passchangelog.md` | Scaffold-level devpath only. |
+| kinjuu | none found | `kinjuu/dev-path.md` | `kinjuu/project.yaml`, `kinjuu/passchangelog.md` | Scaffold-level devpath only. |
 | niji | `niji/niji_current_status.md` | `niji/niji_dev_path_v0.1_to_v2.0.md` | `niji/niji_implementation_plan_v0.1.md` | Good planning set, but duplicate status exists under `niji/docs/`. |
 
 ## Duplicate Or Historical Sources
@@ -43,7 +43,7 @@ This is the `C:\dev` manager-level index of planning, roadmap, track, milestone,
 - `eco/docs/archive/devpath-consolidation/**` preserves pre-consolidation devpath material. Treat as archive.
 - `eco/docs/passchangelog/**` contains many PASS history files. Treat as audit trail, not the current plan.
 - `.eco/state-snapshots/**` and `eco-slate-www/.eco/state-snapshots/**` are snapshots. Treat as recovery history.
-- `.eco/skus/**/.eco/devpath.md` and `eco-slate-www/.eco/skus/**/.eco/devpath.md` are package/SKU internals. Treat as package history unless a canonical doc references them.
+- `.eco/skus/**/.eco/dev-path.md` and `eco-slate-www/.eco/skus/**/.eco/dev-path.md` are package/SKU internals. Treat as package history unless a canonical doc references them.
 - `eco/.claude/worktrees/**` contains worktree copies. Treat as ephemeral unless restored by a human.
 - `devtoolkit-v1.x/**` and `lasso_archive/**` are archive group material.
 

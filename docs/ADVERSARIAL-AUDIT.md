@@ -12,8 +12,8 @@ Scope:
 - `projects.yaml`
 - `dev-status.ps1`
 - `validate-pointers.ps1`
-- `DEVPLAN.md`
-- `DEVPATH.md`
+- `DEV-PLAN.md`
+- `DEV-PATH.md`
 - `docs/planning-normalization.md`
 - `docs/templates/`
 - `docs/SKU-BOUNDARIES.md`

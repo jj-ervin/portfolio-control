@@ -1,4 +1,4 @@
-# DEVPATH — {{Project Name}}
+# DEV-PATH — {{Project Name}}
 
 **AUTHORITY LEVEL: AL:{{1|2|3}}**
 **Status:** ACTIVE — single authoritative source for {{project}} development path
@@ -9,8 +9,8 @@
 
 ## CANONICAL DOC RULE
 
-`DEVPATH.md` owns: phase history, design decisions, and task registry.
-`DEVPLAN.md` owns: current execution state, active milestones, release targets.
+`DEV-PATH.md` owns: phase history, design decisions, and task registry.
+`DEV-PLAN.md` owns: current execution state, active milestones, release targets.
 
 Do not create or revive alternate root files named `devpath`, `DEV-PATH`, etc.
 
@@ -83,5 +83,5 @@ Status values: `planned` · `in_progress` · `blocked` · `done` · `deferred` �
 ## NORMALIZATION NOTES
 
 - Registry pointer: `planning.path`
-- Current plan file: `DEVPLAN.md`
+- Current plan file: `DEV-PLAN.md`
 - Tracks file required: {{yes/no}}

@@ -156,8 +156,8 @@ See `docs/SKU-BOUNDARIES.md` for the explicit packaging boundary.
 devx-control-plane\
   README.md                     This file
   DEV-CONTROL-PLANE.md          Boundary doctrine
-  DEVPLAN.md                    DCP execution plan and release roadmap
-  DEVPATH.md                    DCP development path and phase history
+  DEV-PLAN.md                    DCP execution plan and release roadmap
+  DEV-PATH.md                    DCP development path and phase history
   projects.yaml                 Portfolio registry
   dev-status.ps1                Portfolio dashboard
   validate-pointers.ps1         Planning pointer integrity checker
@@ -173,8 +173,8 @@ devx-control-plane\
 
 ## Status
 
-See `DEVPLAN.md` for current release targets and roadmap.
-See `DEVPATH.md` for phase history and design decisions.
+See `DEV-PLAN.md` for current release targets and roadmap.
+See `DEV-PATH.md` for phase history and design decisions.
 
 ---
 

@@ -18,7 +18,7 @@ Ships in v0.2.0:
 - `DEV-CONTROL-PLANE.md` boundary doctrine
 - `README.md`
 - `ONBOARDING.md`
-- `DEVPLAN.md` and `DEVPATH.md` for the template repo itself
+- `DEV-PLAN.md` and `DEV-PATH.md` for the template repo itself
 
 Core may include short examples and links to optional modules, but it must not require any external governance framework, agent runtime, model vendor, database, or hosted service.
 

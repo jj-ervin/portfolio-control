@@ -52,7 +52,7 @@ Notes added:
 
 This file was the last of the four repo DEV-RELEASE files to be populated. See above.
 
-### governance-commons/DEVPLAN.md
+### governance-commons/DEV-PLAN.md
 
 **Status:** Synthesis section appended 2026-06-09.
 
@@ -62,7 +62,7 @@ Sections added:
 - PASS-6 items from synthesis not previously registered: Human-Agent Teaming Protocol (J2), GDPR/privacy rights compliance mapping, A2A protocol evolution tracking (E5)
 - Anti-patterns section (synthesis Section F — what governance-commons must not become)
 
-### dxp-org/DEVPLAN.md
+### dxp-org/DEV-PLAN.md
 
 **Status:** Synthesis section appended 2026-06-09.
 
@@ -91,8 +91,8 @@ Sections added:
 | --- | --- |
 | DEV-PATH files (any repo) | DEV-PATH owns history and decisions, not future work. Synthesis findings belong in DEV-PLAN (queued work) and DEV-RELEASE (release contracts), not in the historical record. |
 | eco/DEV-PATH.md | Same as above. The synthesis does not change what was built; it changes what will be built next. |
-| governance-commons/DEVPATH.md | Same as above. PASS history is unchanged. |
-| Synthesis items already tracked in GC DEVPLAN gap checklist | Items like 101-AC1 (constitutional governance), 101-AC2 (federated trust), 101-AC3 (temporal authority) were already registered in the gap checklist with PASS assignments. Not duplicated. |
+| governance-commons/DEV-PATH.md | Same as above. PASS history is unchanged. |
+| Synthesis items already tracked in GC DEV-PLAN gap checklist | Items like 101-AC1 (constitutional governance), 101-AC2 (federated trust), 101-AC3 (temporal authority) were already registered in the gap checklist with PASS assignments. Not duplicated. |
 | Regulatory sandbox participation (J10) | Organizational action, not a code or spec item. Not appropriate for a DEV-PLAN. Noted in combined synthesis doc. |
 | Operator upskilling as workflow output (J7) | Eco-domain item but highly speculative; deferred to v2.0 roadmap consideration. Noted in eco DEV-RELEASE v2.0 deliverables implicitly via context-specific truth domains. |
 
@@ -107,17 +107,17 @@ The following synthesis sections have been incorporated:
 | A — Dominant Themes | 12 themes validating eco architecture | Combined synthesis doc; DEV-RELEASE current state summaries |
 | C1–C13 — What Eco Should Adopt | 13 adoption items | eco/DEV-PLAN.md SYN-* items; eco/DEV-RELEASE.md releases |
 | D — What Eco Should Avoid | 8 anti-patterns | eco/DEV-PLAN.md Anti-Patterns; eco/DEV-RELEASE.md Anti-Patterns |
-| E1–E13 — What GC Should Adopt | 13 adoption items | GC/DEVPLAN.md SYN-* items; GC/DEV-RELEASE.md (most items already tracked in gap checklist) |
-| F — What GC Should Avoid | 6 anti-patterns | GC/DEVPLAN.md Anti-Patterns |
-| G1–G9 — What DCP Should Adopt | 9 adoption items | dxp-org/DEVPLAN.md DXP-SYN-G* items |
-| H — What DCP Should Avoid | 6 anti-patterns | dxp-org/DEVPLAN.md Anti-Patterns |
+| E1–E13 — What GC Should Adopt | 13 adoption items | GC/DEV-PLAN.md SYN-* items; GC/DEV-RELEASE.md (most items already tracked in gap checklist) |
+| F — What GC Should Avoid | 6 anti-patterns | GC/DEV-PLAN.md Anti-Patterns |
+| G1–G9 — What DCP Should Adopt | 9 adoption items | dxp-org/DEV-PLAN.md DXP-SYN-G* items |
+| H — What DCP Should Avoid | 6 anti-patterns | dxp-org/DEV-PLAN.md Anti-Patterns |
 | I — Cross-Cutting Structural | 8 recommendations | Distributed across all DEV-RELEASE gap closures and DEV-PLAN queued work |
-| J1–J10 — Genuine Gaps | 10 gaps not yet in roadmap | eco/DEV-PLAN.md SYN-CAT/SYN-REG items; GC/DEVPLAN.md SYN-GC items; all DEV-RELEASE v2.0 deliverables |
-| Tier 1 — Standards Compliance | ~16 items | eco/DEV-PLAN.md SYN-SEC items; GC/DEVPLAN.md PASS-5 open items |
+| J1–J10 — Genuine Gaps | 10 gaps not yet in roadmap | eco/DEV-PLAN.md SYN-CAT/SYN-REG items; GC/DEV-PLAN.md SYN-GC items; all DEV-RELEASE v2.0 deliverables |
+| Tier 1 — Standards Compliance | ~16 items | eco/DEV-PLAN.md SYN-SEC items; GC/DEV-PLAN.md PASS-5 open items |
 | Tier 2 — Best Practice | ~20 items | eco/DEV-PLAN.md SYN-VER items; eco/DEV-RELEASE.md v1.0 deliverables |
-| Tier 3 — Ahead of Industry | ~12 items | eco/DEV-PLAN.md SYN-CAT items; GC/DEVPLAN.md PASS-6 items; all DEV-RELEASE v2.0 sections |
+| Tier 3 — Ahead of Industry | ~12 items | eco/DEV-PLAN.md SYN-CAT items; GC/DEV-PLAN.md PASS-6 items; all DEV-RELEASE v2.0 sections |
 | 12-Question Framework (Q1–Q12) | Gap analysis framework | `docs/gap-analysis-framework.md` v1.1; referenced in all DEV-RELEASE files |
-| Regulatory corrections | EU AI Act August 2, 2026; Colorado SB26-189 January 1, 2027 | Regulatory tables in eco/DEV-PLAN.md, GC/DEVPLAN.md, dxp-org/DEVPLAN.md |
+| Regulatory corrections | EU AI Act August 2, 2026; Colorado SB26-189 January 1, 2027 | Regulatory tables in eco/DEV-PLAN.md, GC/DEV-PLAN.md, dxp-org/DEV-PLAN.md |
 
 ---
 
@@ -135,9 +135,9 @@ The following synthesis sections have been incorporated:
 
 These map directly to the portfolio DEV-RELEASE priority order but are restated here with synthesis traceability:
 
-1. **governance-commons v1.2.0 release** — LLC filing unblocks GitHub Releases + PyPI/npm. Everything downstream waits for this. (GC DEVPLAN PASS-5 Batch 3/4)
+1. **governance-commons v1.2.0 release** — LLC filing unblocks GitHub Releases + PyPI/npm. Everything downstream waits for this. (GC DEV-PLAN PASS-5 Batch 3/4)
 2. **eco SEC.00 + RT.10** — Write and accept these PASSes. No new eco Track B capability before SEC.00. (eco DEV-PLAN SYN-SEC-01 through 06, DP-4-11 series)
 3. **ADM transparency schema stub** — EU AI Act August 2, 2026 deadline. Write before that date. (eco DEV-PLAN SYN-REG-01)
 4. **eco-edge proof path** — After governance-commons PyPI/npm published; wire CloudEvents/OTel/PASS to GC specs. (eco-edge DEV-RELEASE v0.1)
 5. **dxp-org stranger test** — After GC PyPI/npm; dotgovernance installer hardened and tested outside author's machine. (dxp-org DEV-RELEASE v0.1)
-6. **DXP-SYN-G7** — Fix compiler timestamp embedding in DCP. Breaks PASS determinism today. Phase 1 fix, not Phase 2. (dxp-org DEVPLAN)
+6. **DXP-SYN-G7** — Fix compiler timestamp embedding in DCP. Breaks PASS determinism today. Phase 1 fix, not Phase 2. (dxp-org DEV-PLAN)

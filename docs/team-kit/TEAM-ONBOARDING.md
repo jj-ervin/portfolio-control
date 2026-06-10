@@ -43,7 +43,7 @@ When in doubt about who to route a review to, check REVIEW-ROUTING.md.
 3. `projects.yaml` — portfolio registry (what repos exist and their status)
 4. `docs/team-kit/REVIEW-ROUTING.md` — domain ownership and review requirements
 5. `ONBOARDING.md` — tool setup (dashboard, validator, pre-commit hook)
-6. The DEVPLAN.md for your assigned project
+6. The DEV-PLAN.md for your assigned project
 
 Do not start any work before completing steps 1–5.
 
@@ -105,8 +105,8 @@ Run through this when a new team member (human or agent) joins.
 ### Read
 - [ ] DEV-CONTROL-PLANE.md
 - [ ] docs/team-kit/REVIEW-ROUTING.md — know your domain and review obligations
-- [ ] DEVPLAN.md for assigned project
-- [ ] DEVPATH.md for assigned project
+- [ ] DEV-PLAN.md for assigned project
+- [ ] DEV-PATH.md for assigned project
 
 ### Access
 - [ ] Added to repo access (GitHub team, etc.)

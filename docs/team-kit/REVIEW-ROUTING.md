@@ -50,7 +50,7 @@ What changes route to which reviewer:
 | New invariant in any planning doc | Domain owner + second team member | AL:1 — two approvals required |
 | Boundary doctrine change (DEV-CONTROL-PLANE.md) | All active team members | AL:1 — affects everyone |
 | New interface or schema | Domain owner | AL:2 |
-| DEVPLAN.md / DEVPATH.md update | Project owner | AL:2 |
+| DEV-PLAN.md / DEV-PATH.md update | Project owner | AL:2 |
 | projects.yaml ownership or path change | Portfolio owner | AL:2 |
 | Standard implementation PR | Domain owner or designated reviewer | AL:3 |
 | Test-only PR | Any reviewer | AL:3 — lowest risk |
@@ -66,13 +66,13 @@ Planning docs have authority levels. Changes to them must be handled accordingly
 | Doc | Authority level | Who can approve changes |
 |-----|----------------|------------------------|
 | `DEV-CONTROL-PLANE.md` | AL:1 | All team members |
-| `DEVPLAN.md` (any project) | AL:1 for invariants; AL:2 for milestones | Project owner |
-| `DEVPATH.md` (any project) | AL:2 | Project owner |
+| `DEV-PLAN.md` (any project) | AL:1 for invariants; AL:2 for milestones | Project owner |
+| `DEV-PATH.md` (any project) | AL:2 | Project owner |
 | `projects.yaml` | AL:2 for ownership fields; AL:3 for status/description | Portfolio owner |
 | `docs/templates/` | AL:2 | Template owner |
 | `TRACKS.md` | AL:2 | Project owner |
 
-**Agents operating on planning docs** must have their authority level explicitly set in the task file. An agent with AL:3 authority cannot modify a DEVPLAN.md invariants section without escalating to AL:2.
+**Agents operating on planning docs** must have their authority level explicitly set in the task file. An agent with AL:3 authority cannot modify a DEV-PLAN.md invariants section without escalating to AL:2.
 
 ---
 

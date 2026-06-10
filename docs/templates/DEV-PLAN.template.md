@@ -1,4 +1,4 @@
-# DEVPLAN — {{Project Name}}
+# DEV-PLAN — {{Project Name}}
 
 **AUTHORITY LEVEL: AL:{{1|2|3}}**
 **Status:** ACTIVE
@@ -8,8 +8,8 @@
 
 ## CANONICAL DOC RULE
 
-`DEVPLAN.md` owns: current execution state, active milestones, priority work queue, release targets.
-`DEVPATH.md` owns: phase history, design decisions, and task registry.
+`DEV-PLAN.md` owns: current execution state, active milestones, priority work queue, release targets.
+`DEV-PATH.md` owns: phase history, design decisions, and task registry.
 
 Do not create competing root planning files with alternate names (`devplan`, `DEV-PLAN`, etc.).
 Non-canonical copies must either redirect here or be archived.
@@ -65,5 +65,5 @@ Status key: ✅ Done · 🔄 In progress · ⬜ Planned · ❌ Blocked
 ## NORMALIZATION NOTES
 
 - Registry pointer: `planning.canonical`
-- Companion history file: `DEVPATH.md`
+- Companion history file: `DEV-PATH.md`
 - Tracks file required: {{yes/no}}

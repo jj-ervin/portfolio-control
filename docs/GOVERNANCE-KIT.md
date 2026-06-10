@@ -30,8 +30,8 @@ It does not define live task queues, model routing, handoff state, or execution 
 2. Run `validate-pointers.ps1` and fix broken file pointers.
 3. For each active repo, choose the minimum planning shape:
    - `PROJECT-STATUS` for scaffold or small projects
-   - `DEVPLAN` + `DEVPATH` for active single-workstream projects
-   - `DEVPLAN` + `DEVPATH` + `TRACKS` for active multi-workstream projects
+   - `DEV-PLAN` + `DEV-PATH` for active single-workstream projects
+   - `DEV-PLAN` + `DEV-PATH` + `TRACKS` for active multi-workstream projects
 4. Record the chosen files under `planning:` in `projects.yaml`.
 5. Run the adversarial audit checklist before publishing or depending on the docs for agent work.
 

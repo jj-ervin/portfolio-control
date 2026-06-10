@@ -5,7 +5,7 @@ updated: "2026-06-06"  # DCP planning docs added; README + --help complete
 #
 # DCP is C:\dev itself — the portfolio control plane.
 # It is not listed as a child project; it IS the registry.
-# Planning docs live at root: DEVPLAN.md, DEVPATH.md, DEV-CONTROL-PLANE.md
+# Planning docs live at root: DEV-PLAN.md, DEV-PATH.md, DEV-CONTROL-PLANE.md
 root: "c:/dev"
 
 # Status values: active | stable | wip | scaffold | archive
@@ -22,8 +22,8 @@ projects:
     status: active
     branch: main
     planning:
-      canonical: devx-control-plane/DEVPLAN.md
-      path: devx-control-plane/DEVPATH.md
+      canonical: devx-control-plane/DEV-PLAN.md
+      path: devx-control-plane/DEV-PATH.md
 
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
 
@@ -90,7 +90,7 @@ projects:
     branch: main
     governance_package: eco
     planning:
-      path: .eco/devpath.md
+      path: .eco/dev-path.md
       changelog: .eco/passchangelog.md
       notes: "Runtime-kernel path only; not the eco product roadmap."
 
@@ -139,8 +139,8 @@ projects:
     status: active
     branch: main
     planning:
-      canonical: governance-commons/agent-dossier/DEVPLAN.md
-      path: governance-commons/agent-dossier/DEVPATH.md
+      canonical: governance-commons/agent-dossier/DEV-PLAN.md
+      path: governance-commons/agent-dossier/DEV-PATH.md
       tracks: governance-commons/agent-dossier/TRACKS.md
 
   - name: agent-dossier-www
@@ -160,8 +160,8 @@ projects:
     status: active
     branch: main
     planning:
-      canonical: governance-commons/agent-matrix/DEVPLAN.md
-      path: governance-commons/agent-matrix/DEVPATH.md
+      canonical: governance-commons/agent-matrix/DEV-PLAN.md
+      path: governance-commons/agent-matrix/DEV-PATH.md
       tracks: governance-commons/agent-matrix/TRACKS.md
 
   - name: agent-team-protocol
@@ -199,8 +199,8 @@ projects:
     status: active
     branch: main
     planning:
-      canonical: governance-commons/agent-project-orchestrator/DEVPLAN.md
-      path: governance-commons/agent-project-orchestrator/DEVPATH.md
+      canonical: governance-commons/agent-project-orchestrator/DEV-PLAN.md
+      path: governance-commons/agent-project-orchestrator/DEV-PATH.md
       tracks: governance-commons/agent-project-orchestrator/Tracks.md
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
@@ -252,7 +252,7 @@ projects:
     status: active
     branch: main
     planning:
-      path: kinjuu/devpath.md
+      path: kinjuu/dev-path.md
       project: kinjuu/project.yaml
       changelog: kinjuu/passchangelog.md
 

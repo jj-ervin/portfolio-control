@@ -8,8 +8,8 @@ Use this checklist during a normalization run. Run it before publishing a releas
 ## Inputs
 
 - `projects.yaml`
-- `DEVPLAN.md`
-- `DEVPATH.md`
+- `DEV-PLAN.md`
+- `DEV-PATH.md`
 - `docs/planning-normalization.md`
 - project planning files referenced by `projects.yaml`
 
