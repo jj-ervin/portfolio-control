@@ -58,4 +58,4 @@ Add new tags as needed — keep them lowercase, hyphenated.
 Reference which eco repos a source directly informs:
 
 `eco` · `.eco` · `eos` · `cockpit` · `governance-commons` · `agent-dossier` ·
-`agent-matrix` · `ons` · `niji` · `devtoolkit`
+`agent-matrix` · `ons` · `niji` · `devxtoolkit-v1-x` · `devxtoolkit-v2-x`

@@ -46,8 +46,8 @@
       "path": "governance-commons"
     },
     {
-      "name": "⚖️ governance-commons-code",
-      "path": "governance-commons/governance-commons-code"
+      "name": "⚖️ governance-commons-sdk",
+      "path": "governance-commons/governance-commons-sdk"
     },
     {
       "name": "⚖️ governance-commons-www",
@@ -94,12 +94,12 @@
 
     // ── Dev Tools ─────────────────────────────────────────────────────────────
     {
-      "name": "🔧 devtoolkit",
-      "path": "devtoolkit"
+      "name": "🔧 devxtoolkit-v1-x",
+      "path": "dxp-org/devxtoolkit-v1-x"
     },
     {
-      "name": "🔧 devxtoolkit",
-      "path": "devxtoolkit"
+      "name": "🔧 devxtoolkit-v2-x",
+      "path": "dxp-org/devxtoolkit-v2-x"
     },
     {
       "name": "🔧 tools",
@@ -120,14 +120,6 @@
     {
       "name": "📦 lasso",
       "path": "lasso"
-    },
-    {
-      "name": "📦 devtoolkit-v1.x",
-      "path": "devtoolkit-v1.x"
-    },
-    {
-      "name": "📦 devtoolkit-v2.x",
-      "path": "devtoolkit-v2.x"
     },
     {
       "name": "📦 lasso_archive",
@@ -160,8 +152,7 @@
       "**/__pycache__": true,
       "**/lasso_archive/**": true,
       "**/lasso-mvp_archive/**": true,
-      "**/devtoolkit-v1.x/**": true,
-      "**/devtoolkit-v2.x/**": true
+      "**/_archive/**": true
     },
     "files.exclude": {
       "**/.pytest_cache": true,
