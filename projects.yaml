@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-06-21"  # Cockpit scope restored; doc-vault-plane registered as scaffold
+updated: "2026-06-21"  # ELAN, ARCHE, Cockpit scope restored; doc-vault-plane registered as scaffold
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -297,11 +297,14 @@ projects:
   - name: elan
     path: elan
     group: apps
-    description: "eco language layer for ritual, orchestration intent, and future CLI grammar"
+    description: "eco deterministic orchestration language for asset flow, validation flow, dependency context, and runtime coordination"
     status: scaffold
     branch: main
     planning:
-      notes: "Scaffold repo. Direction recovered from eco docs/specifications/elan-language-spec.md and DevXToolkit lineage; standalone plan not yet written."
+      canonical: elan/DEV-PLAN.md
+      path: elan/DEV-PATH.md
+      authority: eco/docs/specifications/elan-language-spec.md
+      notes: "Standalone repo is scaffold; current authoritative spec lives in eco/docs/specifications/elan-language-spec.md. DevXToolkit command grammar is the semantic seed."
 
   - name: arche
     path: arche
