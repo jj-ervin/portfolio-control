@@ -60,6 +60,7 @@ If it describes this portfolio's registry, tooling, or operating convention, it 
 | Registry | `projects.yaml` | Single source of truth for all projects — status, group, planning pointers |
 | Dashboard | `dev-status.ps1` | Live portfolio view: git status, project status, planning health |
 | Pointer validator | `validate-pointers.ps1` | Verifies all planning file pointers in registry resolve on disk |
+| Debt validator | `validate-debt.ps1` | Flags tracked generated artifacts and obvious shim/compatibility debt markers |
 | Source guard | `protect-sources.ps1` | Pre-commit hook — blocks bulk writes to research corpus |
 | Boundary doctrine | `DEV-CONTROL-PLANE.md` | Defines what belongs in each layer and why |
 | Governance Kit | `docs/GOVERNANCE-KIT.md` | Planning normalization package overview |
@@ -83,6 +84,9 @@ If it describes this portfolio's registry, tooling, or operating convention, it 
 
 # Verify all planning pointers resolve
 .\validate-pointers.ps1
+
+# Run full validation: pointers, review grammar, and structural debt
+.\dcp.ps1 validate
 
 # Help
 .\dev-status.ps1 -Help
@@ -161,6 +165,7 @@ devx-control-plane\
   projects.yaml                 Portfolio registry
   dev-status.ps1                Portfolio dashboard
   validate-pointers.ps1         Planning pointer integrity checker
+  validate-debt.ps1             Structural debt checker
   protect-sources.ps1           Research corpus pre-commit guard
   docs/
     planning-normalization.md   Planning standard

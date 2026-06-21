@@ -3,7 +3,7 @@
 
 param(
     [Parameter(Position = 0)]
-    [ValidateSet("init", "status", "validate", "validate-review", "help")]
+    [ValidateSet("init", "status", "validate", "validate-review", "validate-debt", "help")]
     [string]$Command = "help",
 
     [string]$TargetPath = ".",
@@ -20,9 +20,11 @@ function Show-Help {
     Write-Host "  COMMANDS" -ForegroundColor Cyan
     Write-Host "    init       Scaffold DCP files into a portfolio root"
     Write-Host "    status     Run the portfolio dashboard"
-    Write-Host "    validate   Verify planning pointers and review grammar"
+    Write-Host "    validate   Verify planning pointers, review grammar, and structural debt"
     Write-Host "    validate-review"
     Write-Host "               Verify review grammar adoption"
+    Write-Host "    validate-debt"
+    Write-Host "               Scan tracked files for generated artifacts and debt markers"
     Write-Host "    help       Show this help"
     Write-Host ""
     Write-Host "  EXAMPLES" -ForegroundColor Cyan
@@ -84,6 +86,7 @@ function Invoke-Init {
         "dev-status.ps1",
         "validate-pointers.ps1",
         "validate-review-grammar.ps1",
+        "validate-debt.ps1",
         "protect-sources.ps1",
         "dcp-setup.ps1",
         "dcp.ps1",
@@ -136,7 +139,10 @@ switch ($Command) {
         & (Join-Path $TemplateRoot "validate-pointers.ps1") -TargetPath $TargetPath
         if (-not $?) { exit 1 }
         & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath
+        if (-not $?) { exit 1 }
+        & (Join-Path $TemplateRoot "validate-debt.ps1") -TargetPath $TargetPath
     }
     "validate-review" { & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath }
+    "validate-debt" { & (Join-Path $TemplateRoot "validate-debt.ps1") -TargetPath $TargetPath }
     default    { Show-Help }
 }

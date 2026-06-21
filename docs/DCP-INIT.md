@@ -28,12 +28,15 @@ PowerShell usage:
 ```powershell
 .\dcp.ps1 status
 .\dcp.ps1 validate
+.\dcp.ps1 validate-debt
 .\dcp.ps1 help
 ```
 
 `status` runs `dev-status.ps1`.
 
-`validate` runs `validate-pointers.ps1` and `validate-review-grammar.ps1`.
+`validate` runs `validate-pointers.ps1`, `validate-review-grammar.ps1`, and `validate-debt.ps1`.
+
+`validate-debt` scans tracked files for generated artifacts and obvious shim/compatibility debt markers.
 
 `help` prints command usage.
 

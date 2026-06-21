@@ -54,6 +54,7 @@ $SyncFiles = @(
     "dev-status.ps1",
     "validate-pointers.ps1",
     "validate-review-grammar.ps1",
+    "validate-debt.ps1",
     "protect-sources.ps1",
     "docs\planning-normalization.md",
     "docs\REVIEW-GRAMMAR.md",
