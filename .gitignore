@@ -1,13 +1,16 @@
 # ── DCP distribution repo (clean stub, tracked separately) ──
-devx-control-plane/
+dxp-org/devx-control-plane/
 
-# ── Project repos (tracked separately, not as submodules) ──
+# ── Project repos tracked as root submodules ──
+!dxp-org/devxtoolkit-v1-x/
+!dxp-org/devxtoolkit-v2-x/
+!dxp-org/doc-vault-plane/
+
+# ── Project repos tracked separately, not by this root repo ──
 .eco/
 arche/
 cockpit/
 _archive/
-dxp-org/devxtoolkit-v1-x/
-dxp-org/devxtoolkit-v2-x/
 dxp-org/devx-toolkit/
 eco/
 eco-edge/

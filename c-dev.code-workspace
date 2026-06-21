@@ -54,8 +54,8 @@
       "path": "governance-commons/governance-commons-www"
     },
     {
-      "name": "⚖️ project-orchestrator-agent",
-      "path": "governance-commons/project-orchestrator-agent"
+      "name": "⚖️ agent-project-orchestrator",
+      "path": "governance-commons/agent-project-orchestrator"
     },
     {
       "name": "⚖️ agent-dossier",
