@@ -38,3 +38,17 @@ It is not a monorepo. It is not a project. It is the root from which projects ar
 ## Naming
 
 In prose and documentation, refer to this directory as the **portfolio control plane**, not as a monorepo or master dev repo.
+
+## Protected Resources
+
+All agents operating in this portfolio must read [`PROTECTED.md`](PROTECTED.md) before making any edits.
+
+`PROTECTED.md` is the authoritative list of files that cannot be overwritten, renamed, or restructured without explicit human instruction. Key protections:
+
+- All `DEV-PATH.md` files are append-only — phase history and design decisions must not be rewritten
+- `passchangelog.md` files are append-only audit logs
+- File and folder renames require explicit human approval before proceeding
+- Feature ideas and queued work in planning docs must not be deleted
+- No bulk rewrites of any planning document without surfacing the changes for approval first
+
+The pre-commit hook (`protect-sources.ps1`) enforces source corpus protection at commit time. `PROTECTED.md` extends this doctrine to all planning docs by agent instruction.
