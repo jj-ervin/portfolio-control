@@ -187,10 +187,12 @@ projects:
     path: governance-commons/governance-commons-sdk
     group: governance-commons
     description: "Code-level implementation of Governance Commons standards"
-    status: wip
-    branch: ~
+    status: active
+    branch: main
     planning:
-      notes: "No git repo or active plan found yet."
+      canonical: governance-commons/governance-commons-sdk/DEV-PLAN.md
+      path: governance-commons/governance-commons-sdk/DEV-PATH.md
+      notes: "Reference SDK repo exists; package publication pending."
 
   - name: agent-project-orchestrator
     path: governance-commons/agent-project-orchestrator
