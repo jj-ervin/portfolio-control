@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-06-06"  # DCP planning docs added; README + --help complete
+updated: "2026-06-21"  # doc-vault-plane registered as scaffold
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -24,6 +24,17 @@ projects:
     planning:
       canonical: dxp-org/devx-control-plane/DEV-PLAN.md
       path: dxp-org/devx-control-plane/DEV-PATH.md
+
+  - name: doc-vault-plane
+    path: dxp-org/doc-vault-plane
+    group: dcp
+    description: "Doc Vault Plane — business document control plane for governed document repositories"
+    status: scaffold
+    branch: main
+    depends_on: governance-commons
+    planning:
+      path: dxp-org/doc-vault-plane/DEV-PATH.md
+      notes: "Proposal/scaffold only; repo currently contains DEV-PATH.md and no implementation."
 
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
 
