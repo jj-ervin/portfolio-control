@@ -311,14 +311,21 @@ projects:
       canonical: docs/project-direction-inventory.md
       standard: docs/planning-normalization.md
 
-  # ─── ARCHIVES ────────────────────────────────────────────────────────────────
+  # ─── PRODUCTS ────────────────────────────────────────────────────────────────
 
   - name: lasso
     path: lasso
-    group: archive
-    description: "Lasso (current archived iteration)"
-    status: archive
+    group: apps
+    description: "Human-facing multi-agent collaboration portal"
+    status: active
     branch: main
+    depends_on: eco
+    planning:
+      canonical: lasso/DEV-PLAN.md
+      path: lasso/DEV-PATH.md
+      vision: lasso/docs/architecture/vision.md
+
+  # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
   - name: lasso_archive
     path: lasso_archive
