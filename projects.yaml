@@ -318,8 +318,9 @@ projects:
     planning:
       canonical: arche/DEV-PLAN.md
       path: arche/DEV-PATH.md
-      authority: eco/arche/ARCHE.spec.md
-      notes: "Standalone repo is scaffold; ARCHE.00 cluster header not yet written. Current authoritative spec lives in eco/arche/ARCHE.spec.md."
+      authority: eco/passes/arche/ARCHE.00.md
+      source_spec: eco/arche/ARCHE.spec.md
+      notes: "Standalone repo is scaffold; ARCHE.00 is accepted in eco. eco/arche/ARCHE.spec.md remains the ARCHE v1.0 source spec."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
