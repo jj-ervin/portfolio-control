@@ -72,6 +72,8 @@ The planning and normalization layer. Separable from Core.
 Includes:
 - `docs/templates/` — DEV-PLAN, DEV-PATH, TRACKS, PROJECT-STATUS templates
 - `docs/planning-normalization.md` — vocabulary, pointer shape, canonical patterns
+- `docs/REVIEW-GRAMMAR.md` — review command verbs for normalization, validation, adversarial audit, meta-audit, tracing, and closure
+- `validate-review-grammar.ps1` — lightweight adoption check for review grammar files and agent instruction references
 - DEV-PLAN + DEV-PATH conventions
 - Planning health tooling (already in dashboard)
 
@@ -143,6 +145,8 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 | DCP.14 | Package Governance Kit overview | B | P0 | ✅ |
 | DCP.15 | Add planning audit checklist | B | P0 | ✅ |
 | DCP.16 | Run adversarial normalization audit | B | P0 | ✅ |
+| DCP.17 | Add review grammar command reference | B | P0 | ✅ |
+| DCP.18 | Add review grammar validator support | B | P0 | ✅ |
 | DCP.20 | Agent Kit — generalise task template set | C | P2 | ✅ |
 | DCP.21 | Agent Kit — write routing pattern library | C | P2 | ✅ |
 | DCP.30 | Create GitHub template repository | D | P2 | ✅ |
@@ -191,6 +195,8 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 - DCP.14 — Added Governance Kit package overview
 - DCP.15 — Added planning audit checklist
 - DCP.16 — Ran adversarial normalization audit and recorded findings
+- DCP.17 — Added `docs/REVIEW-GRAMMAR.md` as the local command grammar for normalize, validate, verify, trace, adversarial audit, meta-audit, and close-the-loop sessions
+- DCP.18 — Added `validate-review-grammar.ps1` and wired `dcp.ps1 validate` to check review grammar adoption
 
 ## RECENTLY COMPLETED (Phase 3)
 

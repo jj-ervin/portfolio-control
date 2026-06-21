@@ -95,6 +95,8 @@ Planned:
 - audit `docs/templates/` for generic language
 - promote `docs/planning-normalization.md` into Governance Kit docs
 - add a planning audit checklist
+- add `docs/REVIEW-GRAMMAR.md` as the local command grammar for review, normalization, validation, adversarial audit, meta-audit, tracing, and gap closure
+- add `validate-review-grammar.ps1` so DCP/Governance Kit can check review grammar adoption in local and adopted repos
 - document how Core users adopt Governance Kit incrementally
 
 ---
@@ -150,6 +152,11 @@ This is DCP's primary market differentiator. Most competing tools solve the regi
 | DCP.11 | SKU boundary definition | done | 1 | `docs/SKU-BOUNDARIES.md` |
 | DCP.12 | User onboarding doc | done | 1 | `ONBOARDING.md` |
 | DCP.13 | Consulting pitch one-pager | done | 1 | `docs/PITCH.md` |
+| DCP.14 | Package Governance Kit overview | done | 2 | `docs/GOVERNANCE-KIT.md` |
+| DCP.15 | Planning audit checklist | done | 2 | `docs/PLANNING-AUDIT.md` |
+| DCP.16 | Adversarial normalization audit log | done | 2 | `docs/ADVERSARIAL-AUDIT.md` |
+| DCP.17 | Review grammar command reference | done | 2 | `docs/REVIEW-GRAMMAR.md`; local-first grammar, future GC promotion only by PASS/RFC |
+| DCP.18 | Review grammar validator | done | 2 | `validate-review-grammar.ps1`; `dcp.ps1 validate` runs it after pointer validation |
 | DCP.20 | Agent Kit — task template set | done | 3 | `docs/agent-kit/TASK-TEMPLATE.md`, `AGENT-KIT.md`, `AGENT-ONBOARDING.md` |
 | DCP.21 | Agent Kit — routing pattern library | done | 3 | `docs/agent-kit/ROUTING-PATTERNS.md`, `HANDOFF-PROTOCOL.md` |
 | DCP.30 | GitHub template repo | done | 4 | `devx-control-plane` marked as GitHub template |

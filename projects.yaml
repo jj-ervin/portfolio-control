@@ -24,6 +24,7 @@ projects:
     planning:
       canonical: dxp-org/devx-control-plane/DEV-PLAN.md
       path: dxp-org/devx-control-plane/DEV-PATH.md
+      review_grammar: dxp-org/devx-control-plane/docs/REVIEW-GRAMMAR.md
 
   - name: doc-vault-plane
     path: dxp-org/doc-vault-plane
