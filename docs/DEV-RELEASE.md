@@ -1,7 +1,8 @@
 # DEV-RELEASE — Portfolio Master
 
-Status: **Stub — structure only, not yet populated**  
-Created: 2026-06-09  
+Status: **Active — populated portfolio release sequencing**
+Created: 2026-06-09
+Updated: 2026-06-21
 Authority: **Portfolio-level coordination document.** This is the master release plan for the `c:\dev` ecosystem. It owns cross-repo sequencing, release dependencies, and the priority order. Individual repo DEV-RELEASE.md files own their own deliverables, admission criteria, and changelogs — they defer to this document for sequencing.
 
 ---
@@ -24,12 +25,29 @@ A release plan is not a roadmap. It is a commitment surface — the set of deliv
 
 | Repo | File | Status |
 | --- | --- | --- |
-| eco | [`eco/DEV-RELEASE.md`](../eco/DEV-RELEASE.md) | stub |
-| governance-commons | [`governance-commons/DEV-RELEASE.md`](../governance-commons/DEV-RELEASE.md) | stub |
-| dxp-org | [`dxp-org/DEV-RELEASE.md`](../dxp-org/DEV-RELEASE.md) | stub |
-| eco-edge | [`eco-edge/DEV-RELEASE.md`](../eco-edge/DEV-RELEASE.md) | stub |
+| eco | [`eco/DEV-RELEASE.md`](../eco/DEV-RELEASE.md) | populated — active Phase 4 + Track B release gates |
+| governance-commons | [`governance-commons/DEV-RELEASE.md`](../governance-commons/DEV-RELEASE.md) | populated — active PASS-5 public release train |
+| dxp-org | [`dxp-org/DEV-RELEASE.md`](../dxp-org/DEV-RELEASE.md) | populated — active planning coverage and stranger-test release gates |
+| eco-edge | [`eco-edge/DEV-RELEASE.md`](../eco-edge/DEV-RELEASE.md) | populated — pre-alpha proof-surface release path |
 
-Repos not listed here either inherit their release gates from eco (eos, cockpit, eco.vs) or are not yet in active release scope.
+Repos not listed here either inherit release gates from an owning product, are scaffolds with planning coverage but no release contract, or are archives/reference material.
+
+---
+
+## Current Portfolio Release State
+
+| Area | Current release posture | Immediate release gate |
+| --- | --- | --- |
+| governance-commons | Spec-strong, release train active; many standards are spec-complete but not yet publicly installable | GC v1.2.0/v1.0.0 public label decision, LLC gate, PyPI/npm publication, release notes |
+| eco-edge | Proof surface is planned; physical edge layer exists in eco, but GC proof path is not built here yet | v0.1 end-to-end CloudEvents/OTel/PASS/evidence path after GC packages ship |
+| dxp-org | Functional tooling exists; release risk is stranger-proof install and onboarding | v0.1 stranger test, installer hardening, DCP clean scaffold validation |
+| eco | Product/runtime planning is active; production claims are gated | SEC.00, RT.10, NEHI.02, unified trust envelope, ADM transparency schema |
+| eco.vs | Standalone preview normalized and buildable; inherits eco Track B until packaging reconciliation | Reconcile `eco.vs/` with `eco/surfaces/vscode/eco-vs` before Marketplace release |
+| cockpit | Product scope restored; standalone repo is scaffold while CK.00/CK.01/CK.02 remain authority | Implementation/package boundary validation under eco Track B |
+| lasso | Product planning normalized; human-facing multi-agent portal scope active | Release contract can be written after initial product implementation boundary is chosen |
+| ARCHE | Foundational environment semantics scope restored; scaffold repo owns planning docs | ARCHE.00 cluster header / first normative environment definition pass |
+| elan | eco language scope restored; scaffold repo owns planning docs | Standalone language release contract after eco spec and DevXToolkit command grammar are reconciled |
+| doc-vault-plane | Registered scaffold/proposal only | Decide whether to create implementation docs/package or keep as proposal |
 
 ---
 
