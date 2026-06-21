@@ -30,6 +30,7 @@ function Show-Help {
     Write-Host "    .\dcp.ps1 init -TargetPath C:\work"
     Write-Host "    .\dcp.ps1 init -TargetPath C:\work -Force"
     Write-Host "    .\dcp.ps1 status"
+    Write-Host "    .\dcp.ps1 validate -TargetPath C:\work"
     Write-Host ""
 }
 
@@ -72,6 +73,8 @@ function Invoke-Init {
     Write-Host ""
 
     $items = @(
+        "CLAUDE.md",
+        "PROTECTED.md",
         "README.md",
         "ONBOARDING.md",
         "DEV-CONTROL-PLANE.md",
@@ -130,10 +133,10 @@ switch ($Command) {
     "init"     { Invoke-Init }
     "status"   { & (Join-Path $TemplateRoot "dev-status.ps1") }
     "validate" {
-        & (Join-Path $TemplateRoot "validate-pointers.ps1")
+        & (Join-Path $TemplateRoot "validate-pointers.ps1") -TargetPath $TargetPath
         if (-not $?) { exit 1 }
-        & (Join-Path $TemplateRoot "validate-review-grammar.ps1")
+        & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath
     }
-    "validate-review" { & (Join-Path $TemplateRoot "validate-review-grammar.ps1") }
+    "validate-review" { & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath }
     default    { Show-Help }
 }

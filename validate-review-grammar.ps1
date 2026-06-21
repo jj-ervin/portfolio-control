@@ -7,7 +7,8 @@
 
 param(
     [string]$TargetPath = ".",
-    [string]$GrammarPath = ""
+    [string]$GrammarPath = "",
+    [switch]$AllowMissingAgentInstructions
 )
 
 $root = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($TargetPath)
@@ -90,7 +91,11 @@ foreach ($candidate in $agentCandidates) {
 }
 
 if ($agentFiles.Count -eq 0) {
-    $warnings += "No common agent instruction file found."
+    if ($AllowMissingAgentInstructions) {
+        $warnings += "No common agent instruction file found."
+    } else {
+        $failures += "No common agent instruction file found. Expected one of: $($agentCandidates -join ', ')"
+    }
 } else {
     $referencesGrammar = $false
     foreach ($agentFile in $agentFiles) {

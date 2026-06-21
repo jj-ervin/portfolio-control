@@ -2,15 +2,28 @@
 # Checks that all planning file pointers in projects.yaml resolve on disk.
 # Run manually or add to CI.
 #
-# Usage: pwsh -File validate-pointers.ps1 [--fix-notes]
+# Usage: pwsh -File validate-pointers.ps1 [-TargetPath C:\work] [-FixNotes]
 #   --fix-notes  Report projects with only a notes: pointer (no file to verify)
 
 param(
+    [string]$TargetPath = ".",
     [switch]$FixNotes
 )
 
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$yaml = Get-Content (Join-Path $root "projects.yaml") -Raw
+$root = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($TargetPath)
+$projectsFile = Join-Path $root "projects.yaml"
+
+if (-not (Test-Path $root)) {
+    Write-Host "Target path does not exist: $TargetPath" -ForegroundColor Red
+    exit 1
+}
+
+if (-not (Test-Path $projectsFile)) {
+    Write-Host "projects.yaml not found in target path: $root" -ForegroundColor Red
+    exit 1
+}
+
+$yaml = Get-Content $projectsFile -Raw
 
 $broken = @()
 $ok = @()

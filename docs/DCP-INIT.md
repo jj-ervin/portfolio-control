@@ -33,7 +33,7 @@ PowerShell usage:
 
 `status` runs `dev-status.ps1`.
 
-`validate` runs `validate-pointers.ps1`.
+`validate` runs `validate-pointers.ps1` and `validate-review-grammar.ps1`.
 
 `help` prints command usage.
 
