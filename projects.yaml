@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-06-21"  # doc-vault-plane registered as scaffold
+updated: "2026-06-21"  # Cockpit scope restored; doc-vault-plane registered as scaffold
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -132,13 +132,15 @@ projects:
   - name: cockpit
     path: cockpit
     group: cockpit
-    description: "Portable UI/UX shell for eco and other apps, mods, and platforms/devices"
+    description: "eco operator command surface and personal workspace control plane"
     status: scaffold
     branch: main
     runtime_of: eco
     planning:
-      canonical: eco/tracks/TRACK-B.md
-      notes: "Tracked as part of eco Track B until cockpit receives its own canonical plan."
+      canonical: cockpit/DEV-PLAN.md
+      path: cockpit/DEV-PATH.md
+      track: eco/tracks/TRACK-B.md
+      notes: "Standalone repo is scaffold; governing implementation/spec lineage lives in eco CK.00/CK.01/CK.02 until packaging."
 
   # ─── GOVERNANCE COMMONS ──────────────────────────────────────────────────────
   # Open standards for agent governance, orchestration, and runtime contracts
@@ -295,20 +297,21 @@ projects:
   - name: elan
     path: elan
     group: apps
-    description: "TBD"
+    description: "eco language layer for ritual, orchestration intent, and future CLI grammar"
     status: scaffold
     branch: main
     planning:
-      notes: "No active direction doc found."
+      notes: "Scaffold repo. Direction recovered from eco docs/specifications/elan-language-spec.md and DevXToolkit lineage; standalone plan not yet written."
 
   - name: arche
     path: arche
     group: apps
-    description: "TBD"
+    description: "eco environment semantics layer — declarative grammar for environments, boundaries, metadata, invariants, and transitions"
     status: scaffold
     branch: main
     planning:
-      notes: "No active direction doc found."
+      canonical: eco/arche/ARCHE.spec.md
+      notes: "Scaffold repo. ARCHE.00 cluster header not yet written; current authoritative spec lives in eco/arche/ARCHE.spec.md."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
