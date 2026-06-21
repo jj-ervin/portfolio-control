@@ -306,12 +306,14 @@ projects:
   - name: arche
     path: arche
     group: apps
-    description: "eco environment semantics layer — declarative grammar for environments, boundaries, metadata, invariants, and transitions"
+    description: "eco foundational environment semantics layer defining meaning, structure, boundaries, transitions, and capabilities for every eco environment"
     status: scaffold
     branch: main
     planning:
-      canonical: eco/arche/ARCHE.spec.md
-      notes: "Scaffold repo. ARCHE.00 cluster header not yet written; current authoritative spec lives in eco/arche/ARCHE.spec.md."
+      canonical: arche/DEV-PLAN.md
+      path: arche/DEV-PATH.md
+      authority: eco/arche/ARCHE.spec.md
+      notes: "Standalone repo is scaffold; ARCHE.00 cluster header not yet written. Current authoritative spec lives in eco/arche/ARCHE.spec.md."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
