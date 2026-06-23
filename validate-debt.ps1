@@ -3,28 +3,13 @@
 #
 # Usage:
 #   pwsh -File validate-debt.ps1 [-TargetPath C:\work] [-IncludeDocs]
+#   pwsh -File validate-debt.ps1 -TargetPath C:\work -Portfolio [-IncludeDocs]
 
 param(
     [string]$TargetPath = ".",
-    [switch]$IncludeDocs
+    [switch]$IncludeDocs,
+    [switch]$Portfolio
 )
-
-$root = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($TargetPath)
-
-if (-not (Test-Path $root)) {
-    Write-Host "Target path does not exist: $TargetPath" -ForegroundColor Red
-    exit 1
-}
-
-$gitTop = git -C $root rev-parse --show-toplevel 2>$null
-if (-not $gitTop) {
-    Write-Host "Target path is not inside a git repo: $root" -ForegroundColor Red
-    exit 1
-}
-
-$tracked = git -C $root ls-files
-$failures = @()
-$warnings = @()
 
 $generatedPatterns = @(
     '(^|/)(__pycache__|\.pytest_cache|node_modules|dist|build|coverage)(/|$)',
@@ -35,43 +20,160 @@ $generatedPatterns = @(
     '(^|/)null$'
 )
 
-foreach ($path in $tracked) {
-    foreach ($pattern in $generatedPatterns) {
-        if ($path -match $pattern) {
-            $failures += "Tracked generated/debug artifact: $path"
-            break
-        }
-    }
-}
-
-$scanPaths = $tracked | Where-Object {
-    $_ -match '\.(ps1|py|js|ts|tsx|jsx|mjs|cjs|json|yaml|yml|toml)$'
-}
-
-if ($IncludeDocs) {
-    $scanPaths += ($tracked | Where-Object { $_ -match '\.(md|mdx|txt)$' })
-    $scanPaths = $scanPaths | Select-Object -Unique
-}
-
 $markerPattern = '(?i)\b(shim|compatibility shim|legacy shim|polyfill|deprecated|workaround|backcompat)\b'
+$markerSkipPattern = '(^|/)(validate-debt\.ps1|package-lock\.json|pnpm-lock\.yaml|yarn\.lock)$'
 
-foreach ($path in $scanPaths) {
-    $full = Join-Path $gitTop $path
-    if (-not (Test-Path $full)) { continue }
+function Resolve-TargetRoot([string]$Path) {
+    if (-not (Test-Path $Path)) {
+        Write-Host "Target path does not exist: $Path" -ForegroundColor Red
+        exit 1
+    }
 
-    $lineNo = 0
-    foreach ($line in Get-Content $full) {
-        $lineNo++
-        if ($line -notmatch $markerPattern) { continue }
+    return $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+}
 
-        $normalized = $path -replace '\\', '/'
-        if ($normalized -match '(^|/)(archive|docs/archive|docs/sources|passes|passchangelog)(/|$)') {
+function Get-RegisteredProjects([string]$RootPath) {
+    $projectsFile = Join-Path $RootPath "projects.yaml"
+    if (-not (Test-Path $projectsFile)) {
+        Write-Host "Portfolio mode requires projects.yaml under: $RootPath" -ForegroundColor Red
+        exit 1
+    }
+
+    $projects = @()
+    $current = $null
+    foreach ($line in Get-Content $projectsFile) {
+        if ($line -match '^\s{2}- name:\s*(.+?)\s*$') {
+            if ($current) { $projects += [pscustomobject]$current }
+            $current = @{
+                Name = $Matches[1].Trim(' "')
+                Path = $null
+                Status = $null
+                Group = $null
+            }
             continue
         }
 
-        $warnings += "${path}:${lineNo}: debt marker: $($line.Trim())"
+        if (-not $current) { continue }
+
+        if ($line -match '^\s{4}path:\s*(.+?)\s*$') {
+            $current.Path = $Matches[1].Trim(' "')
+        } elseif ($line -match '^\s{4}status:\s*(.+?)\s*$') {
+            $current.Status = $Matches[1].Trim(' "')
+        } elseif ($line -match '^\s{4}group:\s*(.+?)\s*$') {
+            $current.Group = $Matches[1].Trim(' "')
+        }
+    }
+
+    if ($current) { $projects += [pscustomobject]$current }
+    return $projects
+}
+
+function Invoke-RepoDebtScan([string]$RepoPath, [string]$Label) {
+    $gitTop = git -C $RepoPath rev-parse --show-toplevel 2>$null
+    if (-not $gitTop) {
+        return [pscustomobject]@{
+            Label = $Label
+            Checked = 0
+            Failures = @("Not a git repo: $RepoPath")
+            Warnings = @()
+        }
+    }
+
+    $tracked = git -C $RepoPath ls-files
+    $failures = @()
+    $warnings = @()
+
+    foreach ($path in $tracked) {
+        foreach ($pattern in $generatedPatterns) {
+            if ($path -match $pattern) {
+                $failures += "${Label}: tracked generated/debug artifact: $path"
+                break
+            }
+        }
+    }
+
+    $scanPaths = $tracked | Where-Object {
+        $_ -match '\.(ps1|py|js|ts|tsx|jsx|mjs|cjs|json|yaml|yml|toml)$'
+    }
+
+    if ($IncludeDocs) {
+        $scanPaths += ($tracked | Where-Object { $_ -match '\.(md|mdx|txt)$' })
+        $scanPaths = $scanPaths | Select-Object -Unique
+    }
+
+    foreach ($path in $scanPaths) {
+        $full = Join-Path $gitTop $path
+        if (-not (Test-Path $full)) { continue }
+
+        $lineNo = 0
+        foreach ($line in Get-Content $full) {
+            $lineNo++
+            if ($line -notmatch $markerPattern) { continue }
+
+            $normalized = $path -replace '\\', '/'
+            if ($normalized -match $markerSkipPattern) {
+                continue
+            }
+
+            if ($normalized -match '(^|/)(archive|docs/archive|docs/sources|passes|passchangelog)(/|$)') {
+                continue
+            }
+
+            $warnings += "${Label}: ${path}:${lineNo}: debt marker: $($line.Trim())"
+        }
+    }
+
+    return [pscustomobject]@{
+        Label = $Label
+        Checked = $tracked.Count
+        Failures = $failures
+        Warnings = $warnings
     }
 }
+
+$root = Resolve-TargetRoot $TargetPath
+$results = @()
+
+if ($Portfolio) {
+    $projects = Get-RegisteredProjects $root
+    $scanProjects = $projects | Where-Object {
+        $_.Path -and
+        $_.Status -ne "archive" -and
+        $_.Group -ne "archive" -and
+        $_.Group -ne "vendor" -and
+        $_.Path -notmatch '(^|/)(tools|_archive)(/|$)'
+    }
+
+    foreach ($project in $scanProjects) {
+        $repoPath = Join-Path $root $project.Path
+        if (-not (Test-Path $repoPath)) {
+            $results += [pscustomobject]@{
+                Label = $project.Name
+                Checked = 0
+                Failures = @("Registered path missing: $($project.Path)")
+                Warnings = @()
+            }
+            continue
+        }
+
+        $gitTop = git -C $repoPath rev-parse --show-toplevel 2>$null
+        if (-not $gitTop) { continue }
+
+        $results += Invoke-RepoDebtScan $repoPath $project.Name
+    }
+} else {
+    $gitTop = git -C $root rev-parse --show-toplevel 2>$null
+    if (-not $gitTop) {
+        Write-Host "Target path is not inside a git repo: $root" -ForegroundColor Red
+        exit 1
+    }
+
+    $results += Invoke-RepoDebtScan $root "."
+}
+
+$failures = @($results | ForEach-Object { $_.Failures })
+$warnings = @($results | ForEach-Object { $_.Warnings })
+$checkedCount = ($results | Measure-Object -Property Checked -Sum).Sum
 
 if ($failures.Count -gt 0) {
     Write-Host ""
@@ -90,7 +192,10 @@ if ($failures.Count -gt 0) {
 }
 
 Write-Host "Debt validation passed." -ForegroundColor Green
-Write-Host "  tracked files checked: $($tracked.Count)" -ForegroundColor DarkGray
+if ($Portfolio) {
+    Write-Host "  registered repos checked: $($results.Count)" -ForegroundColor DarkGray
+}
+Write-Host "  tracked files checked: $checkedCount" -ForegroundColor DarkGray
 if ($warnings.Count -gt 0) {
     Write-Host "  warnings: $($warnings.Count)" -ForegroundColor DarkYellow
     $warnings | Select-Object -First 50 | ForEach-Object { Write-Host "  WARN  $_" -ForegroundColor DarkYellow }

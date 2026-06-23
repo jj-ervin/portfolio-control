@@ -8,7 +8,9 @@ param(
 
     [string]$TargetPath = ".",
     [switch]$Force,
-    [switch]$NoHook
+    [switch]$NoHook,
+    [switch]$Portfolio,
+    [switch]$IncludeDocs
 )
 
 $TemplateRoot = $PSScriptRoot
@@ -33,6 +35,7 @@ function Show-Help {
     Write-Host "    .\dcp.ps1 init -TargetPath C:\work -Force"
     Write-Host "    .\dcp.ps1 status"
     Write-Host "    .\dcp.ps1 validate -TargetPath C:\work"
+    Write-Host "    .\dcp.ps1 validate-debt -Portfolio -IncludeDocs"
     Write-Host ""
 }
 
@@ -143,6 +146,6 @@ switch ($Command) {
         & (Join-Path $TemplateRoot "validate-debt.ps1") -TargetPath $TargetPath
     }
     "validate-review" { & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath }
-    "validate-debt" { & (Join-Path $TemplateRoot "validate-debt.ps1") -TargetPath $TargetPath }
+    "validate-debt" { & (Join-Path $TemplateRoot "validate-debt.ps1") -TargetPath $TargetPath -Portfolio:$Portfolio -IncludeDocs:$IncludeDocs }
     default    { Show-Help }
 }

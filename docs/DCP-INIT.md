@@ -29,6 +29,7 @@ PowerShell usage:
 .\dcp.ps1 status
 .\dcp.ps1 validate
 .\dcp.ps1 validate-debt
+.\dcp.ps1 validate-debt -Portfolio -IncludeDocs
 .\dcp.ps1 help
 ```
 
@@ -36,7 +37,7 @@ PowerShell usage:
 
 `validate` runs `validate-pointers.ps1`, `validate-review-grammar.ps1`, and `validate-debt.ps1`.
 
-`validate-debt` scans tracked files for generated artifacts and obvious shim/compatibility debt markers.
+`validate-debt` scans tracked files for generated artifacts and obvious shim/compatibility debt markers. Add `-Portfolio` to scan only registered project repos from `projects.yaml`; archive and vendor-style entries are skipped.
 
 `help` prints command usage.
 

@@ -88,6 +88,9 @@ If it describes this portfolio's registry, tooling, or operating convention, it 
 # Run full validation: pointers, review grammar, and structural debt
 .\dcp.ps1 validate
 
+# Scan registered project repos only, skipping archive/vendor entries
+.\dcp.ps1 validate-debt -Portfolio -IncludeDocs
+
 # Help
 .\dev-status.ps1 -Help
 ```
