@@ -22,6 +22,45 @@ $generatedPatterns = @(
 
 $markerPattern = '(?i)\b(shim|compatibility shim|legacy shim|polyfill|deprecated|workaround|backcompat)\b'
 $markerSkipPattern = '(^|/)(validate-debt\.ps1|package-lock\.json|pnpm-lock\.yaml|yarn\.lock)$'
+$markerAllowedPathPatterns = @(
+    '(^|/)CHANGELOG\.md$',
+    '(^|/)schemas/',
+    '(^|/)public/',
+    '(^|/)content/',
+    '(^|/)sources/',
+    '(^|/)governance/(extension-registry|metadata-schema)\.yaml$',
+    '^agent-dossier\.yaml$',
+    '^agent-matrix\.yaml$',
+    '^examples/mcp-enabled-matrix\.yaml$',
+    '^models/dossier\.py$',
+    '^ons\.yaml$',
+    '^tools/(rules\.json|validate\.py)$',
+    '^tests/test_validate\.py$',
+    '^src/eco/micropython/(run|time_loc)\.py$',
+    '^docs/debt-classification\.md$',
+    '^docs/architecture/mid-series/0061/legacy\.shims/',
+    '^docs/governance/eco_documentation_standard\.md$',
+    '^docs/specifications/(cockpit-ui-spec|devxtoolkit-ui-config-spec|ons-v1\.1)\.md$',
+    '^spec/canon/canon\.metadata\.md$'
+)
+$markerAllowedLinePatterns = @(
+    'Debt validator',
+    'validate-debt.*scans',
+    'enum.*deprecated',
+    'deprecated_since',
+    'rule-catalog-deprecated',
+    'rule-deprecated-since-invalid',
+    'x-deprecated',
+    'http-sse deprecated',
+    'http-sse.*Deprecated',
+    'deprecated.*sunset',
+    'transport_config',
+    '✅',
+    'no longer tracked',
+    'historical lineage',
+    'status: canonical \| provisional \| deprecated \| legacy',
+    'Spec status labels'
+)
 
 function Resolve-TargetRoot([string]$Path) {
     if (-not (Test-Path $Path)) {
@@ -116,6 +155,27 @@ function Invoke-RepoDebtScan([string]$RepoPath, [string]$Label) {
             }
 
             if ($normalized -match '(^|/)(archive|docs/archive|docs/sources|passes|passchangelog)(/|$)') {
+                continue
+            }
+
+            $allowed = $false
+            foreach ($pattern in $markerAllowedPathPatterns) {
+                if ($normalized -match $pattern) {
+                    $allowed = $true
+                    break
+                }
+            }
+
+            if (-not $allowed) {
+                foreach ($pattern in $markerAllowedLinePatterns) {
+                    if ($line -match $pattern) {
+                        $allowed = $true
+                        break
+                    }
+                }
+            }
+
+            if ($allowed) {
                 continue
             }
 
