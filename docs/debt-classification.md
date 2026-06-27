@@ -5,12 +5,17 @@ Updated: 2026-06-26
 
 This document records the first portfolio-wide debt warning classification pass.
 
+Portable contract: `gc.profile.structural-debt-health` in Governance Commons.
+DCP owns the current validator implementation; eco may consume the JSON report
+as a health signal.
+
 ## Scan Surface
 
 Command:
 
 ```powershell
 .\dcp.ps1 validate-debt -Portfolio -IncludeDocs
+.\dcp.ps1 validate-debt -Portfolio -IncludeDocs -OutputJson structural-debt-health.raw.json
 ```
 
 Portfolio mode scans registered git repos from `projects.yaml` and skips archive or vendor-style entries. It is meant to keep the daily signal focused on active project debt, not historical or third-party material.
@@ -44,4 +49,3 @@ This pass reduced the portfolio debt scan from broad lexical noise to a short ac
 - archive/vendor side areas remain outside daily portfolio debt scans
 - real cleanup candidates remain visible as warnings
 - generated/debug artifacts remain hard failures
-

@@ -91,6 +91,9 @@ If it describes this portfolio's registry, tooling, or operating convention, it 
 # Scan registered project repos only, skipping archive/vendor entries
 .\dcp.ps1 validate-debt -Portfolio -IncludeDocs
 
+# Emit a machine-readable report for eco or CI health checks
+.\dcp.ps1 validate-debt -Portfolio -IncludeDocs -OutputJson structural-debt-health.raw.json
+
 # Help
 .\dev-status.ps1 -Help
 ```

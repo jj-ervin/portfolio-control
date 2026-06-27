@@ -8,7 +8,8 @@
 param(
     [string]$TargetPath = ".",
     [switch]$IncludeDocs,
-    [switch]$Portfolio
+    [switch]$Portfolio,
+    [string]$OutputJson
 )
 
 $generatedPatterns = @(
@@ -234,6 +235,39 @@ if ($Portfolio) {
 $failures = @($results | ForEach-Object { $_.Failures })
 $warnings = @($results | ForEach-Object { $_.Warnings })
 $checkedCount = ($results | Measure-Object -Property Checked -Sum).Sum
+$status = if ($failures.Count -gt 0) {
+    "fail"
+} elseif ($warnings.Count -gt 0) {
+    "warn"
+} else {
+    "pass"
+}
+
+$report = [pscustomobject]@{
+    profile = "gc.profile.structural-debt-health"
+    profile_version = "0.1.0"
+    status = $status
+    target_path = $root
+    portfolio = [bool]$Portfolio
+    include_docs = [bool]$IncludeDocs
+    checked_repos = $results.Count
+    checked_files = [int]$checkedCount
+    failure_count = $failures.Count
+    warning_count = $warnings.Count
+    failures = @($failures)
+    warnings = @($warnings)
+    generated_artifact_policy = "fail"
+    marker_policy = "warn"
+}
+
+if ($OutputJson) {
+    $outputPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputJson)
+    $outputParent = Split-Path -Parent $outputPath
+    if ($outputParent -and -not (Test-Path $outputParent)) {
+        New-Item -ItemType Directory -Path $outputParent -Force | Out-Null
+    }
+    $report | ConvertTo-Json -Depth 6 | Set-Content -Path $outputPath -Encoding UTF8
+}
 
 if ($failures.Count -gt 0) {
     Write-Host ""
