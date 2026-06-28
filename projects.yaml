@@ -349,6 +349,22 @@ projects:
       path: lasso/DEV-PATH.md
       vision: lasso/docs/architecture/vision.md
 
+  # ─── ONBOARDING ──────────────────────────────────────────────────────────────
+
+  - name: dxp-init
+    path: dxp-init
+    group: dev-tools
+    description: "Developer onboarding wizard — provisions GC/ONS/DCP/GEE governance baseline for a new project in one interactive session"
+    status: active
+    branch: main
+    depends_on:
+      - governance-commons
+      - dxp-org
+    planning:
+      canonical: dxp-init/DEV-PLAN.md
+      path: dxp-init/DEV-PATH.md
+      notes: "Phase 0 — pre-build. Charter accepted 2026-06-27. Core library + CLI first, Electron/Tauri GUI second shell, Cockpit integration future."
+
   # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
   - name: lasso_archive

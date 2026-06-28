@@ -95,6 +95,17 @@ For any project that contains a `voice-guide.md`, `canon.md`, `style-guide.md`, 
 
 ---
 
+## Rule 8 — Agent-Instruction Files Must Stay Current
+
+Whenever a `DEV-PATH.md` or `DEV-PLAN.md` for any project is updated, the agent-facing instruction files for that scope — `CLAUDE.md`, `AGENTS.md`, Copilot custom instructions, or any equivalent — must be checked in the same session and updated if they reference stale project state.
+
+This applies to every agent in scope (Claude, Codex, Copilot, and any other AI agent or automated tool), not Claude alone.
+
+- Updates to agent-instruction files follow the same append/caution rules as the planning docs they describe (see Rules 3–5). Do not bulk-rewrite an instruction file to "catch it up" — append the delta and surface it for approval if the change is more than a few lines.
+- If an agent notices a project's `DEV-PATH.md`/`DEV-PLAN.md` has moved on but the corresponding instruction file has not been told, that is a gap to surface to the human, not something to silently leave unfixed or silently rewrite.
+
+---
+
 ## What to Do When Uncertain
 
 If you are about to:

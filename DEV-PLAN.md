@@ -1,4 +1,4 @@
-# DEV-PLAN — DevX Control Plane (DCP)
+# DEV-PLAN — Portfolio Control Plane (c:\dev root)
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE

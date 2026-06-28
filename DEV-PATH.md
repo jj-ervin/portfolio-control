@@ -1,4 +1,4 @@
-# DEV-PATH — DevX Control Plane (DCP)
+# DEV-PATH — Portfolio Control Plane (c:\dev root)
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE — single authoritative source for DCP development path

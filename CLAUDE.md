@@ -52,6 +52,19 @@ Before making any edits, read [`PROTECTED.md`](PROTECTED.md). It lists files tha
 
 ---
 
+## Ecosystem overview addendum (appended, does not replace the table above)
+
+| Folder | What it is |
+|--------|-----------|
+| `governed-event/` | Governed Event Envelope (GEE) v0.1 + API-E Workflow Provenance Ontology — audit/provenance record format |
+| `time-loc/` | Canonical temporal-spatial primitive (time.loc v1.2) — dependency of `governed-event` |
+| `lasso/` | Multi-agent orchestration platform (concept/design stage — engine-only prototypes archived in `lasso_archive/`, `lasso-mvp_archive/`) |
+| `niji/` | Color palette generator ("niji" = rainbow, Japanese). This is the successor to CPM15 — CPM15 is being rebuilt/continued as niji. |
+| `kinjuu/` | Future app — financial/budget/deadline tracking |
+| `dxp-init/` | Developer onboarding wizard — one-click governance bootstrap (GC + ONS + DCP + GEE). CLI first, Electron/Tauri GUI second shell, future Cockpit first-run module. |
+
+---
+
 ## Planning doc roles
 
 | Doc | Owns |

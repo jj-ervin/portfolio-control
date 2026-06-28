@@ -1,6 +1,7 @@
 # DEV-RELEASE — Portfolio Master
 
-Status: **Active — populated portfolio release sequencing**
+**AUTHORITY LEVEL: AL:1**
+**Status:** Active — populated portfolio release sequencing
 Created: 2026-06-09
 Updated: 2026-06-21
 Authority: **Portfolio-level coordination document.** This is the master release plan for the `c:\dev` ecosystem. It owns cross-repo sequencing, release dependencies, and the priority order. Individual repo DEV-RELEASE.md files own their own deliverables, admission criteria, and changelogs — they defer to this document for sequencing.
