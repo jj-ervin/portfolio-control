@@ -351,10 +351,10 @@ projects:
 
   # ─── ONBOARDING ──────────────────────────────────────────────────────────────
 
-  - name: dxp-init
+  - name: marlin-dxp
     path: dxp-init
     group: dev-tools
-    description: "Developer onboarding wizard — provisions GC/ONS/DCP/GEE governance baseline for a new project in one interactive session"
+    description: "Marlin-DXP — governance adoption wizard and workbench; provisions GC/ONS/DCP/GEE baseline in five minutes; bin: marlin"
     status: active
     branch: main
     depends_on:
@@ -363,7 +363,7 @@ projects:
     planning:
       canonical: dxp-init/DEV-PLAN.md
       path: dxp-init/DEV-PATH.md
-      notes: "Phase 0 — pre-build. Charter accepted 2026-06-27. Core library + CLI first, Electron/Tauri GUI second shell, Cockpit integration future."
+      notes: "Waves 0-4 CLOSED. Renamed from dxp-init to Marlin-DXP 2026-06-28. bin: marlin / marlin-dxp. Cockpit integration future."
 
   # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
