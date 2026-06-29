@@ -35,6 +35,7 @@ __pycache__/
 parser_debug*.txt
 enforcement_debug.yaml
 null
+evidence/
 
 # ── Editor ──
 .claude/
