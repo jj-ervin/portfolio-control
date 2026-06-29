@@ -69,6 +69,16 @@ Each script checks one thing, exits 0/1, callable standalone or composed by othe
 | [validate-review-grammar.ps1](validate-review-grammar.ps1) | Repo has a REVIEW-GRAMMAR file and agent instructions reference it | — | `.\validate-review-grammar.ps1` |
 | [validate-debt.ps1](validate-debt.ps1) | Tracked files are free of generated artifacts and legacy shim markers | — | `.\validate-debt.ps1 -Portfolio -IncludeDocs` |
 
+### Normalizers
+
+Each normalizer is the fix-counterpart to an atomic validator. Always supports `-DryRun` to preview before writing.
+
+| Script | What it fixes | Paired validator | Common invocation |
+| --- | --- | --- | --- |
+| [normalize-bootstrap.ps1](normalize-bootstrap.ps1) | Creates missing AGENTS.md (W1); adds DEV-ACCORD.03 routing to broken ones (E1) | validate-bootstrap.ps1 | `.\normalize-bootstrap.ps1 -DryRun` |
+| [normalize-planning.ps1](normalize-planning.ps1) | Renames non-standard planning doc names (TRACKS.md → DEV-TRACKS.md, etc.) via `git mv` | validate-planning.ps1 | `.\normalize-planning.ps1 -DryRun` |
+| [normalize-pointers.ps1](normalize-pointers.ps1) | Fixes broken file pointers in projects.yaml using rename heuristics | validate-pointers.ps1 | `.\normalize-pointers.ps1 -DryRun` |
+
 ### Composite Review
 
 These orchestrate the atomic validators and add commit-level analysis.
@@ -87,6 +97,21 @@ These orchestrate the atomic validators and add commit-level analysis.
 
 ---
 
-## Known Gaps
+## Normalize → Validate Workflow
 
-- No `normalize-*.ps1` or `fix-*.ps1` scripts exist yet; normalization is done manually or by agents following REVIEW-GRAMMAR verbs.
+The standard pattern for fixing drift:
+
+```powershell
+.\dcp.ps1 validate                   # find what's broken
+.\dcp.ps1 normalize -DryRun          # preview all fixes
+.\dcp.ps1 normalize                  # apply fixes
+.\dcp.ps1 validate                   # confirm clean
+```
+
+Or target one area:
+
+```powershell
+.\dcp.ps1 normalize-bootstrap -DryRun
+.\dcp.ps1 normalize-bootstrap
+.\dcp.ps1 validate-bootstrap
+```

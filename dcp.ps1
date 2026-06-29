@@ -9,6 +9,7 @@ param(
         "status", "report",
         "validate", "validate-bootstrap", "validate-planning",
         "validate-review", "validate-debt",
+        "normalize", "normalize-bootstrap", "normalize-planning", "normalize-pointers",
         "diagnose", "review",
         "help"
     )]
@@ -18,6 +19,7 @@ param(
     [string]$TargetPath  = ".",
     [switch]$Force,
     [switch]$NoHook,
+    [switch]$DryRun,
 
     # validate-debt
     [switch]$Portfolio,
@@ -61,6 +63,13 @@ function Show-Help {
     Write-Host "    validate-review      Review grammar adoption"
     Write-Host "    validate-debt        Structural debt and generated-artifact scan"
     Write-Host ""
+    Write-Host "  NORMALIZE (fix drift detected by validators)" -ForegroundColor Cyan
+    Write-Host "    normalize            Run all three normalizers (dry run first recommended)"
+    Write-Host "    normalize-bootstrap  Fix missing/broken AGENTS.md routing (DEV-ACCORD.04)"
+    Write-Host "    normalize-planning   Rename non-standard planning doc names (DEV-ACCORD.00)"
+    Write-Host "    normalize-pointers   Fix broken file pointers in projects.yaml"
+    Write-Host "    Add -DryRun to preview any normalize command without writing files."
+    Write-Host ""
     Write-Host "  COMPOSITE REVIEW" -ForegroundColor Cyan
     Write-Host "    diagnose         Multi-level diagnostic (default Level 1)"
     Write-Host "    diagnose -Level 2 -Hours 24   Recent-work review"
@@ -75,6 +84,8 @@ function Show-Help {
     Write-Host "    .\dcp.ps1 validate"
     Write-Host "    .\dcp.ps1 diagnose -Level 2 -Hours 48"
     Write-Host "    .\dcp.ps1 review -Deep"
+    Write-Host "    .\dcp.ps1 normalize -DryRun"
+    Write-Host "    .\dcp.ps1 normalize"
     Write-Host "    .\dcp.ps1 report -GapOnly"
     Write-Host "    .\dcp.ps1 init -TargetPath C:\work"
     Write-Host ""
@@ -145,6 +156,10 @@ function Invoke-Init {
         "validate-pointers.ps1"
         "validate-review-grammar.ps1"
         "validate-debt.ps1"
+        # scripts — normalizers
+        "normalize-bootstrap.ps1"
+        "normalize-planning.ps1"
+        "normalize-pointers.ps1"
         # scripts — composite review
         "validate-recent-work.ps1"
         "review-last-24h.ps1"
@@ -236,6 +251,24 @@ switch ($Command) {
         & (Join-Path $TemplateRoot "validate-debt.ps1") `
             -TargetPath $TargetPath -Portfolio:$Portfolio `
             -IncludeDocs:$IncludeDocs -OutputJson $OutputJson
+    }
+
+    "normalize" {
+        & (Join-Path $TemplateRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+        & (Join-Path $TemplateRoot "normalize-planning.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
+        & (Join-Path $TemplateRoot "normalize-pointers.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
+    }
+
+    "normalize-bootstrap" {
+        & (Join-Path $TemplateRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+    }
+
+    "normalize-planning" {
+        & (Join-Path $TemplateRoot "normalize-planning.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+    }
+
+    "normalize-pointers" {
+        & (Join-Path $TemplateRoot "normalize-pointers.ps1") -TargetPath $TargetPath -DryRun:$DryRun
     }
 
     "diagnose" {
