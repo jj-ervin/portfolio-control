@@ -76,6 +76,19 @@ Before calling a gap closed, ask:
 
 If the answer is no, the remaining work is adoption, validation, release, or runtime evidence work.
 
+## Diagnostic Levels
+
+Used by `validate-recent-work.ps1` and `review-last-24h.ps1`. Reference these levels when asking for a diagnostic or specifying review depth.
+
+| Level | Name | Scope |
+| --- | --- | --- |
+| 1 | Quick Health | All 5 atomic validators. Pass/fail only. No git analysis. |
+| 2 | Recent-Work Review | Level 1 + dirty repo scan, commit log for the time window, changed files. |
+| 3 | Adversarial Audit | Level 2 + open TODO/FIXME/TBD in recently-touched markdown, DEV-PLAN staleness vs commits. |
+| 4 | Release Readiness | Level 3 + pending items in DEV-RELEASE.md files, open PASS gates. |
+
+Examples: "run a Level 1 diagnostic", "adversarial audit the last 24 hours" (= Level 3).
+
 ## Agent Output Contract
 
 When performing any review command, agents should produce:
