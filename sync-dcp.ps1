@@ -49,13 +49,30 @@ $SyncFiles = @(
     "DEV-CONTROL-PLANE.md",
     "DEV-PLAN.md",
     "DEV-PATH.md",
+    # entrypoint + setup
     "dcp.ps1",
     "dcp-setup.ps1",
+    # status + reporting
     "dev-status.ps1",
+    "dev-report.ps1",
+    # atomic validators
+    "validate-bootstrap.ps1",
+    "validate-planning.ps1",
     "validate-pointers.ps1",
     "validate-review-grammar.ps1",
     "validate-debt.ps1",
+    # normalizers
+    "normalize-bootstrap.ps1",
+    "normalize-planning.ps1",
+    "normalize-pointers.ps1",
+    # composite review
+    "validate-recent-work.ps1",
+    "review-last-24h.ps1",
+    # maintenance
     "protect-sources.ps1",
+    "sync-dcp.ps1",
+    # index
+    "SCRIPTS.md",
     "docs\planning-normalization.md",
     "docs\REVIEW-GRAMMAR.md",
     "docs\PITCH.md",
