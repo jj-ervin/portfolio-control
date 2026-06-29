@@ -29,13 +29,14 @@ projects:
   - name: doc-vault-plane
     path: dxp-org/doc-vault-plane
     group: dcp
-    description: "Doc Vault Plane — business document control plane for governed document repositories"
+    description: "Doc Vault Plane — business document control plane for governed document repositories; business-facing counterpart to DCP"
     status: scaffold
     branch: main
     depends_on: governance-commons
     planning:
+      canonical: dxp-org/doc-vault-plane/DEV-PLAN.md
       path: dxp-org/doc-vault-plane/DEV-PATH.md
-      notes: "Proposal/scaffold only; repo currently contains DEV-PATH.md and no implementation."
+      notes: "Scaffold — concept and gap analysis complete; no implementation. Osprey LLC vault is the live reference."
 
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
 
@@ -221,6 +222,34 @@ projects:
       canonical: governance-commons/agent-project-orchestrator/DEV-PLAN.md
       path: governance-commons/agent-project-orchestrator/DEV-PATH.md
       tracks: governance-commons/agent-project-orchestrator/DEV-TRACKS.md
+
+  # ─── PRIMITIVES ──────────────────────────────────────────────────────────────
+  # Independently licensed, extractable primitive specs with Python reference implementations.
+  # Governance lives in eco PASS clusters; no standalone DEV-PLAN needed while spec is locked.
+
+  - name: time-loc
+    path: time-loc
+    group: primitives
+    description: "Canonical temporal-spatial primitive (time.loc v1.2) — mandatory dependency of governed-event and all GEE records"
+    status: stable
+    branch: main
+    planning:
+      notes: "Spec locked at v1.2. Python reference implementation shipped. Governance lives in eco PASS cluster 0050.xx. No standalone DEV-PLAN — eco PASSes are the authority."
+
+  - name: governed-event
+    path: governed-event
+    group: primitives
+    description: "Governed Event Envelope (GEE) v0.1 + API-E Workflow Provenance Ontology — portable, interoperable governed event record layer; Apache 2.0"
+    status: stable
+    branch: main
+    depends_on:
+      - time-loc
+    planning:
+      authority: eco/passes/0051.00.md
+      spec: eco/passes/0051.01.md
+      api_e_authority: eco/passes/0052.00.md
+      api_e_spec: eco/passes/0052.01.md
+      notes: "GEE v0.1 and API-E v0.1 locked. Python reference implementation (producer, validator, schema, examples) shipped. Governance lives in eco PASS clusters 0051.xx and 0052.xx. No standalone DEV-PLAN — eco PASSes are the authority."
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 
