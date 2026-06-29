@@ -89,6 +89,4 @@ These orchestrate the atomic validators and add commit-level analysis.
 
 ## Known Gaps
 
-- `dcp.ps1` does not yet surface `validate-bootstrap`, `validate-recent-work`, or `review-last-24h`. It is the declared front door but is behind the current script surface.
-- Diagnostic levels (1–4) are not yet documented in `docs/REVIEW-GRAMMAR.md`.
 - No `normalize-*.ps1` or `fix-*.ps1` scripts exist yet; normalization is done manually or by agents following REVIEW-GRAMMAR verbs.
