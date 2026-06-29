@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-06-21"  # eco.vs, ELAN, ARCHE, Cockpit scope restored; doc-vault-plane registered as scaffold
+updated: "2026-06-29"  # eco-vscode, ELAN, ARCHE, Cockpit scope restored; doc-vault-plane registered as scaffold
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -83,19 +83,19 @@ projects:
       canonical: eco-slate-www/docs/DEV_PLAN.md
       path: eco-slate-www/docs/DEV_PATH.md
 
-  - name: eco.vs
-    path: eco.vs
+  - name: eco-vscode
+    path: eco-vscode
     group: eco-ecosystem
     description: "VS Code extension layer for eco governance awareness, diagnostics, SKU detection, and approved editor actions"
     status: wip
     branch: main
     runtime_of: eco
     planning:
-      canonical: eco.vs/DEV-PLAN.md
-      path: eco.vs/DEV-PATH.md
+      canonical: eco-vscode/DEV-PLAN.md
+      path: eco-vscode/DEV-PATH.md
       authority: eco/passes/EV.00.md
       track: eco/tracks/TRACK-B.md
-      notes: "Top-level standalone preview; reconcile with eco/surfaces/vscode/eco-vs before Marketplace packaging."
+      notes: "Top-level standalone preview formerly named eco.vs; reconcile with eco/surfaces/vscode/eco-vs before Marketplace packaging."
 
   - name: .eco
     path: .eco
