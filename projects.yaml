@@ -48,7 +48,7 @@ projects:
     planning:
       canonical: eco/DEV-PLAN.md
       path: eco/DEV-PATH.md
-      tracks: eco/TRACKS.md
+      tracks: eco/DEV-TRACKS.md
       notes: "Owns master eco product/release planning; child track files live under eco/tracks/."
 
   - name: eco-edge
@@ -158,7 +158,7 @@ projects:
     planning:
       canonical: governance-commons/agent-dossier/DEV-PLAN.md
       path: governance-commons/agent-dossier/DEV-PATH.md
-      tracks: governance-commons/agent-dossier/TRACKS.md
+      tracks: governance-commons/agent-dossier/DEV-TRACKS.md
 
   - name: agent-dossier-www
     path: governance-commons/agent-dossier-www
@@ -179,7 +179,7 @@ projects:
     planning:
       canonical: governance-commons/agent-matrix/DEV-PLAN.md
       path: governance-commons/agent-matrix/DEV-PATH.md
-      tracks: governance-commons/agent-matrix/TRACKS.md
+      tracks: governance-commons/agent-matrix/DEV-TRACKS.md
 
   - name: agent-team-protocol
     path: governance-commons/agent-team-protocol
@@ -220,7 +220,7 @@ projects:
     planning:
       canonical: governance-commons/agent-project-orchestrator/DEV-PLAN.md
       path: governance-commons/agent-project-orchestrator/DEV-PATH.md
-      tracks: governance-commons/agent-project-orchestrator/Tracks.md
+      tracks: governance-commons/agent-project-orchestrator/DEV-TRACKS.md
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 
