@@ -21,8 +21,9 @@ Before making any edits, read [`PROTECTED.md`](PROTECTED.md). It lists files tha
 1. `PROTECTED.md` — what you cannot touch without permission
 2. `DEV-CONTROL-PLANE.md` — boundary doctrine
 3. `docs/REVIEW-GRAMMAR.md` — command meanings for normalize, validate, verify, trace, adversarial audit, meta-audit, and close-the-loop work
-4. `projects.yaml` — the registry and pointers to each project's canonical plan
-5. The specific project's `DEV-PATH.md` and `DEV-PLAN.md`
+4. `governance-commons/passes/dev-accord/DEV-ACCORD.02.md` — execution model: PASS, RUN, Evidence Bundle (governing doctrine for all planned work)
+5. `projects.yaml` — the registry and pointers to each project's canonical plan
+6. The specific project's `DEV-PATH.md` and `DEV-PLAN.md`
 
 ---
 
