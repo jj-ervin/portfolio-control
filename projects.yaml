@@ -80,8 +80,8 @@ projects:
     branch: main
     site_for: eco-slate
     planning:
-      canonical: eco-slate-www/docs/DEV_PLAN.md
-      path: eco-slate-www/docs/DEV_PATH.md
+      canonical: eco-slate-www/docs/DEV-PLAN.md
+      path: eco-slate-www/docs/DEV-PATH.md
 
   - name: eco-vscode
     path: eco-vscode
@@ -105,7 +105,7 @@ projects:
     branch: main
     governance_package: eco
     planning:
-      path: .eco/dev-path.md
+      path: .eco/DEV-PATH.md
       changelog: .eco/passchangelog.md
       notes: "Runtime-kernel path only; not the eco product roadmap."
 
@@ -282,7 +282,7 @@ projects:
     status: active
     branch: main
     planning:
-      path: kinjuu/dev-path.md
+      path: kinjuu/DEV-PATH.md
       project: kinjuu/project.yaml
       changelog: kinjuu/passchangelog.md
 

@@ -99,10 +99,12 @@ foreach ($f in $candidates) {
         # Use git mv to preserve history; fall back to plain rename if not in a git repo
         $gitRoot = & git -C $dir rev-parse --show-toplevel 2>$null
         if ($LASTEXITCODE -eq 0 -and $gitRoot) {
-            $relFromGit = $f.FullName.Replace($gitRoot.TrimEnd('\') + "\", "").Replace("\", "/")
-            & git -C $gitRoot mv $relFromGit $canonical 2>$null
+            $relFromGit  = $f.FullName.Replace($gitRoot.TrimEnd('\') + "\", "").Replace("\", "/")
+            $dirFromGit  = Split-Path $relFromGit -Parent
+            $destFromGit = if ($dirFromGit) { "$dirFromGit/$canonical" } else { $canonical }
+            & git -C $gitRoot mv $relFromGit $destFromGit 2>$null
             if ($LASTEXITCODE -ne 0) {
-                # git mv failed (file might not be tracked); fall back
+                # git mv failed (file not tracked); fall back to plain rename
                 Rename-Item -Path $f.FullName -NewName $canonical
             }
         } else {
@@ -112,16 +114,19 @@ foreach ($f in $candidates) {
     }
 }
 
-# Update projects.yaml references for any renamed files
+# Update projects.yaml: replace only full path values that end with the old leaf name.
+# Anchors on "/" + old leaf + end-of-value to avoid partial matches (e.g. TRACKS.md inside DEV-TRACKS.md).
 if (-not $DryRun -and $Renamed -gt 0) {
     $pf = Join-Path $Root "projects.yaml"
     if (Test-Path $pf) {
-        $yaml = Get-Content $pf -Raw
+        $yaml    = Get-Content $pf -Raw
         $changed = $false
         foreach ($old in $Canonicals.Keys) {
-            $new = $Canonicals[$old]
-            if ($yaml -match [regex]::Escape($old)) {
-                $yaml    = $yaml -replace [regex]::Escape($old), $new
+            $new     = $Canonicals[$old]
+            # Match: /OLD_LEAF at end of a yaml value line (not inside DEV- prefix)
+            $pattern = "(?<=/)" + [regex]::Escape($old) + "(?=\s*$)"
+            if ($yaml -match $pattern) {
+                $yaml    = [regex]::Replace($yaml, $pattern, $new, [System.Text.RegularExpressions.RegexOptions]::Multiline)
                 $changed = $true
             }
         }
