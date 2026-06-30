@@ -323,9 +323,11 @@ projects:
     branch: main
     publishes_to: eco
     planning:
-      canonical: niji/niji_current_status.md
-      path: niji/niji_dev_path_v0.1_to_v2.0.md
-      implementation_plan: niji/niji_implementation_plan_v0.1.md
+      canonical: niji/DEV-PLAN.md
+      path: niji/DEV-PATH.md
+      tracks: niji/DEV-TRACKS.md
+      release: niji/DEV-RELEASE.md
+      docs: niji/DOCS.md
 
   - name: elan
     path: elan

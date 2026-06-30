@@ -1,15 +1,17 @@
 # REVIEW-GRAMMAR
 
 Status: active
-Updated: 2026-06-21
-Authority: Portfolio control-plane working grammar
+Updated: 2026-06-30
+Authority: GC standard component — canonical verb registry for GC-AUDIT (declared by DEV-ACCORD.05 / GC:2013)
 
 ## Purpose
 
-This document defines the review and governance commands used across the `C:\dev`
-portfolio. It is the working command language for human and agent sessions. It does
-not create a Governance Commons standard by itself; GC promotion requires a future
-GC PASS or RFC.
+This document is the canonical verb registry for GC-AUDIT operations across the `C:\dev`
+portfolio. It is the working command language for human and agent sessions.
+
+DEV-ACCORD.05 (GC:2013) promoted this file from a portfolio working grammar to a GC
+standard component. All GC-AUDIT implementations must use the operation names defined
+here. Extensions to the verb list require an amendment to DEV-ACCORD.05.
 
 Use this file when a short instruction like "normalize lasso" or "adversarial audit
 the last 24 hours" would otherwise be ambiguous.
@@ -18,13 +20,10 @@ the last 24 hours" would otherwise be ambiguous.
 
 | Layer | Responsibility |
 | --- | --- |
-| Root portfolio docs | Working command grammar, local planning health, cross-repo coordination |
-| Governance Commons | Portable standards, schemas, conformance profiles, external vocabulary |
+| REVIEW-GRAMMAR (this file) | GC-AUDIT verb registry — canonical operation names for all audit tooling |
+| Governance Commons / DEV-ACCORD | Standards that govern DEV-DOCS; GC-AUDIT declaration (DEV-ACCORD.05) |
 | eco | Runtime execution, PASS evidence, telemetry, validation gates |
 | DCP / Governance Kit | Five-minute adoption path, registry checks, planning templates |
-
-The root grammar may later be promoted into Governance Commons as a portable standard.
-Until then, it is a workspace operating convention.
 
 ## Command Verbs
 
@@ -101,12 +100,14 @@ When performing any review command, agents should produce:
 
 For code reviews and implementation audits, findings lead. For normalization work, changes and validation lead.
 
-## Promotion Path
+## GC-AUDIT Registry
 
-This grammar is intentionally local-first. If it proves stable, promote it in this order:
+This file is the canonical verb registry for GC-AUDIT, declared by DEV-ACCORD.05 (GC:2013).
+GC-AUDIT is the portfolio-wide toolchain for validation, normalization, de-stale, adversarial
+review, trace, and release-readiness operations. The verbs above are the standard operation names.
 
-1. Keep this root file as the working command reference.
-2. Register a Governance Commons review/gap vocabulary proposal.
-3. Promote the 12-question framework into a GC profile or standard.
-4. Teach eco to emit review and validation evidence using GC event schemas.
-5. Expose a DCP/Governance Kit five-minute checklist for adopters.
+Remaining promotion steps (post DEV-ACCORD.05):
+
+1. Promote the 12-question framework into a GC profile or standard.
+2. Teach eco to emit review and validation evidence using GC event schemas.
+3. Expose a DCP/Governance Kit five-minute checklist for adopters.
