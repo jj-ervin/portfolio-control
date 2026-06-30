@@ -39,14 +39,21 @@ $markerAllowedPathPatterns = @(
     '^tests/test_validate\.py$',
     '^src/eco/micropython/(run|time_loc)\.py$',
     '^docs/debt-classification\.md$',
+    '^GAP_ANALYSIS_ECORUNTIME\.md$',
     '^docs/architecture/mid-series/0061/legacy\.shims/',
     '^docs/governance/eco_documentation_standard\.md$',
     '^docs/specifications/(cockpit-ui-spec|devxtoolkit-ui-config-spec|ons-v1\.1)\.md$',
-    '^spec/canon/canon\.metadata\.md$'
+    '^spec/canon/canon\.metadata\.md$',
+    '^governance/(soc2-mapping|zero-trust)\.yaml$',
+    '^profiles/structural-debt-health/(README\.md|profile\.yml)$',
+    '^registry/clusters\.yaml$'
 )
 $markerAllowedLinePatterns = @(
     'Debt validator',
     'validate-debt.*scans',
+    'validate-debt\.ps1',
+    'free of generated artifacts and legacy shim markers',
+    'Generated artifacts and shim debt markers',
     'enum.*deprecated',
     'deprecated_since',
     'rule-catalog-deprecated',
@@ -60,7 +67,8 @@ $markerAllowedLinePatterns = @(
     'no longer tracked',
     'historical lineage',
     'status: canonical \| provisional \| deprecated \| legacy',
-    'Spec status labels'
+    'Spec status labels',
+    'status lifecycle planned.*ready.*deprecated'
 )
 
 function Resolve-TargetRoot([string]$Path) {
