@@ -9,11 +9,14 @@ It is not a monorepo. It is not a project. It is the root from which projects ar
 ## Boundary rules
 
 | Layer | Lives in | Examples |
-|---|---|---|
+| --- | --- | --- |
 | Portable governance standards | `governance-commons/` | naming, RFCs, trust contracts, schemas |
-| Portfolio control plane | `C:\dev` (here) | registry, status tools, indexes, planning templates, pointers |
+| Portfolio control plane | `C:\dev` (here) | registry, status tools, validators, sync scripts, env checks |
 | Project execution plans | individual project repos | DEV-PLAN.md, DEV-PATH.md, TRACKS.md |
 | Live task/agent state | runtime workspace or run records | task queues, agent handoffs, execution traces |
+
+See **DEV-ACCORD.09 (GC:2017)** for the mandatory placement decision gate agents must
+apply before creating any script or tooling file.
 
 ## What belongs here
 
