@@ -25,11 +25,13 @@ lasso/
 lasso_archive/
 lasso-mvp_archive/
 marlin/
+marlin-registry/
 niji/
 powershell/
 tools/
 
 # ── Generated / debug artifacts ──
+_tmp/
 __pycache__/
 *.pyc
 *.pyo
