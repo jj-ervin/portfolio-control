@@ -37,7 +37,7 @@ the last 24 hours" would otherwise be ambiguous.
 | Trace X | Follow X from origin to authority to plan to implementation to evidence. | A lineage chain and any broken links. |
 | Authority audit X | Identify which document or spec has the right to define X. | Authority source, superseded sources, and ambiguity risks. |
 | Registry audit X | Check whether `projects.yaml` and related indexes tell the truth about X. | Missing fields, stale notes, broken pointers, and schema gaps. |
-| Close the loop on X | Fix the issue, validate the fix, update trackers, and commit when appropriate. | Small scoped changes plus validation evidence. |
+| Close the loop on X | Fix the issue, validate the fix, update trackers, and commit when appropriate. Current-branch publish is the default unless a git split is explicitly authorized under DEV-ACCORD.10. | Small scoped changes plus validation evidence. |
 | De-stale X | Remove outdated claims after a correction or implementation lands. | Updated docs with old "not written", "TBD", or missing-plan claims removed. |
 
 ## Review Order Terms
@@ -172,7 +172,7 @@ Used by `validate-recent-work.ps1` and `review-last-24h.ps1`. Reference these le
 
 | Level | Name | Scope |
 | --- | --- | --- |
-| 1 | Quick Health | All 5 atomic validators. Pass/fail only. No git analysis. |
+| 1 | Quick Health | All 6 atomic validators, including git split authorization. Pass/fail only. |
 | 2 | Recent-Work Review | Level 1 + dirty repo scan, commit log for the time window, changed files. |
 | 3 | Adversarial Audit | Level 2 + open TODO/FIXME/TBD in recently-touched markdown, DEV-PLAN staleness vs commits. |
 | 4 | Release Readiness | Level 3 + pending items in DEV-RELEASE.md files, open PASS gates. |
