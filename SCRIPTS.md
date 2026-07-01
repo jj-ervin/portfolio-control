@@ -37,7 +37,7 @@ Used by `validate-recent-work.ps1` and `review-last-24h.ps1`.
 
 | Level | Name | What it checks |
 | --- | --- | --- |
-| 1 | Quick Health | All 5 validators. Pass/fail only. |
+| 1 | Quick Health | All 8 validators. Pass/fail only. |
 | 2 | Recent-Work Review | + dirty repos, commit log for last N hours, changed files. |
 | 3 | Adversarial Audit | + open TODO/FIXME/TBD in recently-touched markdown, DEV-PLAN staleness vs commits. |
 | 4 | Release Readiness | + pending items in DEV-RELEASE.md, open PASS gates. |
@@ -84,6 +84,8 @@ Each script checks one thing, exits 0/1, callable standalone or composed by othe
 | [validate-review-grammar.ps1](validate-review-grammar.ps1) | Repo has a REVIEW-GRAMMAR file and agent instructions reference it | — | `.\validate-review-grammar.ps1` |
 | [validate-ci-invariants.ps1](validate-ci-invariants.ps1) | DEV-ACCORD-CI invariant IDs are unique across markdown definition lines | governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml | `\.\validate-ci-invariants.ps1 -TargetPath .` |
 | [validate-agent-preflight.ps1](validate-agent-preflight.ps1) | First response or session note contains a valid PREFLIGHT stamp format (root adapter to GC tool) | governance-commons/gc-audit/AGENT-PREFLIGHT.md | `\.\validate-agent-preflight.ps1 -FilePath <note> -Mode FirstResponse` |
+| [validate-playbook.ps1](validate-playbook.ps1) | PLAY.jsonl records conform to the DEV-PLAYBOOK schema (DEV-ACCORD.06 amendment) | governance-commons/passes/dev-accord/DEV-ACCORD.06.md | `\.\validate-playbook.ps1 -TargetPath .` |
+| [validate-format.ps1](validate-format.ps1) | GC-AUDIT PowerShell scripts parse cleanly (parse-only, no execution) | governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml | `\.\validate-format.ps1 -TargetPath .` |
 | [validate-debt.ps1](validate-debt.ps1) | Tracked files are free of generated artifacts and legacy shim markers | — | `.\validate-debt.ps1 -Portfolio -IncludeDocs` |
 
 ### Normalizers

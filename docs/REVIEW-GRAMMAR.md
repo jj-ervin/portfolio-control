@@ -173,7 +173,7 @@ Used by `validate-recent-work.ps1` and `review-last-24h.ps1`. Reference these le
 
 | Level | Name | Scope |
 | --- | --- | --- |
-| 1 | Quick Health | All 7 atomic validators, including git split authorization and CI invariant uniqueness. Pass/fail only. |
+| 1 | Quick Health | All 8 atomic validators, including git split authorization, CI invariant uniqueness, and script format (parse-only). Pass/fail only. |
 | 2 | Recent-Work Review | Level 1 + dirty repo scan, commit log for the time window, changed files. |
 | 3 | Adversarial Audit | Level 2 + open TODO/FIXME/TBD in recently-touched markdown, DEV-PLAN staleness vs commits. |
 | 4 | Release Readiness | Level 3 + pending items in DEV-RELEASE.md files, open PASS gates. |
