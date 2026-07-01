@@ -39,6 +39,7 @@ the last 24 hours" would otherwise be ambiguous.
 | Registry audit X | Check whether `projects.yaml` and related indexes tell the truth about X. | Missing fields, stale notes, broken pointers, and schema gaps. |
 | Close the loop on X | Fix the issue, validate the fix, update trackers, and commit when appropriate. Current-branch publish is the default unless a git split is explicitly authorized under DEV-ACCORD.10. | Small scoped changes plus validation evidence. |
 | De-stale X | Remove outdated claims after a correction or implementation lands. | Updated docs with old "not written", "TBD", or missing-plan claims removed. |
+| Preflight X | Validate that the named agent or current session declared and completed the GC agent-trail reading sequence before beginning work. | Pass/fail with missing files listed and required stamp format shown. |
 
 ## Review Order Terms
 
@@ -172,7 +173,7 @@ Used by `validate-recent-work.ps1` and `review-last-24h.ps1`. Reference these le
 
 | Level | Name | Scope |
 | --- | --- | --- |
-| 1 | Quick Health | All 6 atomic validators, including git split authorization. Pass/fail only. |
+| 1 | Quick Health | All 7 atomic validators, including git split authorization and CI invariant uniqueness. Pass/fail only. |
 | 2 | Recent-Work Review | Level 1 + dirty repo scan, commit log for the time window, changed files. |
 | 3 | Adversarial Audit | Level 2 + open TODO/FIXME/TBD in recently-touched markdown, DEV-PLAN staleness vs commits. |
 | 4 | Release Readiness | Level 3 + pending items in DEV-RELEASE.md files, open PASS gates. |
@@ -190,6 +191,17 @@ When performing any review command, agents should produce:
 5. Next action: fix, defer, promote, or no action.
 
 For code reviews and implementation audits, findings lead. For normalization work, changes and validation lead.
+
+## PLAY to GC-AUDIT Obligations
+
+PLAY execution-level obligations and PLAY record close requirements are defined in:
+
+`governance-commons/gc-audit/PLAY-OBLIGATIONS.md`
+
+REVIEW-GRAMMAR remains the canonical GC-AUDIT verb registry and should keep process
+details in dedicated GC-AUDIT process docs.
+
+---
 
 ## GC-AUDIT Registry
 

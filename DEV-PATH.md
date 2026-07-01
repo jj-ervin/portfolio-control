@@ -140,7 +140,7 @@ This is DCP's primary market differentiator. Most competing tools solve the regi
 ## TASK REGISTRY
 
 | ID | Name | Status | Phase | Notes |
-|----|------|--------|-------|-------|
+| --- | --- | --- | --- | --- |
 | DCP.00 | Boundary doctrine | done | 0 | `DEV-CONTROL-PLANE.md` |
 | DCP.01 | Source corpus protection | done | 0 | `protect-sources.ps1` + pre-commit hook |
 | DCP.02 | Pointer validator | done | 0 | `validate-pointers.ps1` |
@@ -188,3 +188,4 @@ This is DCP's primary market differentiator. Most competing tools solve the regi
 - 2026-06-06 — v1.0.0 Studio complete. All modules shipped. GitHub template live.
 - 2026-06-06 — v0.2.0 Core Portable extraction completed.
 - 2026-06-21 — Governance correction: recent DCP.17/DCP.18 updates inserted rows into existing `DEV-PATH.md` sections while adding append-only policy. Treat that as a one-time normalization exception; future `DEV-PATH.md` updates should append a changelog entry, phase section, PASS entry, or task row without rewriting existing history.
+- 2026-07-01 — Added root adapters and docs for GC-AUDIT preflight and CI invariant validation, plus append-only `PLAY.jsonl` telemetry record shape using read/plan/execute/verify/close categories with `started_at`, `ended_at`, and `duration_ms`.

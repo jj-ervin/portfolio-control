@@ -82,6 +82,8 @@ Each script checks one thing, exits 0/1, callable standalone or composed by othe
 | [validate-planning.ps1](validate-planning.ps1) | DEV-PLAN/DEV-PATH/DEV-TRACKS/DEV-RELEASE present and structurally valid | DEV-ACCORD.00 | `.\validate-planning.ps1` |
 | [validate-pointers.ps1](validate-pointers.ps1) | All file pointers in `projects.yaml` resolve on disk | — | `.\validate-pointers.ps1` |
 | [validate-review-grammar.ps1](validate-review-grammar.ps1) | Repo has a REVIEW-GRAMMAR file and agent instructions reference it | — | `.\validate-review-grammar.ps1` |
+| [validate-ci-invariants.ps1](validate-ci-invariants.ps1) | DEV-ACCORD-CI invariant IDs are unique across markdown definition lines | governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml | `\.\validate-ci-invariants.ps1 -TargetPath .` |
+| [validate-agent-preflight.ps1](validate-agent-preflight.ps1) | First response or session note contains a valid PREFLIGHT stamp format (root adapter to GC tool) | governance-commons/gc-audit/AGENT-PREFLIGHT.md | `\.\validate-agent-preflight.ps1 -FilePath <note> -Mode FirstResponse` |
 | [validate-debt.ps1](validate-debt.ps1) | Tracked files are free of generated artifacts and legacy shim markers | — | `.\validate-debt.ps1 -Portfolio -IncludeDocs` |
 
 ### Normalizers
