@@ -1,7 +1,7 @@
 # REVIEW-GRAMMAR
 
 Status: active
-Updated: 2026-06-30
+Updated: 2026-07-01
 Authority: GC standard component — canonical verb registry for GC-AUDIT (declared by DEV-ACCORD.05 / GC:2013)
 
 ## Purpose
@@ -54,6 +54,69 @@ Do not confuse this with first-party, second-party, and third-party audits:
 - Second-party audit: stakeholder, customer, vendor, or dependent-team audit.
 - Third-party audit: independent external auditor or certifier.
 
+## GC Planning Vocabulary
+
+*Planning container lock declared by DEV-ACCORD.07 (GC:2015).*
+
+### Structural planning containers
+
+Phase, Wave, and Track are the only three GC structural planning containers. Agents must not invent a fourth.
+
+| Term | Answers | Role |
+| --- | --- | --- |
+| Phase | What era is the project in? | Macro arc — preserved in DEV-PATH.md |
+| Wave | What delivery batch within this phase? | Sequences work inside a phase |
+| Track | What persistent workstream owns this? | Parallel lanes — CLI, schema, UI, runtime, release, docs |
+
+### Governance contract
+
+| Term | Answers | Note |
+| --- | --- | --- |
+| PASS | What governed contract defines done? | Not a planning container — may span multiple Tracks or Waves |
+| Sub-PASS | What child contract can close or fail independently? | Narrows a PASS scope |
+
+### Supporting vocabulary
+
+| Term | Answers |
+| --- | --- |
+| RUN | What execution event happened? |
+| Evidence Bundle | How is the RUN independently verifiable? |
+| Work Item | What local planning row tracks a task? |
+| Gate | What check must pass before closure? |
+| Release | What packaged version or distribution target ships? |
+
+### Vocabulary Lock
+
+Agents must not invent new GC planning or governance vocabulary. Any term not listed above
+is invalid for DEV-DOCS planning taxonomy. A new term requires a GC amendment before use.
+
+Allowed exception: a project may use a domain word like `lane` descriptively for product
+architecture — "Marlin Lane 1 — package manager." That does not create a new GC term.
+
+`Flow` is not a GC planning unit. Use it only as ordinary prose.
+
+## Change Playbook Execution Levels
+
+DEV-ACCORD.06 defines the portfolio Change Playbook. It owns the four execution
+levels used to decide governance obligations:
+
+| Execution level | Meaning |
+| --- | --- |
+| BUNT | Tiny tactical change with no behavioral effect |
+| RUN | Normal bounded work with local, contained impact |
+| DRIVE | Meaningful milestone movement that is visible or release-affecting |
+| PASS | Governed contract for planned, multi-step, or cross-cutting work |
+
+BUNT and DRIVE are Change Playbook execution levels only. They are not planning terms
+and must not appear in DEV-DOCS planning structure.
+
+`RUN` and `PASS` appear in both vocabularies with distinct meanings:
+
+| Term | Planning / governance meaning | Change Playbook execution-level meaning |
+| --- | --- | --- |
+| RUN | An execution event: work happened. | A normal bounded change with local, contained impact. |
+| PASS | A governance contract: scope and Done-when are agreed. | Work whose governance weight requires PASS-level obligations. |
+
 ## Closure States
 
 Use the closure states from `docs/gap-analysis-framework.md`:
@@ -66,6 +129,34 @@ Use the closure states from `docs/gap-analysis-framework.md`:
 | runtime-complete | Mechanism runs, emits observable signals, and is tested. |
 
 Do not call a gap closed merely because it is documented.
+
+## Development Status Vocabulary
+
+Agents must use the status vocabulary declared by the artifact they are editing.
+If an artifact does not declare its own allowed statuses, use the tables below.
+Do not invent status values.
+
+| Artifact / scope | Allowed statuses |
+| --- | --- |
+| `projects.yaml` project status | `active`, `stable`, `wip`, `scaffold`, `archive` |
+| PASS closure status | `OPEN`, `CLOSED` |
+| Planning work item status | `planned`, `queued`, `open`, `in-progress`, `blocked`, `done`, `deferred` |
+| Gap closure status | `open`, `spec-complete`, `release-complete`, `runtime-complete` |
+| Release status | `planned`, `in-progress`, `blocked`, `released`, `deferred` |
+| Document lifecycle status | `draft`, `active`, `accepted`, `superseded`, `archived` |
+
+### Status Lock
+
+Agents must not introduce new DEV status values. Any status value not listed
+in the relevant table above is invalid unless the target artifact already
+declares that exact value as allowed.
+
+Use notes fields, prose, or a work item description for nuance. For example:
+use `status: archive` plus a note saying "redirect-only legacy entry", not
+`status: migrating`.
+
+If a new status value is genuinely needed, stop and propose a grammar or
+DEV-ACCORD amendment first.
 
 ## Stranger Test
 

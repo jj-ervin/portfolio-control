@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-06-29"  # eco-vscode, ELAN, ARCHE, Cockpit scope restored; doc-vault-plane registered as scaffold
+updated: "2026-07-01"  # Marlin canonical repo normalized; dxp-init archived as redirect-only legacy entry
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -9,6 +9,7 @@ updated: "2026-06-29"  # eco-vscode, ELAN, ARCHE, Cockpit scope restored; doc-va
 root: "c:/dev"
 
 # Status values: active | stable | wip | scaffold | archive
+# Do not invent new project statuses; put nuance in planning.notes instead.
 # Relationship keys: runtime_of | site_for | governance_package | depends_on | publishes_to
 
 projects:
@@ -382,19 +383,38 @@ projects:
 
   # ─── ONBOARDING ──────────────────────────────────────────────────────────────
 
+  - name: marlin
+    path: marlin
+    group: dev-tools
+    description: "Marlin — universal package manager and installer family. Four lanes: marlin (apps), marlin-dxp (governance), marlin-dcp (workspace/org), marlin-ux (Cockpit GUI). Monorepo."
+    status: active
+    branch: main
+    remote: https://github.com/jj-ervin/marlin
+    depends_on:
+      - governance-commons
+      - dxp-org
+      - cockpit
+    planning:
+      canonical: marlin/DEV-PLAN.md
+      path: marlin/DEV-PATH.md
+      tracks: marlin/DEV-TRACKS.md
+      release: marlin/DEV-RELEASE.md
+      notes: "Canonical Marlin planning surface. Four-lane structure: INIT.19.xx package manager, marlin-dxp governance lane, INIT.20.xx workspace manager, Cockpit-hosted marlin-ux."
+
   - name: marlin-dxp
     path: dxp-init
     group: dev-tools
-    description: "Marlin-DXP — governance adoption wizard and workbench; provisions GC/ONS/DCP/GEE baseline in five minutes; bin: marlin"
-    status: active
+    description: "Legacy Marlin-DXP source repo; Waves 0-4 preserved and migrated into marlin/packages/marlin-dxp."
+    status: archive
     branch: main
     depends_on:
       - governance-commons
       - dxp-org
     planning:
-      canonical: dxp-init/DEV-PLAN.md
-      path: dxp-init/DEV-PATH.md
-      notes: "Waves 0-4 CLOSED. Renamed from dxp-init to Marlin-DXP 2026-06-28. bin: marlin / marlin-dxp. Cockpit integration future."
+      redirect: dxp-init/REDIRECT.md
+      canonical: marlin/DEV-PLAN.md
+      path: marlin/DEV-PATH.md
+      notes: "Redirect-only legacy entry. Do not start new feature work in dxp-init; use marlin/ for all current Marlin planning and implementation."
 
   # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
