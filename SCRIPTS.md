@@ -2,10 +2,13 @@
 
 Status: active
 Updated: 2026-06-28
-Authority: C:\dev control plane
+Authority: portfolio control plane
 
-Quick reference for every script at the `C:\dev` portfolio root.
+Quick reference for portfolio script entrypoints. GC-AUDIT authority lives under
+`governance-commons/gc-audit/tools`; matching root `.ps1` files are compatibility
+adapters unless noted otherwise.
 For the review command vocabulary (normalize, adversarial audit, trace, etc.), see [`docs/REVIEW-GRAMMAR.md`](docs/REVIEW-GRAMMAR.md).
+For the authoritative machine-readable GC-AUDIT index used by Marlin/Cockpit/DCP menus, see [`governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml`](governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml).
 
 ---
 
@@ -42,6 +45,18 @@ Used by `validate-recent-work.ps1` and `review-last-24h.ps1`.
 ---
 
 ## Script Index
+
+The tables below are human-readable help. The execution allowlist is
+`governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml`; security-sensitive callers
+must use the registry instead of scraping this document.
+
+### Portability Contract
+
+Paths in the GC-AUDIT registry are relative to the portfolio/control-plane root.
+`dcp.ps1 init` installs the required `governance-commons/gc-audit` registry and
+`governance-commons/passes/dev-accord` authority files into the target root.
+After init, edit `projects.yaml` for that root before running portfolio-wide
+pointer checks.
 
 ### Entrypoint
 
@@ -92,7 +107,7 @@ These orchestrate the atomic validators and add commit-level analysis.
 
 | Script | What it does | Common invocation |
 | --- | --- | --- |
-| [sync-dcp.ps1](sync-dcp.ps1) | Copies distributable DCP files from `C:\dev` → `dxp-org\devx-control-plane` distribution repo | `.\sync-dcp.ps1 -DryRun` then `.\sync-dcp.ps1 -Commit` |
+| [sync-dcp.ps1](sync-dcp.ps1) | Copies distributable DCP files from this portfolio root to the `dxp-org\devx-control-plane` distribution repo | `.\sync-dcp.ps1 -DryRun` then `.\sync-dcp.ps1 -Commit` |
 | [protect-sources.ps1](protect-sources.ps1) | Pre-commit hook: blocks commits that bulk-change `docs/sources/source_*.md` | Wired automatically by `dcp-setup.ps1` |
 
 ---

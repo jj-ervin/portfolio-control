@@ -1,6 +1,6 @@
 # sync-dcp.ps1
-# Copies distributable DCP files from C:\dev (reference impl) to
-# C:\dev\dxp-org\devx-control-plane (clean distribution repo).
+# Copies distributable DCP files from this portfolio root to
+# dxp-org\devx-control-plane (clean distribution repo).
 #
 # Usage:
 #   .\sync-dcp.ps1              — sync and show diff summary
@@ -16,7 +16,7 @@ param(
 
 if ($Help) {
     Write-Host ""
-    Write-Host "  sync-dcp.ps1 — sync C:\dev → dxp-org\devx-control-plane distribution repo" -ForegroundColor White
+    Write-Host "  sync-dcp.ps1 — sync this portfolio root → dxp-org\devx-control-plane distribution repo" -ForegroundColor White
     Write-Host ""
     Write-Host "  USAGE" -ForegroundColor Cyan
     Write-Host "    .\sync-dcp.ps1 [flags]"
@@ -41,8 +41,9 @@ if (-not (Test-Path $Dest)) {
     exit 1
 }
 
-# ── Files to sync (source path relative to C:\dev) ────────────────────────────
+# ── Files to sync (source path relative to this portfolio root) ───────────────
 $SyncFiles = @(
+    "AGENTS.md",
     "CLAUDE.md",
     "PROTECTED.md",
     "README.md",
@@ -71,6 +72,29 @@ $SyncFiles = @(
     # maintenance
     "protect-sources.ps1",
     "sync-dcp.ps1",
+    # GC-AUDIT authority and standards required by registry-backed tools
+    "governance-commons\gc-audit\GC-AUDIT-REGISTRY.yaml",
+    "governance-commons\gc-audit\README.md",
+    "governance-commons\gc-audit\tools\dev-report.ps1",
+    "governance-commons\gc-audit\tools\dev-status.ps1",
+    "governance-commons\gc-audit\tools\normalize-bootstrap.ps1",
+    "governance-commons\gc-audit\tools\normalize-planning.ps1",
+    "governance-commons\gc-audit\tools\normalize-pointers.ps1",
+    "governance-commons\gc-audit\tools\review-last-24h.ps1",
+    "governance-commons\gc-audit\tools\validate-bootstrap.ps1",
+    "governance-commons\gc-audit\tools\validate-debt.ps1",
+    "governance-commons\gc-audit\tools\validate-planning.ps1",
+    "governance-commons\gc-audit\tools\validate-pointers.ps1",
+    "governance-commons\gc-audit\tools\validate-recent-work.ps1",
+    "governance-commons\gc-audit\tools\validate-review-grammar.ps1",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.00.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.01.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.02.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.03.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.04.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.05.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.06.md",
+    "governance-commons\passes\dev-accord\DEV-ACCORD.07.md",
     # index
     "SCRIPTS.md",
     "docs\planning-normalization.md",
@@ -167,7 +191,7 @@ Write-Host ""
 # ── Auto-commit ───────────────────────────────────────────────────────────────
 if ($Commit -and $changed.Count -gt 0) {
     $fileList = $changed -join ", "
-    $msg = "chore(sync): sync from C:\dev reference implementation`n`nUpdated: $fileList"
+    $msg = "chore(sync): sync DCP distribution`n`nSource: $Src`nUpdated: $fileList"
     git -C $Dest add -A
     git -C $Dest commit -m $msg
     if ($LASTEXITCODE -eq 0) {

@@ -20,6 +20,7 @@ param(
     [switch]$Force,
     [switch]$NoHook,
     [switch]$DryRun,
+    [switch]$DirtyOnly,
 
     # validate-debt
     [switch]$Portfolio,
@@ -27,6 +28,7 @@ param(
     [string]$OutputJson,
 
     # dev-report
+    [string]$Project,
     [switch]$GapOnly,
     [switch]$DetailOnly,
     [string]$Output,
@@ -41,6 +43,17 @@ param(
 )
 
 $TemplateRoot = $PSScriptRoot
+$AuditToolRoot = Join-Path $TemplateRoot "governance-commons\gc-audit\tools"
+
+function Assert-AuditToolsAvailable {
+    $registry = Join-Path $TemplateRoot "governance-commons\gc-audit\GC-AUDIT-REGISTRY.yaml"
+    if ((Test-Path $AuditToolRoot) -and (Test-Path $registry)) { return }
+
+    Write-Host "GC-AUDIT tools are not installed under this control plane root." -ForegroundColor Red
+    Write-Host "Expected: $registry" -ForegroundColor Yellow
+    Write-Host "Run dcp init from a complete DCP distribution, or copy governance-commons\gc-audit into this root." -ForegroundColor Yellow
+    exit 1
+}
 
 # ── help ─────────────────────────────────────────────────────────────────────
 
@@ -53,8 +66,10 @@ function Show-Help {
     Write-Host ""
     Write-Host "  STATUS" -ForegroundColor Cyan
     Write-Host "    status           Git status dashboard for all repos in projects.yaml"
+    Write-Host "    status -DirtyOnly    Show only repos with uncommitted changes"
     Write-Host "    report           Planning gap report (DEV-ACCORD.00 / GC:2008)"
     Write-Host "    report -GapOnly  Gap table only"
+    Write-Host "    report -Project marlin  Scope report to one project"
     Write-Host ""
     Write-Host "  VALIDATE (atomic — each checks one thing)" -ForegroundColor Cyan
     Write-Host "    validate         Run all five validators in sequence"
@@ -136,6 +151,7 @@ function Invoke-Init {
     $items = @(
         # docs
         "CLAUDE.md"
+        "AGENTS.md"
         "PROTECTED.md"
         "README.md"
         "ONBOARDING.md"
@@ -166,6 +182,9 @@ function Invoke-Init {
         # scripts — maintenance
         "protect-sources.ps1"
         "sync-dcp.ps1"
+        # GC-AUDIT authority and standards referenced by the adapters/registry
+        "governance-commons\gc-audit"
+        "governance-commons\passes\dev-accord"
         # docs subdirs
         "docs\planning-normalization.md"
         "docs\REVIEW-GRAMMAR.md"
@@ -217,68 +236,82 @@ switch ($Command) {
     "init" { Invoke-Init }
 
     "status" {
-        & (Join-Path $TemplateRoot "dev-status.ps1")
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "dev-status.ps1") -TargetPath $TargetPath -DirtyOnly:$DirtyOnly
     }
 
     "report" {
-        & (Join-Path $TemplateRoot "dev-report.ps1") `
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "dev-report.ps1") `
+            -TargetPath $TargetPath -Project $Project `
             -GapOnly:$GapOnly -DetailOnly:$DetailOnly `
             -Output $Output
     }
 
     "validate" {
+        Assert-AuditToolsAvailable
         $t = $TargetPath
-        & (Join-Path $TemplateRoot "validate-bootstrap.ps1")       -TargetPath $t; if (-not $?) { exit 1 }
-        & (Join-Path $TemplateRoot "validate-planning.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
-        & (Join-Path $TemplateRoot "validate-pointers.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
-        & (Join-Path $TemplateRoot "validate-review-grammar.ps1")  -TargetPath $t; if (-not $?) { exit 1 }
-        & (Join-Path $TemplateRoot "validate-debt.ps1")            -TargetPath $t
+        & (Join-Path $AuditToolRoot "validate-bootstrap.ps1")       -TargetPath $t; if (-not $?) { exit 1 }
+        & (Join-Path $AuditToolRoot "validate-planning.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
+        & (Join-Path $AuditToolRoot "validate-pointers.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
+        & (Join-Path $AuditToolRoot "validate-review-grammar.ps1")  -TargetPath $t; if (-not $?) { exit 1 }
+        & (Join-Path $AuditToolRoot "validate-debt.ps1")            -TargetPath $t
     }
 
     "validate-bootstrap" {
-        & (Join-Path $TemplateRoot "validate-bootstrap.ps1") -TargetPath $TargetPath
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "validate-bootstrap.ps1") -TargetPath $TargetPath
     }
 
     "validate-planning" {
-        & (Join-Path $TemplateRoot "validate-planning.ps1") -TargetPath $TargetPath
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "validate-planning.ps1") -TargetPath $TargetPath
     }
 
     "validate-review" {
-        & (Join-Path $TemplateRoot "validate-review-grammar.ps1") -TargetPath $TargetPath
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "validate-review-grammar.ps1") -TargetPath $TargetPath
     }
 
     "validate-debt" {
-        & (Join-Path $TemplateRoot "validate-debt.ps1") `
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "validate-debt.ps1") `
             -TargetPath $TargetPath -Portfolio:$Portfolio `
             -IncludeDocs:$IncludeDocs -OutputJson $OutputJson
     }
 
     "normalize" {
-        & (Join-Path $TemplateRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
-        & (Join-Path $TemplateRoot "normalize-planning.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
-        & (Join-Path $TemplateRoot "normalize-pointers.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+        & (Join-Path $AuditToolRoot "normalize-planning.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
+        & (Join-Path $AuditToolRoot "normalize-pointers.ps1")  -TargetPath $TargetPath -DryRun:$DryRun
     }
 
     "normalize-bootstrap" {
-        & (Join-Path $TemplateRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "normalize-bootstrap.ps1") -TargetPath $TargetPath -DryRun:$DryRun
     }
 
     "normalize-planning" {
-        & (Join-Path $TemplateRoot "normalize-planning.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "normalize-planning.ps1") -TargetPath $TargetPath -DryRun:$DryRun
     }
 
     "normalize-pointers" {
-        & (Join-Path $TemplateRoot "normalize-pointers.ps1") -TargetPath $TargetPath -DryRun:$DryRun
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "normalize-pointers.ps1") -TargetPath $TargetPath -DryRun:$DryRun
     }
 
     "diagnose" {
-        & (Join-Path $TemplateRoot "validate-recent-work.ps1") `
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "validate-recent-work.ps1") `
             -TargetPath $TargetPath -Level $Level -Hours $Hours -Summary:$Summary
     }
 
     "review" {
-        & (Join-Path $TemplateRoot "review-last-24h.ps1") `
-            -Hours $Hours -Deep:$Deep -Deeper:$Deeper -Summary:$Summary
+        Assert-AuditToolsAvailable
+        & (Join-Path $AuditToolRoot "review-last-24h.ps1") `
+            -TargetPath $TargetPath -Hours $Hours -Deep:$Deep -Deeper:$Deeper -Summary:$Summary
     }
 
     default { Show-Help }
