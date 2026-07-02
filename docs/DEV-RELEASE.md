@@ -1,4 +1,4 @@
-# DEV-RELEASE — Portfolio Master
+# DEV-RELEASE — Marlin Registry
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** Active — populated portfolio release sequencing

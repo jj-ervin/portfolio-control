@@ -1,4 +1,4 @@
-# DEV-PATH — Portfolio Control Plane (c:\dev root)
+# DEV-PATH — Marlin Registry
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE — single authoritative source for DCP development path
@@ -189,3 +189,5 @@ This is DCP's primary market differentiator. Most competing tools solve the regi
 - 2026-06-06 — v0.2.0 Core Portable extraction completed.
 - 2026-06-21 — Governance correction: recent DCP.17/DCP.18 updates inserted rows into existing `DEV-PATH.md` sections while adding append-only policy. Treat that as a one-time normalization exception; future `DEV-PATH.md` updates should append a changelog entry, phase section, PASS entry, or task row without rewriting existing history.
 - 2026-07-01 — Added root adapters and docs for GC-AUDIT preflight and CI invariant validation, plus append-only `PLAY.jsonl` telemetry record shape using read/plan/execute/verify/close categories with `started_at`, `ended_at`, and `duration_ms`.
+- 2026-07-02 — Marlin Registry validation gate live: commit `98affdb` added the public self-contained manifest/index validation workflow and script, pushed to `origin/main`; GitHub branch protection now requires the `validate` status check in strict mode. The CI deliberately does not check out the private `marlin` source repo, avoiding private-source leakage into public Actions logs.
+- 2026-07-02 — Planning-doc identity correction: this repo's inherited DCP-shaped planning docs now have Marlin Registry-specific H1 titles so portfolio planning validation no longer collides with the real DCP/control-plane docs.

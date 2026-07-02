@@ -1,4 +1,4 @@
-# DEV-PLAN — Portfolio Control Plane (c:\dev root)
+# DEV-PLAN — Marlin Registry
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE
@@ -202,6 +202,15 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 
 - DCP.20 — Agent Kit: task template, cluster header pattern, authority levels, naming conventions
 - DCP.21 — Agent Kit: routing patterns, escalation levels, cost discipline, agent onboarding template, handoff protocol
+
+## RECENTLY COMPLETED (Marlin Registry)
+
+- 2026-07-02 — Public registry submission validation is active on `origin/main`.
+  The `validate` GitHub Actions check is required by branch protection. The check
+  is self-contained in this public repo and does not check out private Marlin
+  source.
+- 2026-07-02 — Planning doc H1 titles were corrected to identify this repo as
+  Marlin Registry so GC-AUDIT planning validation does not collide with DCP docs.
 
 ---
 
