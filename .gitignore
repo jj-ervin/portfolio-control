@@ -31,6 +31,7 @@ powershell/
 tools/
 
 # ── Generated / debug artifacts ──
+node_modules/
 _tmp/
 __pycache__/
 *.pyc

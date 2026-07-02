@@ -1,0 +1,36 @@
+name: Validate registry submission
+
+# INIT.19.13 - registry submission CI gate. Runs the self-contained validator
+# (scripts/validate-submission.mjs) against any PR touching manifests/ or
+# index.yaml. Deliberately does not check out the private marlin repo - see
+# the comment header in validate-submission.mjs for why.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "manifests/**"
+      - "index.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate changed manifests
+        run: node scripts/validate-submission.mjs ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
