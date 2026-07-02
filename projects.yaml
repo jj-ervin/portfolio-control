@@ -138,15 +138,16 @@ projects:
   - name: cockpit
     path: cockpit
     group: cockpit
-    description: "eco operator command surface and personal workspace control plane"
+    description: "Portable, backend-agnostic UI/UX host — works with eco, Marlin, and future backends via the adapter/bridge pattern; not eco-runtime-bound"
     status: scaffold
     branch: main
-    runtime_of: eco
+    registry: cockpit/passes/passes.registry.json
+    namespace: CKP
     planning:
       canonical: cockpit/DEV-PLAN.md
       path: cockpit/DEV-PATH.md
       track: eco/tracks/TRACK-B.md
-      notes: "Standalone repo is scaffold; governing implementation/spec lineage lives in eco CK.00/CK.01/CK.02 until packaging."
+      notes: "Packaging is underway (CKP.08 - UI extraction). CKP: is Cockpit's own CANON.01 external-adopter namespace as of 2026-07-02, registered in cockpit/passes/passes.registry.json; CK.00/CK.01/CK.02 in eco remain the original spec lineage Cockpit's Python adapters were recovered from, not a runtime dependency."
 
   # ─── GOVERNANCE COMMONS ──────────────────────────────────────────────────────
   # Open standards for agent governance, orchestration, and runtime contracts
