@@ -1,4 +1,4 @@
-# DEV-PLAN — Marlin Registry
+# DEV-PLAN — Portfolio Control Plane
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE
@@ -26,7 +26,7 @@ v1.0.0 is complete. All modules shipped: Core, Governance Kit, Agent Kit, Team K
 ## RELEASE TARGETS
 
 | Version | Name | Description | Status |
-|---------|------|-------------|--------|
+| --- | --- | --- | --- |
 | v0.1.0 | Foundation | Boundary doctrine, registry, tooling, templates, dashboard | ✅ Done |
 | v0.2.0 | Core Portable | DCP extracted as standalone template; SKU boundaries defined | ✅ Done |
 | v0.3.0 | Governance Kit | Governance Kit packaged and documented as separable module | ✅ Done |
@@ -120,7 +120,7 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 ## TRACK PLAN
 
 | Track | Name | Goal | Status | Next |
-|-------|------|------|--------|------|
+| --- | --- | --- | --- | --- |
 | A | Extraction | DCP Core portable as standalone template repo | ✅ Done | — |
 | B | Governance Kit | Planning normalization, templates, and audit workflow packaged | ✅ Done | — |
 | C | Agent Kit | Task templates + routing patterns as separable module | ✅ Done | — |
@@ -137,7 +137,7 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 ## PRIORITY WORK ITEMS
 
 | ID | Task | Track | Priority | Status |
-|----|------|-------|----------|--------|
+| --- | --- | --- | --- | --- |
 | DCP.10 | Extract DCP into standalone template repo | A | P0 | ✅ |
 | DCP.11 | Define SKU boundaries (what is Core vs Kit vs Studio) | A | P0 | ✅ |
 | DCP.12 | Write user onboarding doc (non-agent audience) | B | P1 | ✅ |
