@@ -57,39 +57,17 @@ Do not confuse this with first-party, second-party, and third-party audits:
 
 ## GC Planning Vocabulary
 
-*Planning container lock declared by DEV-ACCORD.07 (GC:2015).*
+REVIEW-GRAMMAR owns GC-AUDIT command verbs. It does not restate the full planning
+taxonomy. Use the DEV-ACCORD authorities below:
 
-### Structural planning containers
-
-Phase, Wave, and Track are the only three GC structural planning containers. Agents must not invent a fourth.
-
-| Term | Answers | Role |
-| --- | --- | --- |
-| Phase | What era is the project in? | Macro arc — preserved in DEV-PATH.md |
-| Wave | What delivery batch within this phase? | Sequences work inside a phase |
-| Track | What persistent workstream owns this? | Parallel lanes — CLI, schema, UI, runtime, release, docs |
-
-### Governance contract
-
-| Term | Answers | Note |
-| --- | --- | --- |
-| PASS | What governed contract defines done? | Not a planning container — may span multiple Tracks or Waves |
-| Sub-PASS | What child contract can close or fail independently? | Narrows a PASS scope |
-
-### Supporting vocabulary
-
-| Term | Answers |
+| Topic | Authority |
 | --- | --- |
-| RUN | What execution event happened? |
-| Evidence Bundle | How is the RUN independently verifiable? |
-| Work Item | What local planning row tracks a task? |
-| Gate | What check must pass before closure? |
-| Release | What packaged version or distribution target ships? |
+| PASS, RUN, Evidence Bundle, Work Item, Gate, Release, and status vocabulary | `governance-commons/passes/dev-accord/DEV-ACCORD.02.md` |
+| Phase, Wave, Track planning-container lock | `governance-commons/passes/dev-accord/DEV-ACCORD.07.md` |
+| BUNT/RUN/DRIVE/PASS execution levels and DEV-DOCS obligations | `governance-commons/passes/dev-accord/DEV-ACCORD.06.md` |
 
-### Vocabulary Lock
-
-Agents must not invent new GC planning or governance vocabulary. Any term not listed above
-is invalid for DEV-DOCS planning taxonomy. A new term requires a GC amendment before use.
+Agents must not invent new GC planning or governance vocabulary. A new planning
+unit, execution unit, or status value requires a GC amendment before use.
 
 Allowed exception: a project may use a domain word like `lane` descriptively for product
 architecture — "Marlin Lane 1 — package manager." That does not create a new GC term.
