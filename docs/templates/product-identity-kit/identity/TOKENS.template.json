@@ -1,0 +1,22 @@
+{
+  "_readme": "Placeholder values (#FF00FF) mark anything that must be replaced before use. Delete top-level groups that don't apply; add project-specific ones (e.g. color.agent.*) as needed — this is a starting shape, not a fixed schema.",
+  "color": {
+    "surface": "#FF00FF",
+    "panel": "#FF00FF",
+    "text": "#FF00FF",
+    "muted": "#FF00FF",
+    "border": "#FF00FF",
+    "accent": "#FF00FF",
+    "danger": "#FF00FF"
+  },
+  "radius": {
+    "sm": "4px",
+    "md": "8px"
+  },
+  "space": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px"
+  }
+}
