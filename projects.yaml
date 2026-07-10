@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-07-01"  # Marlin canonical repo normalized; dxp-init archived as redirect-only legacy entry
+updated: "2026-07-10"  # cxp scaffolded and registered (Coach Experience Platform, apps group)
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -355,6 +355,18 @@ projects:
       authority: eco/passes/arche/ARCHE.00.md
       source_spec: eco/arche/ARCHE.spec.md
       notes: "Standalone repo is scaffold; ARCHE.00 is accepted in eco. eco/arche/ARCHE.spec.md remains the ARCHE v1.0 source spec."
+
+  - name: cxp
+    path: cxp
+    group: apps
+    description: "Coach Experience Platform — coaching operations workspace under 20Amp Labs (basketball first); Cockpit shell + eco.ai assistant, sport-neutral play/practice engine"
+    status: scaffold
+    branch: main
+    planning:
+      canonical: cxp/DEV-PLAN.md
+      path: cxp/DEV-PATH.md
+      release: cxp/DEV-RELEASE.md
+      notes: "Scaffold — full scoping conversation captured in cxp/CXP-OVERVIEW.md (2026-07-10). No implementation, no committed architecture yet; architecture week recommended before code starts."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
