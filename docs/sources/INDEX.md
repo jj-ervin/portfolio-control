@@ -1,7 +1,7 @@
 # Source Index
 
 Research summaries informing eco ecosystem development.
-Add a row here whenever a new source file is populated. Next slot: **source_103.md**.
+Add a row here whenever a new source file is populated. Next slot: **source_104.md**.
 
 | # | Title | Publication | Date | Topics | Relevance |
 | --- | --- | --- | --- | --- | --- |
@@ -107,3 +107,4 @@ Add a row here whenever a new source file is populated. Next slot: **source_103.
 | [100](source_100.md) | ONS v1.2.0 Gap Analysis: Publication Infrastructure, Spec Correctness, Tooling, Industry Alignment, and Ahead-of-Curve Opportunities | Internal / eco | 2026-06-05 | ai-governance, platform-architecture, devex, open-source | eco, ons, governance-commons, agent-dossier, eos |
 | [101](source_101.md) | Governance Commons Gap Analysis & Industry Positioning: Protocol Alignment, Security, Observability, Compliance Depth, and Ahead-of-Curve Opportunities | Internal / eco | 2026-06-05 | ai-governance, platform-architecture, identity-trust, devex, open-source, regulations | eco, governance-commons, agent-matrix, agent-dossier, ons, eos, .eco |
 | [102](source_102.md) | Governance Commons Repo Structure Review: Multi-Ecosystem Architecture, Devpath Separation, and What's Still Missing | Internal / eco | 2026-06-05 | ai-governance, platform-architecture, devex, open-source | eco, governance-commons, agent-matrix, ons, agent-dossier, eos |
+| [103](source_103.md) | Human Interaction Evidence: HCI, Ergonomics, and Human-AI Interaction Standards for Cockpit, Lasso, eco, HELM, and Jäger-Modus | ChatGPT + Codex synthesis / ISO / NASA / W3C / Microsoft / NIST | 2026-07-14 | ux-design, accessibility, ai-governance, platform-architecture | cockpit, lasso, eco, governance-commons |
