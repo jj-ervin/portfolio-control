@@ -26,6 +26,7 @@ its own row.
 ## Matrix
 
 ### Marlin
+
 | Claim | Tier |
 | --- | --- |
 | Local CLI install/scaffold; Ed25519 key generation and signature verification | Proven now |
@@ -38,6 +39,7 @@ key is configured." Do not state "Project Architect" or "DXP front door" as
 current capability — Marlin's own DEV-PLAN.md pushes back on that framing.
 
 ### Governance Commons
+
 | Claim | Tier |
 | --- | --- |
 | Schemas, ONS reference validators, audit/report tooling | Proven now |
@@ -50,6 +52,7 @@ distribution is in progress." Do not claim "published source of truth" —
 zero adopters, no live package, no working custom domain.
 
 ### DevXToolkit (dxp-org)
+
 | Claim | Tier |
 | --- | --- |
 | v1 module import and scaffolding commands | Proven now |
@@ -62,6 +65,7 @@ pre-release." Do not publicly claim DCP's "5-minute" path — it currently
 fails outside its own source repository.
 
 ### Lasso
+
 | Claim | Tier |
 | --- | --- |
 | Human + AI Collaboration Workspace, standalone and inside VS Code | Proven now |
@@ -74,6 +78,7 @@ claim to "VS Code and standalone today, broader editor support planned" —
 not a bare "editor-agnostic."
 
 ### eco
+
 | Claim | Tier |
 | --- | --- |
 | Deterministic provenance/telemetry logging and gate sequencing | Proven now |
@@ -87,15 +92,19 @@ intelligence" in any public or internal positioning — the reasoning call is
 a two-line echo stub today, not logic.
 
 ### eco-edge
+
 | Claim | Tier |
 | --- | --- |
-| PyPI package name and device-layer (HAL) code | Partially implemented — real, but sourced from eco's monorepo, not this repo |
-| Standalone governance proof surface | Unvalidated aspiration |
+| Core kernel/HAL/telemetry/anomaly modules import and run correctly | Proven now — fixed and verified 2026-07-22 (`eco` commit `2c276e6`); was Unvalidated aspiration through both PyPI releases (0.1.0, 0.1.1) — `import eco.core.edge.kernel` failed on install for everyone, always |
+| PyPI package name and device-layer (HAL) code | Partially implemented — the fix (0.1.2) is built and locally verified, not yet published to PyPI; anyone running `pip install eco-edge` today still gets the broken 0.1.1 |
+| Standalone governance proof surface | Unvalidated aspiration — blocked on governance-commons' actual PyPI/npm publish, not a code gap |
 
-**Safe public language:** "Device-layer support ships today via the eco
-project; a dedicated standalone eco-edge package is planned." Do not
-present this repo itself as a shipped product — it currently has no
-implementation of its own.
+**Safe public language:** "Device-layer support (kernel, HAL, telemetry,
+anomaly detection) is real, tested, and — as of the 0.1.2 fix — actually
+importable when installed. It is not yet published to PyPI; the published
+0.1.1 remains broken until someone runs the publish step." Do not claim a
+dedicated standalone governance proof surface — that repo has no
+implementation of its own yet.
 
 ## Highest-risk item
 

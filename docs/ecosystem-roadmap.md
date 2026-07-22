@@ -18,22 +18,37 @@ other, rather than argued about.
 **Gate:** nothing else is worth sequencing on top of a flagship path that
 fails today.
 
-- **DCP `init`** — fix so it provisions a working install outside its own
-  source repo. Today it self-copies one file and nothing else, then the
-  very next command (`dcp validate`) fails because the files it should have
-  provisioned were never created.
-- **Marlin evidence signing** — wire key generation into the default guided
-  setup path so a fresh install produces signed bundles by default, not
-  only when a principal key happens to already exist.
-- **Governance Commons** — resolve the paused PyPI/npm publish (external
-  account setup), or explicitly document clone-first as the currently
-  supported install path. Separately, reconcile `DEV-PLAN.md` against
-  `releases/gc-v1.2.0.yaml`, which currently disagree on release-readiness
-  status.
-- **eco-edge** — decide: retire this repo in favor of the monorepo location
-  where the shipped PyPI package actually lives, or perform the planned
-  standalone extraction. Either way, fix the quickstart, which currently
-  disagrees with the shipped package's real API and metadata.
+**Status: all four items done (2026-07-22).**
+
+- ~~**DCP `init`**~~ — DONE. `dxp-org/devx-control-plane` commit `1cbf570`:
+  `init` now fails loudly instead of silently succeeding with nothing
+  provisioned when relocated; `validate` now actually checks the given
+  target (two bundled validator scripts were stale, missing `-TargetPath`
+  entirely).
+- ~~**Marlin evidence signing**~~ — DONE. `marlin` commit `5e8d27c`:
+  `status --evidence` now resolves and uses a real signing key when one
+  exists (it never did before, regardless of guided setup already
+  offering key generation) — shares the same signing logic `audit` already
+  had instead of duplicating it.
+- ~~**Governance Commons**~~ — DONE (the reconcilable part). `governance-commons`
+  commit `2a69669`: `DEV-PLAN.md` corrected to match
+  `releases/gc-v1.2.0.yaml` (`status: ready` since 2026-06-17, not
+  "planned"). The PyPI/npm publish itself (GC-5-F-02/03) remains genuinely
+  open — external OIDC/NPM_TOKEN account setup, not a doc or code fix.
+- ~~**eco-edge**~~ — DONE (repo kept, not retired, per explicit product-owner
+  direction). `eco` commit `2c276e6`: `pip install eco-edge` had never
+  actually worked on either published version (0.1.0, 0.1.1) — verified by
+  installing both fresh; `import eco.core.edge.kernel` failed immediately
+  on a broken `eco/__init__.py` force-include, two undeclared dependencies
+  (`ulid`, `numpy`), and a missing `eco.core.context.time_loc` file. Fixed
+  all three, deleted a stale duplicate source copy (`packages/src/`), and
+  rewrote `docs/edge/quickstart.md` — every constructor call in it
+  mismatched the real API, and the CAPS pack it ran against didn't exist
+  anywhere in the codebase. Version bumped 0.1.1 → 0.1.2; actually
+  publishing to PyPI remains a manual step (maintainer credentials).
+  `eco-edge-dgx` stays correctly empty, deferred behind eco-edge v0.1's
+  full governance proof path (itself blocked on the same GC publish gate
+  above).
 
 ## Phase 2 — Prove the stranger path, per product
 
