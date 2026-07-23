@@ -3,6 +3,7 @@
 **Status:** active
 **Produced by:** ECOSYSTEM-BOUNDARY.00, Lane .05/.06/.07
 **Date:** 2026-07-21
+**Updated:** 2026-07-23
 **Source:** hands-on audit (Claude + Codex, independently reconciled) — see `docs/sessions/2026-07-21-ecosystem-boundary-audit.md`
 
 ## Ordering principle
@@ -62,10 +63,33 @@ verification pass, not a documentation update.
   to a living document, re-verified at each release rather than re-derived
   from scratch.
 
-## Phase 3 — Make composability real, not just designed
+## Phase 3 — Prove the first product wedge, then compose
 
-**Gate:** only wire an integration once both sides of it are individually
-proven (Phase 1 + 2 complete for both).
+**Product gate:** Lasso's first commercial proof must demonstrate value beyond
+opening Claude, Codex, or other agent tabs separately.
+
+"Governed" in this phase means explicit human approval plus recorded evidence.
+It does not mean GC policy enforcement, compliance certification, or eco's
+still-stub policy engine.
+
+- Build the first new connector around GitHub pull-request context and
+  controlled result publishing.
+- One human gives the same typed PR context to several agents with distinct
+  review perspectives.
+- Lasso compares and synthesizes findings, preserves attribution, and requires
+  explicit approval before proposed changes or published results.
+- Preserve the decision, artifact history, unresolved questions, and
+  agent-to-agent handoff state.
+
+**Acceptance gate:** the workflow must reduce repeated context transfer,
+surface findings a single-agent workflow missed, support traceable
+agent-to-agent handoff, move safely from recommendation to approved action,
+and leave independently understandable evidence. If it cannot demonstrate
+those outcomes, it is only a more convenient tab switcher and does not pass
+this phase.
+
+**Composition gate:** only wire an integration once both sides are
+individually proven (Phase 1 + 2 complete for both).
 
 - Generalize Marlin's package-install path beyond the one proven case
   (niji) to Governance Commons and DevXToolkit as real installable targets.
@@ -90,6 +114,11 @@ positioning update happens before this phase ships verifiable evidence.
 credibility repair.
 
 - Lasso: JetBrains, Visual Studio, terminal hosts.
+- Lasso multi-human collaboration: asynchronous sharing and comments first;
+  identity, presence, per-teammate permissions, and real-time concurrent state
+  later.
+- Cockpit: prove integration value across independently useful Lasso and
+  DevXToolkit surfaces without re-wrapping or owning either product.
 - Marlin: public "DXP front door" positioning, once Cockpit and the
   installer both warrant it.
 - Governance Commons: published, ecosystem-wide distribution.
@@ -113,6 +142,13 @@ flagged as open against itself:
 - **eco** — Architecture Decision AD-3 already states "no production claims
   before SEC.00"; this roadmap makes that gate explicit for the reasoning
   claim specifically.
+
+## Attribution
+
+- Strategy and positioning synthesis: ChatGPT and Claude.
+- Six-repo hands-on audit and evidence reconciliation: Claude and Codex.
+- Follow-up implementation and local verification: recorded in the cited
+  product commits; not attributed to Codex.
 
 This roadmap does not create a second ecosystem narrative. It is a
 sequencing of gaps each repo had already recorded against itself,
