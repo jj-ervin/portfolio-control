@@ -394,6 +394,19 @@ projects:
       path: lasso/DEV-PATH.md
       vision: lasso/docs/architecture/vision.md
 
+  - name: trust-but-verify
+    path: trust-but-verify
+    group: apps
+    description: "Trust, But Verify — commercial PDF field guide teaching a 5-stage governed AI workflow methodology (Plan/Generate/Audit/Approve/Record) across 10 developer situations; first public release from Governance Commons"
+    status: active
+    branch: main
+    planning:
+      canonical: trust-but-verify/DEV-PLAN.md
+      path: trust-but-verify/DEV-PATH.md
+      market: trust-but-verify/MARKET.md
+      dist: trust-but-verify/DIST.md
+      notes: "Content-complete, v1.0 frozen. Not yet listed on Gumroad — cover art and per-workflow icons in progress."
+
   # ─── ONBOARDING ──────────────────────────────────────────────────────────────
 
   - name: marlin

@@ -31,6 +31,7 @@ marlin-registry/
 niji/
 powershell/
 tools/
+trust-but-verify/
 
 # ── Generated / debug artifacts ──
 node_modules/
