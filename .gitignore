@@ -43,6 +43,7 @@ parser_debug*.txt
 enforcement_debug.yaml
 null
 evidence/
+.marlin-provider-evidence/
 
 # ── Editor ──
 .claude/
