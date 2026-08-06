@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-07-10"  # cxp scaffolded and registered (Coach Experience Platform, apps group)
+updated: "2026-08-05"  # prompt-critique-repeat scaffolded and registered (AI image field guide, apps group)
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -406,6 +406,19 @@ projects:
       market: trust-but-verify/MARKET.md
       dist: trust-but-verify/DIST.md
       notes: "Content-complete, v1.0 frozen. Not yet listed on Gumroad — cover art and per-workflow icons in progress."
+
+  - name: prompt-critique-repeat
+    path: prompt-critique-repeat
+    group: apps
+    description: "Prompt. Critique. Repeat. — A Field Guide to Better AI Images. Commercial field guide teaching the Iteration Loop, a repeatable 7-step design methodology, across 4 real AI-image workflows (hoodie, logo, book cover, app icon)"
+    status: scaffold
+    branch: ~
+    planning:
+      canonical: prompt-critique-repeat/DEV-PLAN.md
+      path: prompt-critique-repeat/DEV-PATH.md
+      market: prompt-critique-repeat/MARKET.md
+      dist: prompt-critique-repeat/DIST.md
+      notes: "Scaffold — concept and v1 scope locked 2026-08-05, no manuscript content written yet. See trust-but-verify for the content-product structure this follows."
 
   # ─── ONBOARDING ──────────────────────────────────────────────────────────────
 
