@@ -14,6 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout governance tooling
+        uses: actions/checkout@v4
+        with:
+          repository: governancecommons/governance-commons
+          ref: 6c3f1ab26303b1c1d986de14bc4cf9bba75a8b7b
+          path: governance-commons
+
       - name: Validate project registry shape
         shell: pwsh
         run: |

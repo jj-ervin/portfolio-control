@@ -209,3 +209,11 @@ repair command, installs only declared missing PowerShell modules with
 `-Install`, and verifies readiness afterward. The first contract pins
 PowerShell >= 7.4.0, Pester 6.0.1, PSScriptAnalyzer 1.25.0, PSResourceGet 1.2.0,
 and Git for `devxtoolkit-v1-x`.
+
+### CI follow-up
+
+The DCP manager check exposed a pre-existing undeclared dependency: CI ran the
+root `dev-status.ps1` adapter without provisioning its ignored
+`governance-commons` tool repository. The workflow now checks out a pinned
+governance-commons revision before invoking the adapter, making the remote
+environment match the dependency the root command actually requires.
