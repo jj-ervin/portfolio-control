@@ -147,6 +147,7 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 | DCP.16 | Run adversarial normalization audit | B | P0 | ✅ |
 | DCP.17 | Add review grammar command reference | B | P0 | ✅ |
 | DCP.18 | Add review grammar validator support | B | P0 | ✅ |
+| DCP.19 | Add project tool contracts and central environment preflight/bootstrap | B | P0 | ✅ |
 | DCP.20 | Agent Kit — generalise task template set | C | P2 | ✅ |
 | DCP.21 | Agent Kit — write routing pattern library | C | P2 | ✅ |
 | DCP.30 | Create GitHub template repository | D | P2 | ✅ |

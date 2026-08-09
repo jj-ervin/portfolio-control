@@ -64,6 +64,7 @@ pointer checks.
 | --- | --- | --- |
 | [dcp.ps1](dcp.ps1) | Command wrapper — the front door for init, status, validate, validate-debt | `.\dcp.ps1 help` |
 | [dcp-setup.ps1](dcp-setup.ps1) | One-time setup: wires pre-commit hook, runs pointer validation, shows dashboard | `.\dcp-setup.ps1` |
+| [dev-environment.ps1](dev-environment.ps1) | Validates a project's `.devtools.json` contract and optionally installs missing pinned PowerShell modules | `pwsh -NoProfile -File .\dev-environment.ps1 -ProjectPath <path> [-Install]` |
 
 ### Status & Reporting
 
