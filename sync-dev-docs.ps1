@@ -44,16 +44,13 @@ $DevRoot    = $PSScriptRoot
 $DocsRepo   = Join-Path $DevRoot "dev-docs"
 $DocsRemote = "https://github.com/jj-ervin/dev-docs.git"
 
+. (Join-Path $PSScriptRoot "projects-lib.ps1")
+
 # ── Repos that must stay PUBLIC on GitHub — the only ones this script touches ──
 # Everything else in the portfolio is already private; its DEV-DOCS live there
-# directly and need no extraction. Update this list if a repo's visibility changes.
-$PublicRepos = @(
-    "eco-slate",
-    "eco-slate-www",
-    "marlin-registry",
-    "governance-commons-www",
-    "agent-dossier-www"
-)
+# directly and need no extraction. Sourced from projects.yaml's visibility
+# field — use set-repo-visibility.ps1 to add or remove a repo from this list.
+$PublicRepos = Get-DevProjects | Where-Object { $_.Visibility -eq "public" }
 
 $PerRepoFiles = @(
     "AGENTS.md",
@@ -120,10 +117,12 @@ if ($DryRun) {
     Write-Host ""
 }
 
-foreach ($repo in ($PublicRepos | Sort-Object)) {
-    $repoPath = Join-Path $DevRoot $repo
+foreach ($proj in ($PublicRepos | Sort-Object Name)) {
+    $repo     = $proj.Name
+    $repoPath = Join-Path $DevRoot $proj.Path
+
     if (-not (Test-Path $repoPath)) {
-        Write-Host ("  SKIP  {0} — not checked out under {1}" -f $repo, $DevRoot) -ForegroundColor DarkYellow
+        Write-Host ("  SKIP  {0} — not checked out at {1}" -f $repo, $repoPath) -ForegroundColor DarkYellow
         continue
     }
 

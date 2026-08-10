@@ -11,6 +11,14 @@ root: "c:/dev"
 # Status values: active | stable | wip | scaffold | archive
 # Do not invent new project statuses; put nuance in planning.notes instead.
 # Relationship keys: runtime_of | site_for | governance_package | depends_on | publishes_to
+#
+# Visibility values: public | private
+# public = repo must stay public on GitHub (distribution channel, docs site,
+#   or published registry) — its DEV-DOCS cannot live in-repo and are instead
+#   extracted into jj-ervin/dev-docs by sync-dev-docs.ps1.
+# private = repo is private on GitHub — DEV-DOCS live directly in-repo,
+#   tracked normally, no extraction needed.
+# Set with set-repo-visibility.ps1; don't hand-edit unless fixing drift.
 
 projects:
 
@@ -21,6 +29,7 @@ projects:
     group: dcp
     description: "DevX Control Plane — distributable product repo (clean stub of C:\\dev)"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: dxp-org/devx-control-plane/DEV-PLAN.md
@@ -32,6 +41,7 @@ projects:
     group: dcp
     description: "Doc Vault Plane — business document control plane for governed document repositories; business-facing counterpart to DCP"
     status: scaffold
+    visibility: private
     branch: main
     depends_on: governance-commons
     planning:
@@ -46,6 +56,7 @@ projects:
     group: eco-ecosystem
     description: "Governed execution platform for operational and AI-assisted workflows"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: eco/DEV-PLAN.md
@@ -58,6 +69,7 @@ projects:
     group: eco-ecosystem
     description: "Edge runtime layer for eco"
     status: active
+    visibility: private
     branch: main
     runtime_of: eco
     depends_on: governance-commons
@@ -72,6 +84,7 @@ projects:
     group: eco-ecosystem
     description: "Governance companion for eco OS — docs, registry rules, roadmap stewardship"
     status: active
+    visibility: public
     branch: main
     governance_package: eco
     planning:
@@ -82,6 +95,7 @@ projects:
     group: eco-ecosystem
     description: "Public web presence for eco-slate"
     status: active
+    visibility: public
     branch: main
     site_for: eco-slate
     planning:
@@ -93,6 +107,7 @@ projects:
     group: eco-ecosystem
     description: "VS Code extension layer for eco governance awareness, diagnostics, SKU detection, and approved editor actions"
     status: wip
+    visibility: private
     branch: main
     runtime_of: eco
     planning:
@@ -107,6 +122,7 @@ projects:
     group: eco-ecosystem
     description: "eco governance kernel — runtime config, models, and enforcement rules"
     status: active
+    visibility: private
     branch: main
     governance_package: eco
     planning:
@@ -119,6 +135,7 @@ projects:
     group: eco-ecosystem
     description: "eOS — bootable front door for the .eco governance kernel and eco environment"
     status: active
+    visibility: private
     branch: main
     runtime_of: eco
     planning:
@@ -131,6 +148,7 @@ projects:
     group: eco-ecosystem
     description: "Ontic Namespace Structure — canonical naming and validation rule IDs"
     status: stable
+    visibility: private
     branch: main
     governance_package: eco
     planning:
@@ -144,6 +162,7 @@ projects:
     group: cockpit
     description: "Portable, backend-agnostic UI/UX host — works with eco, Marlin, and future backends via the adapter/bridge pattern; not eco-runtime-bound"
     status: scaffold
+    visibility: private
     branch: main
     registry: cockpit/passes/passes.registry.json
     namespace: CKP
@@ -161,6 +180,7 @@ projects:
     group: governance-commons
     description: "Per-agent contract spec — what an orchestrator reads before assigning work"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: governance-commons/agent-dossier/DEV-PLAN.md
@@ -172,6 +192,7 @@ projects:
     group: governance-commons
     description: "Public web presence for Agent Dossier"
     status: active
+    visibility: public
     branch: main
     site_for: agent-dossier
     planning:
@@ -182,6 +203,7 @@ projects:
     group: governance-commons
     description: "Capability, routing, trust, and safety model for agent orchestration"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: governance-commons/agent-matrix/DEV-PLAN.md
@@ -193,6 +215,7 @@ projects:
     group: governance-commons
     description: "Fleet-level governance — agent delegation, trust topology, shared audit trail, fleet escalation"
     status: scaffold
+    visibility: private
     branch: main
     successor_to: agent-matrix
     planning:
@@ -203,6 +226,7 @@ projects:
     group: governance-commons
     description: "Public web presence for Governance Commons"
     status: active
+    visibility: public
     branch: main
     planning:
       notes: "No active standalone plan found; site direction currently follows Governance Commons standards publishing needs."
@@ -212,6 +236,7 @@ projects:
     group: governance-commons
     description: "Code-level implementation of Governance Commons standards"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: governance-commons/governance-commons-sdk/DEV-PLAN.md
@@ -223,6 +248,7 @@ projects:
     group: governance-commons
     description: "Runtime orchestration contract — task graph, dispatch, handoff, audit"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: governance-commons/agent-project-orchestrator/DEV-PLAN.md
@@ -238,6 +264,7 @@ projects:
     group: primitives
     description: "Canonical temporal-spatial primitive (time.loc v1.2) — mandatory dependency of governed-event and all GEE records"
     status: stable
+    visibility: private
     branch: main
     planning:
       notes: "Spec locked at v1.2. Python reference implementation shipped. Governance lives in eco PASS cluster 0050.xx. No standalone DEV-PLAN — eco PASSes are the authority."
@@ -247,6 +274,7 @@ projects:
     group: primitives
     description: "Governed Event Envelope (GEE) v0.1 + API-E Workflow Provenance Ontology — portable, interoperable governed event record layer; Apache 2.0"
     status: stable
+    visibility: private
     branch: main
     depends_on:
       - time-loc
@@ -264,6 +292,7 @@ projects:
     group: dev-tools
     description: "DevXToolkit v1.x — PowerShell developer workflow toolkit"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: dxp-org/devxtoolkit-v1-x/DEV-PLAN.md
@@ -274,6 +303,7 @@ projects:
     group: dev-tools
     description: "DevXToolkit v2.x — future architecture and Pass6 research track"
     status: scaffold
+    visibility: private
     branch: main
     planning:
       canonical: dxp-org/devxtoolkit-v2-x/DEV-PLAN.md
@@ -284,6 +314,7 @@ projects:
     group: dev-tools
     description: "Historical TypeScript CLI origin for DevXToolkit v1/v2; reference only"
     status: archive
+    visibility: private
     branch: ~
     depends_on: eco
     planning:
@@ -295,6 +326,7 @@ projects:
     group: dev-tools
     description: "PowerShell scripts and shell utilities"
     status: active
+    visibility: private
     branch: main
     planning:
       notes: "No active direction doc found in scan."
@@ -304,6 +336,7 @@ projects:
     group: dev-tools
     description: "General-purpose tooling and scripts"
     status: wip
+    visibility: private
     branch: ~
     planning:
       notes: "No active direction doc found; external tool repos should stay outside default planning health."
@@ -315,6 +348,7 @@ projects:
     group: apps
     description: "Flutter app for obligation tracking — bills, subscriptions, reminders"
     status: active
+    visibility: private
     branch: main
     planning:
       path: kinjuu/DEV-PATH.md
@@ -326,6 +360,7 @@ projects:
     group: apps
     description: "Deterministic color palette module for eco"
     status: active
+    visibility: private
     branch: main
     publishes_to: eco
     planning:
@@ -340,6 +375,7 @@ projects:
     group: apps
     description: "eco deterministic orchestration language for asset flow, validation flow, dependency context, and runtime coordination"
     status: scaffold
+    visibility: private
     branch: main
     planning:
       canonical: elan/DEV-PLAN.md
@@ -352,6 +388,7 @@ projects:
     group: apps
     description: "eco foundational environment semantics layer defining meaning, structure, boundaries, transitions, and capabilities for every eco environment"
     status: scaffold
+    visibility: private
     branch: main
     planning:
       canonical: arche/DEV-PLAN.md
@@ -365,6 +402,7 @@ projects:
     group: apps
     description: "Coach Experience Platform — coaching operations workspace under 20Amp Labs (basketball first); Cockpit shell + eco.ai assistant, sport-neutral play/practice engine"
     status: scaffold
+    visibility: private
     branch: main
     planning:
       canonical: cxp/DEV-PLAN.md
@@ -379,6 +417,7 @@ projects:
     group: docs
     description: "Cross-project documentation"
     status: wip
+    visibility: private
     branch: ~
     planning:
       canonical: docs/project-direction-inventory.md
@@ -391,6 +430,7 @@ projects:
     group: apps
     description: "Human-facing multi-agent collaboration portal"
     status: active
+    visibility: private
     branch: main
     depends_on: eco
     planning:
@@ -403,6 +443,7 @@ projects:
     group: apps
     description: "Trust, But Verify — commercial PDF field guide teaching a 5-stage governed AI workflow methodology (Plan/Generate/Audit/Approve/Record) across 10 developer situations; first public release from Governance Commons"
     status: active
+    visibility: private
     branch: main
     planning:
       canonical: trust-but-verify/DEV-PLAN.md
@@ -416,6 +457,7 @@ projects:
     group: apps
     description: "Prompt. Critique. Repeat. — A Field Guide to Better AI Images. Commercial field guide teaching the Iteration Loop, a repeatable 7-step design methodology, across 4 real AI-image workflows (hoodie, logo, book cover, app icon)"
     status: scaffold
+    visibility: private
     branch: ~
     planning:
       canonical: prompt-critique-repeat/DEV-PLAN.md
@@ -431,6 +473,7 @@ projects:
     group: dev-tools
     description: "Marlin — universal package manager and installer family. Four lanes: marlin (apps), marlin-dxp (governance), marlin-dcp (workspace/org), marlin-ux (Cockpit GUI). Monorepo."
     status: active
+    visibility: private
     branch: main
     remote: https://github.com/jj-ervin/marlin
     depends_on:
@@ -449,6 +492,7 @@ projects:
     group: dev-tools
     description: "Legacy Marlin-DXP source repo; Waves 0-4 preserved and migrated into marlin/packages/marlin-dxp."
     status: archive
+    visibility: private
     branch: main
     depends_on:
       - governance-commons
@@ -466,6 +510,7 @@ projects:
     group: archive
     description: "Lasso archive"
     status: archive
+    visibility: private
     branch: main
 
   - name: lasso-mvp_archive
@@ -473,4 +518,5 @@ projects:
     group: archive
     description: "Lasso MVP archive"
     status: archive
+    visibility: private
     branch: master

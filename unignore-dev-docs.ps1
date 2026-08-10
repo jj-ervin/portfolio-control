@@ -32,14 +32,7 @@ if ($Help) {
 
 $DevRoot = $PSScriptRoot
 
-# ── Repos that must stay PUBLIC — skip; use sync-dev-docs.ps1 for these instead ──
-$PublicRepos = @(
-    "eco-slate",
-    "eco-slate-www",
-    "marlin-registry",
-    "governance-commons-www",
-    "agent-dossier-www"
-)
+. (Join-Path $PSScriptRoot "projects-lib.ps1")
 
 $DocFiles = @(
     "AGENTS.md",
@@ -54,15 +47,12 @@ $DocFiles = @(
     "DIST.md"
 )
 
-$Repos = Get-ChildItem $DevRoot -Directory |
-    Where-Object {
-        $_.Name -notlike '.*' -and
-        $_.Name -notlike '_*' -and
-        $_.Name -notin $PublicRepos -and
-        (Test-Path (Join-Path $_.FullName '.git'))
-    } |
-    Select-Object -ExpandProperty Name |
-    Sort-Object
+# ── Repos to touch: every project.yaml entry marked private, wherever it's
+# checked out on disk (including nested paths like dxp-org/devx-control-plane).
+# Repos marked public are skipped — use sync-dev-docs.ps1 for those instead.
+$Repos = Get-DevProjects |
+    Where-Object { $_.Visibility -eq "private" -and $_.Path } |
+    Sort-Object Name
 
 $fixed   = @()
 $clean   = @()
@@ -70,9 +60,16 @@ $dirty   = @()
 $nothing = @()
 
 Write-Host ""
-foreach ($repo in $Repos) {
-    $repoPath  = Join-Path $DevRoot $repo
+foreach ($proj in $Repos) {
+    $repo      = $proj.Name
+    $repoPath  = Join-Path $DevRoot $proj.Path
     $gitignore = Join-Path $repoPath ".gitignore"
+
+    if (-not (Test-Path $repoPath)) {
+        Write-Host ("  SKIP  {0} — not checked out at {1}" -f $repo, $repoPath) -ForegroundColor DarkYellow
+        $nothing += $repo
+        continue
+    }
 
     if (-not (Test-Path $gitignore)) {
         $nothing += $repo
