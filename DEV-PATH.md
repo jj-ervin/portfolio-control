@@ -191,3 +191,51 @@ This is DCP's primary market differentiator. Most competing tools solve the regi
 - 2026-07-01 — Added root adapters and docs for GC-AUDIT preflight and CI invariant validation, plus append-only `PLAY.jsonl` telemetry record shape using read/plan/execute/verify/close categories with `started_at`, `ended_at`, and `duration_ms`.
 - 2026-07-02 — Marlin Registry validation gate live: commit `98affdb` added the public self-contained manifest/index validation workflow and script, pushed to `origin/main`; GitHub branch protection now requires the `validate` status check in strict mode. The CI deliberately does not check out the private `marlin` source repo, avoiding private-source leakage into public Actions logs.
 - 2026-07-02 — Planning-doc identity correction: this repo's inherited DCP-shaped planning docs now have Marlin Registry-specific H1 titles so portfolio planning validation no longer collides with the real DCP/control-plane docs.
+
+## 2026-08-09 - DCP.19 environment reliability contract
+
+Repeated agent sessions were rediscovering missing test tools, selecting stale
+global modules, and assuming project devcontainers applied to host-based Codex
+or Claude sessions. DevXToolkit exposed the concrete drift: CI and contributor
+docs required Pester 6.0.1 while its devcontainer installed Pester 3.4.0, and
+the host had no PSScriptAnalyzer.
+
+DCP.19 adds `dev-environment.ps1` as the central portfolio preflight and
+optional installer required by DEV-ACCORD.09. Projects declare exact tools in
+a machine-readable `.devtools.json`; the DevXToolkit devcontainer, CI, release
+workflow, local validation runner, and portfolio preflight now consume that
+same contract. The preflight reports all missing tools at once, emits one exact
+repair command, installs only declared missing PowerShell modules with
+`-Install`, and verifies readiness afterward. The first contract pins
+PowerShell >= 7.4.0, Pester 6.0.1, PSScriptAnalyzer 1.25.0, PSResourceGet 1.2.0,
+and Git for `devxtoolkit-v1-x`.
+
+### CI follow-up
+
+The DCP manager check exposed a pre-existing undeclared dependency: CI ran the
+root `dev-status.ps1` adapter without provisioning its ignored
+`governance-commons` tool repository. The workflow now checks out a pinned
+governance-commons revision before invoking the adapter, making the remote
+environment match the dependency the root command actually requires.
+
+#### Correction after remote verification
+
+The governance-commons repository is private and cannot be fetched with the
+DCP repository's scoped Actions token, so the attempted pinned checkout could
+not be the durable CI contract. The manager workflow instead syntax-checks the
+root adapter and environment script, then exercises `dev-environment.ps1`
+against a self-contained contract fixture requiring the runner's PowerShell
+and Git. The private delegated status runtime remains a host-provisioned DCP
+dependency and is no longer falsely modeled as available to public CI.
+
+## 2026-08-09 - DevXToolkit v1.5.1 release closeout
+
+DevXToolkit v1.5.1 was released from merge commit `c8925ec` after the exact
+main-branch commit passed Windows PowerShell 5.1, Windows PowerShell 7, Ubuntu,
+macOS, and full-history gitleaks jobs. GitHub release `v1.5.1` and PSGallery
+publication completed; an independent fresh `Save-PSResource` import confirmed
+version 1.5.1, 20 exported commands, caller-relative tree and structure output
+under the active PowerShell location, and no output under the divergent process
+working directory. The public registry pin was merged at `2ed247e`; the DCP
+gitlinks now record both release surfaces. The unrelated dirty v2 working tree
+was intentionally excluded.
