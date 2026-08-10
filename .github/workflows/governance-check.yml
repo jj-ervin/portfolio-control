@@ -14,13 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Checkout governance tooling
-        uses: actions/checkout@v4
-        with:
-          repository: governancecommons/governance-commons
-          ref: 6c3f1ab26303b1c1d986de14bc4cf9bba75a8b7b
-          path: governance-commons
-
       - name: Validate project registry shape
         shell: pwsh
         run: |
@@ -35,11 +28,32 @@ jobs:
             throw "Project name/path count mismatch: $($names.Count) names, $($paths.Count) paths"
           }
 
-      - name: Validate status script syntax
+      - name: Validate root script syntax
         shell: pwsh
         run: |
           $null = [System.Management.Automation.PSParser]::Tokenize((Get-Content dev-status.ps1 -Raw), [ref]$null)
+          $null = [System.Management.Automation.PSParser]::Tokenize((Get-Content dev-environment.ps1 -Raw), [ref]$null)
 
-      - name: Run status script
+      - name: Run environment contract preflight
         shell: pwsh
-        run: ./dev-status.ps1
+        run: |
+          $fixture = Join-Path $env:RUNNER_TEMP 'environment-contract-fixture'
+          New-Item -ItemType Directory -Path $fixture | Out-Null
+          @'
+          {
+            "schemaVersion": "1.0",
+            "project": "ci-fixture",
+            "powershell": {
+              "minimumVersion": "7.0.0",
+              "modules": []
+            },
+            "commands": [
+              { "name": "git" }
+            ]
+          }
+          '@ | Set-Content -LiteralPath (Join-Path $fixture '.devtools.json')
+
+          $state = ./dev-environment.ps1 -ProjectPath $fixture -Json | ConvertFrom-Json
+          if (-not $state.Ready -or -not $state.PowerShell.Ready -or -not $state.Commands[0].Ready) {
+            throw 'Environment contract fixture was not ready.'
+          }

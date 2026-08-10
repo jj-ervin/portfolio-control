@@ -217,3 +217,13 @@ root `dev-status.ps1` adapter without provisioning its ignored
 `governance-commons` tool repository. The workflow now checks out a pinned
 governance-commons revision before invoking the adapter, making the remote
 environment match the dependency the root command actually requires.
+
+#### Correction after remote verification
+
+The governance-commons repository is private and cannot be fetched with the
+DCP repository's scoped Actions token, so the attempted pinned checkout could
+not be the durable CI contract. The manager workflow instead syntax-checks the
+root adapter and environment script, then exercises `dev-environment.ps1`
+against a self-contained contract fixture requiring the runner's PowerShell
+and Git. The private delegated status runtime remains a host-provisioned DCP
+dependency and is no longer falsely modeled as available to public CI.
