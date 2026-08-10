@@ -227,3 +227,15 @@ root adapter and environment script, then exercises `dev-environment.ps1`
 against a self-contained contract fixture requiring the runner's PowerShell
 and Git. The private delegated status runtime remains a host-provisioned DCP
 dependency and is no longer falsely modeled as available to public CI.
+
+## 2026-08-09 - DevXToolkit v1.5.1 release closeout
+
+DevXToolkit v1.5.1 was released from merge commit `c8925ec` after the exact
+main-branch commit passed Windows PowerShell 5.1, Windows PowerShell 7, Ubuntu,
+macOS, and full-history gitleaks jobs. GitHub release `v1.5.1` and PSGallery
+publication completed; an independent fresh `Save-PSResource` import confirmed
+version 1.5.1, 20 exported commands, caller-relative tree and structure output
+under the active PowerShell location, and no output under the divergent process
+working directory. The public registry pin was merged at `2ed247e`; the DCP
+gitlinks now record both release surfaces. The unrelated dirty v2 working tree
+was intentionally excluded.
