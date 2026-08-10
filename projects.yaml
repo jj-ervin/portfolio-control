@@ -60,9 +60,12 @@ projects:
     status: active
     branch: main
     runtime_of: eco
+    depends_on: governance-commons
     planning:
-      canonical: eco/tracks/TRACK-A.md
-      notes: "Tracked as part of eco Track A until eco-edge receives its own canonical plan."
+      canonical: eco-edge/DEV-PLAN.md
+      path: eco-edge/DEV-PATH.md
+      release: eco-edge/DEV-RELEASE.md
+      notes: "Own canonical plan as of 2026-08-09. Governance proof-path repo, separate from the eco monorepo's Track A physical device layer. eco/tracks/TRACK-A.md remains authoritative for the physical device layer itself (Agrilogik, eco.air, eco.sub). v0.1 blocked on governance-commons v1.2.0 PyPI/npm publish."
 
   - name: eco-slate
     path: eco-slate
@@ -119,8 +122,9 @@ projects:
     branch: main
     runtime_of: eco
     planning:
-      canonical: eco/DEV-PLAN.md
-      notes: "Direction currently inherited from eco governance/runtime planning."
+      canonical: eos/DEV-PLAN.md
+      path: eos/DEV-PATH.md
+      notes: "Own canonical plan as of 2026-08-09. Thin CLI front door only (boot/health/route); distinct from the larger execution/orchestration substrate in eco/docs/specifications/eos-spec.md and the eco/src/eco/core/eos/ STUB — see eos/DEV-PATH.md Phase 0 for the naming-collision note."
 
   - name: ons
     path: governance-commons/ons
