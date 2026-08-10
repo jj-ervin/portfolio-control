@@ -1,12 +1,17 @@
 # sync-dev-docs.ps1
-# Copies gitignored DEV-DOCS from each repo to Osprey OneDrive backup.
-# Optionally commits and pushes to private GitHub remote (jj-ervin/dev-docs).
+# Extracts private DEV-DOCS for the small number of repos that must stay
+# PUBLIC on GitHub, and pushes them into the private jj-ervin/dev-docs repo.
+#
+# Every other repo in this portfolio is already private on GitHub, so its
+# DEV-DOCS just live there directly, tracked normally in that repo's own
+# history — no sync, no OneDrive, no separate backup step needed.
+#
 # Per DEV-ACCORD.08 (GC:2016) — DEV-DOCS are private by default.
 #
 # Usage:
-#   .\sync-dev-docs.ps1              — sync OneDrive only, show summary
-#   .\sync-dev-docs.ps1 -Push        — sync OneDrive + commit + push to private GitHub remote
-#   .\sync-dev-docs.ps1 -DryRun      — preview what would change, no writes
+#   .\sync-dev-docs.ps1              — preview what would sync, no writes
+#   .\sync-dev-docs.ps1 -Push        — sync + commit + push to jj-ervin/dev-docs
+#   .\sync-dev-docs.ps1 -DryRun      — alias for the default preview behavior
 #   .\sync-dev-docs.ps1 -Help        — show this help
 
 param(
@@ -17,40 +22,39 @@ param(
 
 if ($Help) {
     Write-Host ""
-    Write-Host "  sync-dev-docs.ps1 — sync private DEV-DOCS to Osprey OneDrive" -ForegroundColor White
+    Write-Host "  sync-dev-docs.ps1 — extract DEV-DOCS for public repos into the private dev-docs repo" -ForegroundColor White
     Write-Host ""
     Write-Host "  USAGE" -ForegroundColor Cyan
-    Write-Host "    .\sync-dev-docs.ps1 [flags]"
+    Write-Host "    .\sync-dev-docs.ps1 [-Push]"
     Write-Host ""
-    Write-Host "  FLAGS" -ForegroundColor Cyan
-    Write-Host "    -Push      Commit and push changed files to github.com/jj-ervin/dev-docs"
-    Write-Host "    -DryRun    Preview changes without writing"
-    Write-Host "    -Help      Show this help"
+    Write-Host "  WHY THIS SCRIPT IS NARROW" -ForegroundColor Cyan
+    Write-Host "    Most repos in this portfolio are private on GitHub, so their DEV-DOCS"
+    Write-Host "    (DEV-PATH.md, DEV-PLAN.md, MARKET.md, DIST.md, etc.) live there directly,"
+    Write-Host "    tracked normally, committed like anything else. This script only exists"
+    Write-Host "    for the handful of repos that must stay PUBLIC — their DEV-DOCS can't"
+    Write-Host "    live in-repo, so this pulls them into the private dev-docs repo instead."
     Write-Host ""
     Write-Host "  TARGET" -ForegroundColor Cyan
-    Write-Host "    OneDrive - Osprey Strategic Holdings LLC\dev-docs\"
-    Write-Host "    Structure: _root\  (portfolio root)  +  {repo}\  per project"
-    Write-Host ""
-    Write-Host "  WHAT IS SYNCED" -ForegroundColor Cyan
-    Write-Host "    AGENTS.md, CHATGPT.md, CLAUDE.md, DEV-PATH.md, DEV-PLAN.md,"
-    Write-Host "    DEV-RELEASE.md, DEV-TRACKS.md, REVIEW-GRAMMAR.md"
-    Write-Host "    Root-level also: ONBOARDING.md, PROTECTED.md, projects.yaml"
+    Write-Host "    {DevRoot}\dev-docs  (local clone of github.com/jj-ervin/dev-docs)"
     Write-Host ""
     exit 0
 }
 
-$DevRoot = $PSScriptRoot
-$Dest    = "C:\Users\Jess\OneDrive - Osprey Strategic Holdings LLC\dev-docs"
+$DevRoot    = $PSScriptRoot
+$DocsRepo   = Join-Path $DevRoot "dev-docs"
+$DocsRemote = "https://github.com/jj-ervin/dev-docs.git"
 
-if (-not (Test-Path $Dest)) {
-    Write-Host ""
-    Write-Host "  ERROR: OneDrive target not found: $Dest" -ForegroundColor Red
-    Write-Host "  Ensure Osprey OneDrive is signed in and synced." -ForegroundColor Red
-    Write-Host ""
-    exit 1
-}
+# ── Repos that must stay PUBLIC on GitHub — the only ones this script touches ──
+# Everything else in the portfolio is already private; its DEV-DOCS live there
+# directly and need no extraction. Update this list if a repo's visibility changes.
+$PublicRepos = @(
+    "eco-slate",
+    "eco-slate-www",
+    "marlin-registry",
+    "governance-commons-www",
+    "agent-dossier-www"
+)
 
-# ── Files to collect from each repo root ──────────────────────────────────────
 $PerRepoFiles = @(
     "AGENTS.md",
     "CHATGPT.md",
@@ -59,25 +63,17 @@ $PerRepoFiles = @(
     "DEV-PLAN.md",
     "DEV-RELEASE.md",
     "DEV-TRACKS.md",
-    "REVIEW-GRAMMAR.md"
+    "REVIEW-GRAMMAR.md",
+    "MARKET.md",
+    "DIST.md"
 )
 
-# ── Extra files from portfolio root only ──────────────────────────────────────
-$RootOnlyFiles = @(
-    "ONBOARDING.md",
-    "PROTECTED.md",
-    "DEV-CONTROL-PLANE.md",
-    "projects.yaml"
-)
-
-# ── Discover repos: immediate subdirs that are git repos ──────────────────────
-$Repos = Get-ChildItem $DevRoot -Directory |
-    Where-Object {
-        $_.Name -notlike '.*' -and
-        $_.Name -notlike '_*' -and
-        (Test-Path (Join-Path $_.FullName '.git'))
-    } |
-    Select-Object -ExpandProperty Name
+# ── Ensure local dev-docs clone exists ─────────────────────────────────────────
+if (-not (Test-Path (Join-Path $DocsRepo ".git"))) {
+    Write-Host "  Cloning jj-ervin/dev-docs into $DocsRepo ..." -ForegroundColor Cyan
+    git clone $DocsRemote $DocsRepo
+    Write-Host ""
+}
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 $changed   = @()
@@ -124,32 +120,23 @@ if ($DryRun) {
     Write-Host ""
 }
 
-# Root-level portfolio docs → _root\
-Write-Host "  _root\" -ForegroundColor Cyan
-$allRootFiles = $PerRepoFiles + $RootOnlyFiles
-foreach ($file in $allRootFiles) {
-    $src    = Join-Path $DevRoot $file
-    $target = Join-Path $Dest "_root\$file"
-    Sync-File -SrcFile $src -DestFile $target -Label "_root\$file"
-}
-
-# Per-repo docs
-foreach ($repo in ($Repos | Sort-Object)) {
+foreach ($repo in ($PublicRepos | Sort-Object)) {
     $repoPath = Join-Path $DevRoot $repo
-    $hasAny   = $PerRepoFiles | Where-Object { Test-Path (Join-Path $repoPath $_) }
-    if (-not $hasAny) { continue }
+    if (-not (Test-Path $repoPath)) {
+        Write-Host ("  SKIP  {0} — not checked out under {1}" -f $repo, $DevRoot) -ForegroundColor DarkYellow
+        continue
+    }
 
-    Write-Host ""
     Write-Host ("  {0}\" -f $repo) -ForegroundColor Cyan
     foreach ($file in $PerRepoFiles) {
         $src    = Join-Path $repoPath $file
-        $target = Join-Path $Dest "$repo\$file"
+        $target = Join-Path $DocsRepo "$repo\$file"
         Sync-File -SrcFile $src -DestFile $target -Label "$repo\$file"
     }
+    Write-Host ""
 }
 
 # ── Summary ───────────────────────────────────────────────────────────────────
-Write-Host ""
 Write-Host ("  {0} synced   {1} unchanged   {2} not present" -f $changed.Count, $unchanged.Count, $missing.Count) -ForegroundColor $(
     if ($changed.Count -gt 0) { "Green" } else { "DarkGray" }
 )
@@ -157,29 +144,17 @@ Write-Host ""
 
 # ── Private GitHub push ───────────────────────────────────────────────────────
 if ($Push -and -not $DryRun) {
-    $GitRemote = "https://github.com/jj-ervin/dev-docs.git"
-    $GitDir    = Join-Path $Dest ".git"
-
-    # Init repo if first run
-    if (-not (Test-Path $GitDir)) {
-        Write-Host "  Initialising private git repo in OneDrive target..." -ForegroundColor Cyan
-        git -C $Dest init -b main | Out-Null
-        git -C $Dest remote add origin $GitRemote | Out-Null
-        Write-Host "  Remote set: $GitRemote" -ForegroundColor DarkGray
-        Write-Host ""
-    }
-
-    $gitStatus = git -C $Dest status --short 2>$null
+    $gitStatus = git -C $DocsRepo status --short 2>$null
     if (-not $gitStatus) {
-        Write-Host "  Git: nothing to commit — OneDrive already in sync with remote." -ForegroundColor DarkGray
+        Write-Host "  Git: nothing to commit — dev-docs already in sync with remote." -ForegroundColor DarkGray
         Write-Host ""
     } else {
         $timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm")
-        git -C $Dest add -A | Out-Null
-        git -C $Dest commit -m "chore(sync): dev-docs backup $timestamp" | Out-Null
+        git -C $DocsRepo add -A | Out-Null
+        git -C $DocsRepo commit -m "chore(sync): dev-docs backup $timestamp" | Out-Null
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  Committed. Pushing to github.com/jj-ervin/dev-docs..." -ForegroundColor Cyan
-            git -C $Dest push origin main 2>&1 | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
+            git -C $DocsRepo push origin main 2>&1 | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "  Pushed." -ForegroundColor Green
             } else {
