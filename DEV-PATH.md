@@ -239,3 +239,14 @@ under the active PowerShell location, and no output under the divergent process
 working directory. The public registry pin was merged at `2ed247e`; the DCP
 gitlinks now record both release surfaces. The unrelated dirty v2 working tree
 was intentionally excluded.
+
+## 2026-08-12 - Marlin Doctor hygiene migration
+
+Marlin-owned `INIT.30.06` replaced the portfolio control plane's ad hoc
+Cockpit `hygiene` provider with target-scoped Doctor operations. An idempotent
+root registration script seeds DEV-DOCS sync/unignore plus repository
+visibility list/set operations without hardcoding the catalog into Marlin.
+Visibility set now has a real dry-run, and the live Doctor preview produced
+evidence while leaving `projects.yaml` unchanged. The obsolete provider source
+and installed registration were retired; the three maintenance scripts remain
+portfolio-local, consistent with the control-plane boundary.

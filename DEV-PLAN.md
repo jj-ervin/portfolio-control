@@ -232,3 +232,12 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
 1. Solo developers running 3+ repos with AI agents
 2. Small teams (2–8 people) adopting AI-augmented development
 3. Studios and consultancies building AI-assisted products
+
+## RECENTLY COMPLETED (Marlin Doctor Migration)
+
+- 2026-08-12 — `INIT.30.06` migrated the root portfolio-maintenance scripts
+  from the standalone `hygiene` provider into the target-owned Marlin Doctor
+  registry. `register-hygiene-doctor-operations.ps1` seeds the operations;
+  `set-repo-visibility.ps1 -DryRun` provides a non-mutating preview. Runtime
+  Doctor registry/evidence files are ignored by the portfolio control-plane
+  repository.

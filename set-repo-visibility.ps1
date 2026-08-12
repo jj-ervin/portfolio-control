@@ -15,12 +15,14 @@
 #   .\set-repo-visibility.ps1 -List
 #   .\set-repo-visibility.ps1 -Repo marlin-registry -Visibility public
 #   .\set-repo-visibility.ps1 -Repo trust-but-verify -Visibility private
+#   .\set-repo-visibility.ps1 -Repo marlin-registry -Visibility public -DryRun
 #   .\set-repo-visibility.ps1 -Help
 
 param(
     [string] $Repo,
     [ValidateSet("public", "private")] [string] $Visibility,
     [switch] $List,
+    [switch] $DryRun,
     [switch] $Help
 )
 
@@ -33,6 +35,7 @@ if ($Help -or (-not $List -and (-not $Repo -or -not $Visibility))) {
     Write-Host "  USAGE" -ForegroundColor Cyan
     Write-Host "    .\set-repo-visibility.ps1 -List"
     Write-Host "    .\set-repo-visibility.ps1 -Repo <name> -Visibility <public|private>"
+    Write-Host "    .\set-repo-visibility.ps1 -Repo <name> -Visibility <public|private> -DryRun"
     Write-Host ""
     exit 0
 }
@@ -106,9 +109,17 @@ if (-not $done) {
     exit 1
 }
 
-Set-Content -LiteralPath $ProjectsFile -Value $out
+if (-not $DryRun) {
+    Set-Content -LiteralPath $ProjectsFile -Value $out
+}
 
 Write-Host ""
+if ($DryRun) {
+    Write-Host ("  WOULD CHANGE  {0}: {1} -> {2}" -f $Repo, $oldVisibility, $Visibility) -ForegroundColor Cyan
+    Write-Host "  Preview only — projects.yaml was not changed." -ForegroundColor DarkYellow
+    Write-Host ""
+    exit 0
+}
 Write-Host ("  {0}: {1} -> {2}" -f $Repo, $oldVisibility, $Visibility) -ForegroundColor Green
 if ($Visibility -eq "public") {
     Write-Host "  Next: make the GitHub repo public (if not already), then run:" -ForegroundColor DarkGray

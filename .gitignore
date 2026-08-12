@@ -11,6 +11,7 @@ dxp-org/devx-control-plane/
 arche/
 cockpit/
 cxp/
+dev-docs/
 _archive/
 dxp-org/devx-toolkit/
 dxp-org/dotgovernance/
@@ -44,6 +45,8 @@ enforcement_debug.yaml
 null
 evidence/
 .marlin-provider-evidence/
+.marlin/doctor.operations.json
+.marlin/doctor-evidence/
 
 # ── Editor ──
 .claude/
