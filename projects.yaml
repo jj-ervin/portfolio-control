@@ -341,15 +341,25 @@ projects:
     planning:
       notes: "No active direction doc found; external tool repos should stay outside default planning health."
 
-  - name: claude-budget-bar
+  - name: claude-budget-bar-vscode
     path: claude-budget-bar-vscode
     group: dev-tools
-    description: "VS Code status bar extension — shows Claude Code context tokens against a configurable policy budget (default 150k) with WATCH/PREPARE/HANDOFF/OVER thresholds and a handoff-prompt helper"
+    description: "Private development repository for the Claude Budget Bar VS Code extension"
+    status: active
+    visibility: private
+    branch: main
+    planning:
+      notes: "Canonical private implementation repository. Standalone dev-tools utility with no dependency on eco/Cockpit/marlin. Release-safe source is copied to the public claude-budget-bar repository. v0.2.0 adds adaptive auto-compact warnings and validation fixtures; documented local 5-hour/7-day quota capture is planned for v0.3.0."
+
+  - name: claude-budget-bar
+    path: claude-budget-bar
+    group: dev-tools
+    description: "Public release repository for the Claude Budget Bar VS Code extension"
     status: active
     visibility: public
     branch: main
     planning:
-      notes: "Standalone dev-tools utility, no dependency on eco/Cockpit/marlin. Public repo: jj-ervin/claude-budget-bar-vscode. v0.1.0 published to the Visual Studio Marketplace on 2026-08-15; Marketplace install and production smoke tests verified compaction recovery and live model/context-window detection. Accepted interaction gaps and 5-hour/7-day quota gauges are deferred to v0.2.0."
+      notes: "Public repo: jj-ervin/claude-budget-bar. Marketplace listing: hbl-creative-studios.claude-budget-bar. v0.1.0 was published to the Visual Studio Marketplace on 2026-08-15; the public GitHub repository is prepared locally and awaits separate push, tag, and GitHub Release approvals."
 
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 
@@ -461,6 +471,49 @@ projects:
       market: trust-but-verify/MARKET.md
       dist: trust-but-verify/DIST.md
       notes: "Content-complete, v1.0 frozen. Not yet listed on Gumroad — cover art and per-workflow icons in progress."
+
+  - name: trust-but-verify-companion-vscode
+    path: trust-but-verify-companion-vscode
+    group: apps
+    description: "Companion to trust-but-verify — in-editor VS Code extension operationalizing the 5-stage Plan/Generate/Audit/Approve/Record workflow. Private implementation source."
+    status: scaffold
+    visibility: private
+    branch: main
+    depends_on: trust-but-verify-companion-cli
+    planning:
+      canonical: trust-but-verify-companion-vscode/DEV-PLAN.md
+      notes: "Scaffold only as of 2026-08-15, no functional code yet. Public release surface is trust-but-verify-companion-vscode-registry, following the bare-repo/-registry split used elsewhere in the portfolio (marlin/marlin-registry, etc). 2026-08-15 architecture decision: trust-but-verify-companion-cli is the core engine (state machine + prompts + checklist + RECORD writes); this extension is a thin wrapper that shells out to it, not an independent implementation. Blocked on the CLI's command surface being defined first."
+
+  - name: trust-but-verify-companion-vscode-registry
+    path: trust-but-verify-companion-vscode-registry
+    group: apps
+    description: "Public distribution surface for the trust-but-verify-companion-vscode VS Code extension. No implementation source."
+    status: scaffold
+    visibility: public
+    branch: main
+    planning:
+      notes: "Scaffold only as of 2026-08-15. Version pins and distribution pointers only, once the vscode extension has a release."
+
+  - name: trust-but-verify-companion-cli
+    path: trust-but-verify-companion-cli
+    group: apps
+    description: "Companion to trust-but-verify — CLI operationalizing the 5-stage Plan/Generate/Audit/Approve/Record workflow. Core engine for the whole companion family; other surfaces (VS Code, future Obsidian/Cockpit) shell out to it rather than reimplementing the workflow."
+    status: scaffold
+    visibility: private
+    branch: main
+    planning:
+      canonical: trust-but-verify-companion-cli/DEV-PLAN.md
+      notes: "Scaffold only as of 2026-08-15, no functional code yet. Public release surface is trust-but-verify-companion-cli-registry, following the bare-repo/-registry split used elsewhere in the portfolio. 2026-08-15 architecture decision: this CLI is the core engine — trust-but-verify-companion-vscode and any future surface (Obsidian plugin, Cockpit UI) are thin wrappers around it, not independent implementations. Build order: CLI ships first."
+
+  - name: trust-but-verify-companion-cli-registry
+    path: trust-but-verify-companion-cli-registry
+    group: apps
+    description: "Public distribution surface for the trust-but-verify-companion-cli CLI. No implementation source."
+    status: scaffold
+    visibility: public
+    branch: main
+    planning:
+      notes: "Scaffold only as of 2026-08-15. Version pins and distribution pointers only, once the CLI has a release."
 
   - name: prompt-critique-repeat
     path: prompt-critique-repeat

@@ -33,6 +33,10 @@ niji/
 powershell/
 tools/
 trust-but-verify/
+trust-but-verify-companion-cli/
+trust-but-verify-companion-cli-registry/
+trust-but-verify-companion-vscode/
+trust-but-verify-companion-vscode-registry/
 
 # ── Generated / debug artifacts ──
 node_modules/
