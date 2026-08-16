@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-08-05"  # prompt-critique-repeat scaffolded and registered (AI image field guide, apps group)
+updated: "2026-08-15"  # claude-budget-bar public repository and v0.1.0 release candidate registered
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -340,6 +340,16 @@ projects:
     branch: ~
     planning:
       notes: "No active direction doc found; external tool repos should stay outside default planning health."
+
+  - name: claude-budget-bar
+    path: claude-budget-bar-vscode
+    group: dev-tools
+    description: "VS Code status bar extension — shows Claude Code context tokens against a configurable policy budget (default 150k) with WATCH/PREPARE/HANDOFF/OVER thresholds and a handoff-prompt helper"
+    status: wip
+    visibility: public
+    branch: main
+    planning:
+      notes: "Standalone dev-tools utility, no dependency on eco/Cockpit/marlin. Public repo: jj-ervin/claude-budget-bar-vscode. v0.1.0 release candidate build, audit, package, VSIX install, and Extension Development Host UI smoke test verified; Marketplace publication pending."
 
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 
