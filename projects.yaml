@@ -1,5 +1,5 @@
 version: "1.0"
-updated: "2026-08-15"  # claude-budget-bar public repository and v0.1.0 release candidate registered
+updated: "2026-08-15"  # claude-budget-bar v0.1.0 published to GitHub and Visual Studio Marketplace
 
 # ── DEV CONTROL PLANE (this repo) ────────────────────────────────────────────
 #
@@ -345,11 +345,11 @@ projects:
     path: claude-budget-bar-vscode
     group: dev-tools
     description: "VS Code status bar extension — shows Claude Code context tokens against a configurable policy budget (default 150k) with WATCH/PREPARE/HANDOFF/OVER thresholds and a handoff-prompt helper"
-    status: wip
+    status: active
     visibility: public
     branch: main
     planning:
-      notes: "Standalone dev-tools utility, no dependency on eco/Cockpit/marlin. Public repo: jj-ervin/claude-budget-bar-vscode. v0.1.0 release candidate build, audit, package, VSIX install, and Extension Development Host UI smoke test verified; Marketplace publication pending."
+      notes: "Standalone dev-tools utility, no dependency on eco/Cockpit/marlin. Public repo: jj-ervin/claude-budget-bar-vscode. v0.1.0 published to the Visual Studio Marketplace on 2026-08-15; Marketplace install and production smoke tests verified compaction recovery and live model/context-window detection. Accepted interaction gaps and 5-hour/7-day quota gauges are deferred to v0.2.0."
 
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 
