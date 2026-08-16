@@ -37,10 +37,13 @@ trust-but-verify-companion-cli/
 trust-but-verify-companion-cli-registry/
 trust-but-verify-companion-vscode/
 trust-but-verify-companion-vscode-registry/
+claude-budget-bar/
+claude-budget-bar-vscode/
 
 # ── Generated / debug artifacts ──
 node_modules/
 _tmp/
+.test-tmp-*/
 __pycache__/
 *.pyc
 *.pyo
