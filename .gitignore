@@ -37,10 +37,12 @@ trust-but-verify-companion-cli/
 trust-but-verify-companion-cli-registry/
 trust-but-verify-companion-vscode/
 trust-but-verify-companion-vscode-registry/
+hoodie-boom-labs/
 claude-budget-bar/
 claude-budget-bar-vscode/
 
 # ── Generated / debug artifacts ──
+_test-tmp/
 node_modules/
 _tmp/
 .test-tmp-*/
