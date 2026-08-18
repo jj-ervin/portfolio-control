@@ -9,6 +9,7 @@ dxp-org/devx-control-plane/
 # ── Project repos tracked separately, not by this root repo ──
 .eco/
 arche/
+bax/
 cockpit/
 cxp/
 dev-docs/
