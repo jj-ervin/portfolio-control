@@ -10,7 +10,7 @@ root: "c:/dev"
 
 # Status values: active | stable | wip | scaffold | archive
 # Do not invent new project statuses; put nuance in planning.notes instead.
-# Relationship keys: runtime_of | site_for | governance_package | depends_on | publishes_to
+# Relationship keys: runtime_of | site_for | governance_package | depends_on | publishes_to | successor_to
 #
 # Visibility values: public | private
 # public = repo must stay public on GitHub (distribution channel, docs site,
@@ -305,6 +305,7 @@ projects:
     status: scaffold
     visibility: private
     branch: main
+    successor_to: devxtoolkit-v1-x
     planning:
       canonical: dxp-org/devxtoolkit-v2-x/DEV-PLAN.md
       path: dxp-org/devxtoolkit-v2-x/DEV-PATH.md

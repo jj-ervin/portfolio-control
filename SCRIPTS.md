@@ -88,6 +88,7 @@ Each script checks one thing, exits 0/1, callable standalone or composed by othe
 | [validate-playbook.ps1](validate-playbook.ps1) | PLAY.jsonl records conform to the DEV-PLAYBOOK schema (DEV-ACCORD.06 amendment) | governance-commons/passes/dev-accord/DEV-ACCORD.06.md | `\.\validate-playbook.ps1 -TargetPath .` |
 | [validate-format.ps1](validate-format.ps1) | GC-AUDIT PowerShell scripts parse cleanly (parse-only, no execution) | governance-commons/gc-audit/GC-AUDIT-REGISTRY.yaml | `\.\validate-format.ps1 -TargetPath .` |
 | [validate-debt.ps1](validate-debt.ps1) | Tracked files are free of generated artifacts and legacy shim markers | — | `.\validate-debt.ps1 -Portfolio -IncludeDocs` |
+| [validate-file-ownership.ps1](validate-file-ownership.ps1) | No top-level item under `C:\dev` is owned by a non-interactive/sandbox Windows account | DEV-CONTROL-PLANE.md § Sandboxed execution accounts | `.\validate-file-ownership.ps1` |
 
 ### Normalizers
 
@@ -98,6 +99,7 @@ Each normalizer is the fix-counterpart to an atomic validator. Always supports `
 | [normalize-bootstrap.ps1](normalize-bootstrap.ps1) | Creates missing AGENTS.md (W1); adds DEV-ACCORD.03 routing to broken ones (E1) | validate-bootstrap.ps1 | `.\normalize-bootstrap.ps1 -DryRun` |
 | [normalize-planning.ps1](normalize-planning.ps1) | Renames non-standard planning doc names (TRACKS.md → DEV-TRACKS.md, etc.) via `git mv` | validate-planning.ps1 | `.\normalize-planning.ps1 -DryRun` |
 | [normalize-pointers.ps1](normalize-pointers.ps1) | Fixes broken file pointers in projects.yaml using rename heuristics | validate-pointers.ps1 | `.\normalize-pointers.ps1 -DryRun` |
+| [normalize-file-ownership.ps1](normalize-file-ownership.ps1) | Resets foreign-owned top-level items back to the interactive owner (requires an elevated shell) | validate-file-ownership.ps1 | `.\normalize-file-ownership.ps1 -DryRun` |
 
 ### Composite Review
 

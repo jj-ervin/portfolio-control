@@ -55,3 +55,31 @@ All agents operating in this portfolio must read [`PROTECTED.md`](PROTECTED.md) 
 - No bulk rewrites of any planning document without surfacing the changes for approval first
 
 The pre-commit hook (`protect-sources.ps1`) enforces source corpus protection at commit time. `PROTECTED.md` extends this doctrine to all planning docs by agent instruction.
+
+## Sandboxed execution accounts
+
+**Rule:** nothing under `C:\dev` may be left owned by a sandbox, service, or CI account
+as a side effect of a "temporary" or "test" run. Windows file ownership does not show
+up in `git status`, in a normal directory listing, or in an agent's diff — a run that
+executes under an alternate account (Codex offline sandbox, a test harness, etc.) can
+leave files or folders behind that are silently owned by that account forever, invisible
+until someone checks ACLs directly. This happened on 2026-08-17: `.marlin/` and
+`register-hygiene-doctor-operations.ps1` were left owned by `CodexSandboxOffline` after
+a 2026-08-12 sandboxed Marlin Doctor run, undetected for five days.
+
+Applies to any agent or tool that can execute under a non-interactive account:
+
+- Before a sandboxed/alternate-account run touches anything under `C:\dev`, either run
+  it against a throwaway path outside the portfolio, or plan to reset ownership of every
+  file and folder it touched back to the interactive owner before the run is considered
+  finished.
+- A sandboxed run is not done when its task output looks correct — it is done when
+  ownership of everything it touched has been verified, not just the content.
+- Never leave "it was just a test" as a reason a foreign-owned artifact stays in the
+  portfolio. Fix it in the same session it's discovered in, or explicitly flag it to the
+  human with a plan to fix it.
+
+Detect drift with [`validate-file-ownership.ps1`](validate-file-ownership.ps1); fix it
+with [`normalize-file-ownership.ps1`](normalize-file-ownership.ps1) (requires an
+elevated/Administrator shell — `SeTakeOwnershipPrivilege` is not available even to an
+Administrators-group account without elevation).
