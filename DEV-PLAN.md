@@ -241,3 +241,24 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   `set-repo-visibility.ps1 -DryRun` provides a non-mutating preview. Runtime
   Doctor registry/evidence files are ignored by the portfolio control-plane
   repository.
+
+## QUEUED IDEAS
+
+- 2026-08-19 — `vault/`'s `entities` table (osh/hbl/20amp/personal/shared/
+  archive — see `vault/dev-docs/VAULT-SCHEMA-002.md`) is portfolio-wide
+  ownership/security-boundary vocabulary, but no project in `projects.yaml`
+  currently declares which business entity owns it. Consider whether
+  `projects.yaml` should eventually reference vault's entity slugs (or a
+  promoted GC-level equivalent) instead of leaving ownership implicit in
+  free-text descriptions. Not urgent — flag only, no action taken.
+- 2026-08-19 — `vault/assets` (SQLite) and `projects.yaml`'s `projects:`
+  list are both "things we build/maintain" registries with real conceptual
+  overlap (same repos could appear in both, under different slugs). No
+  naming collision found in governance-commons as of this date, but the two
+  registries could drift if vault's asset slugs aren't kept aligned with
+  `projects.yaml` `name:` values. Worth a deliberate reconciliation pass
+  once vault's asset inventory has real entries, not before.
+- 2026-08-19 — `vault/` is unlisted in `governance-commons/passes/dev-accord/
+  DEV-ACCORD.03.md`'s ecosystem overview table. That's a governance-commons
+  PASS document requiring the full DEV-ACCORD.06 change playbook to edit —
+  out of scope for a same-session fix. Flag for a future PASS.

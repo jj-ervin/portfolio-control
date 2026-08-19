@@ -435,6 +435,16 @@ projects:
       release: cxp/DEV-RELEASE.md
       notes: "Scaffold — full scoping conversation captured in cxp/CXP-OVERVIEW.md (2026-07-10). No implementation, no committed architecture yet; architecture week recommended before code starts."
 
+  - name: vault
+    path: vault
+    group: apps
+    description: "Private operational registry for assets, releases, deployments, and non-secret account/credential references; KeePassXC remains the secret store"
+    status: active
+    visibility: private
+    branch: main
+    planning:
+      notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, and a stdlib CLI (scripts/vault_cli.py) on top. Backup/recovery design for assets.db remains not started."
+
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
   - name: docs
