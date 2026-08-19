@@ -443,7 +443,7 @@ projects:
     visibility: private
     branch: main
     planning:
-      notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, and a stdlib CLI (scripts/vault_cli.py) on top. Backup/recovery design for assets.db remains not started."
+      notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md, VAULT-BACKUP-RUNBOOK-001.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, a stdlib CLI (scripts/vault_cli.py), and a verified backup/recovery tool (scripts/backup_vault.py) on top."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
