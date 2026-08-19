@@ -301,18 +301,20 @@ projects:
     planning:
       canonical: dxp-org/devxtoolkit-v1-x/DEV-PLAN.md
       path: dxp-org/devxtoolkit-v1-x/DEV-PATH.md
+      notes: "2026-08-19: v1.7.0 scope-correction rollback (local, unpublished) — filesystem/language command grammar, grammar introspection, and the command registry (v1.5/v1.6 scope) migrated back to devxtoolkit-v2-x, where that scope was originally reserved. v1 returns to its original 13-command entry-level surface. Last published release remains v1.6.0 (Gallery/GitHub cannot be erased)."
 
   - name: devxtoolkit-v2-x
     path: dxp-org/devxtoolkit-v2-x
     group: dev-tools
-    description: "DevXToolkit v2.x — future architecture and Pass6 research track"
-    status: scaffold
+    description: "DevXToolkit v2.x — semantic layer over DevXToolkit: filesystem/language command grammar, command registry, and introspection"
+    status: active
     visibility: private
     branch: main
     successor_to: devxtoolkit-v1-x
     planning:
       canonical: dxp-org/devxtoolkit-v2-x/DEV-PLAN.md
       path: dxp-org/devxtoolkit-v2-x/DEV-PATH.md
+      notes: "2026-08-19: real implementation as of a scope-correction migration from devxtoolkit-v1-x — 11 functions (filesystem/language command grammar, Get-DevCommand/Show-DevGrammar introspection, the Get-DevXToolkitGrammar registry) that v1.5/v1.6 built despite this repo's own 2026-07-08 architecture brief having reserved that scope for v2. Real module (DevXToolkit2, v2.0.0), 35/35 Pester passing, own capability contract declared. Not yet published to GitHub/PowerShell Gallery."
 
   - name: devx-toolkit
     path: dxp-org/devx-toolkit
