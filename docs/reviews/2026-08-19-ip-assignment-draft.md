@@ -10,7 +10,7 @@
 
 **Effective Date:** _______________ (fill in on execution)
 
-**Assignor:** Jesse James Ervin ("Assignor"), an individual, of 144 N 3rd St #309, Kalama, WA 98625 (address) *(confirm spelling of city — zip 98625 matches "Kalama, WA"; input read as "Klama")*
+**Assignor:** Jesse James Ervin ("Assignor"), an individual, of 144 N 3rd St #309, Kalama, WA 98625 (address)
 
 **Assignee:** Osprey Strategic Holdings LLC, a Wyoming limited liability company ("Assignee" or "the Company")
 
