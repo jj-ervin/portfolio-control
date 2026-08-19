@@ -13,7 +13,7 @@
 | Copyright is automatic on all authored work | done | Exists from moment of creation |
 | IP assignment document (personal → Osprey LLC) | draft prepared 2026-08-19 | Covers GEE + time.loc; see [`docs/reviews/2026-08-19-ip-assignment-draft.md`](2026-08-19-ip-assignment-draft.md). Not executed — needs signature (attorney review recommended before signing) |
 | Add `© 2026 Osprey Strategic Holdings LLC` to all repo READMEs | partial — confirmed done in `governed-event`, `time-loc` (2026-08-19) | Remaining repos not yet swept |
-| US Copyright Office registration — GEE spec + Marlin-DXP bundle | pending | Enables statutory damages; $65 online filing |
+| US Copyright Office registration — GEE spec + Marlin-DXP bundle | deposit copy ready for GEE (spec files + Python source already exist in `governed-event/spec/` and `governed-event/python/`); Marlin-DXP bundle not assembled | $65 online filing (not waived — no pro bono equivalent for copyright registration) |
 
 ---
 
@@ -35,7 +35,7 @@
 
 | Subject | Type | Disclosure date | US deadline | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
-| GEE architecture (authority_basis + time.loc + namespace invariant) | Provisional | June 2026 | ~June 2027 | not filed | $320 micro-entity fee; can DIY provisional; call attorney |
+| GEE architecture (authority_basis + time.loc + namespace invariant) | Provisional | June 2026 (confirm exact date before filing) | ~June 2027 | draft description prepared 2026-08-19 | $320 USPTO fee (not waived by Pro Bono Program — that only waives attorney fees). Technical disclosure ready at [`docs/reviews/2026-08-19-gee-provisional-patent-draft.md`](2026-08-19-gee-provisional-patent-draft.md); needs claims drafted (with counsel or Pro Bono attorney) before the 12-month deadline |
 | Marlin mode-detection algorithm | Provisional | TBD | TBD | not filed | Secondary candidate |
 | Agent-trail reading chain protocol | Provisional | TBD | TBD | not filed | Tertiary candidate |
 
