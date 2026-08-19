@@ -364,7 +364,7 @@ projects:
     visibility: public
     branch: main
     planning:
-      notes: "Public repo: jj-ervin/claude-budget-bar. Marketplace listing: hbl-creative-studios.claude-budget-bar. v0.1.0 was published to the Visual Studio Marketplace on 2026-08-15; the public GitHub repository is prepared locally and awaits separate push, tag, and GitHub Release approvals."
+      notes: "Public repo: jj-ervin/claude-budget-bar. Marketplace listing: hbl-creative-studios.claude-budget-bar. v0.1.0 was published to the Visual Studio Marketplace on 2026-08-15 and the public GitHub repo was pushed 2026-08-16; a git tag and GitHub Release are still outstanding."
 
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 

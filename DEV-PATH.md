@@ -2,7 +2,7 @@
 
 **AUTHORITY LEVEL: AL:1**
 **Status:** ACTIVE — single authoritative source for DCP development path
-**Updated:** 2026-06-06
+**Updated:** 2026-08-12
 **Supersedes:** N/A — first canonical planning doc for DCP
 
 ---
