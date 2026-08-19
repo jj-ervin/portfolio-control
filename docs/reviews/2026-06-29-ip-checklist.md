@@ -11,8 +11,8 @@
 | Item | Status | Notes |
 | --- | --- | --- |
 | Copyright is automatic on all authored work | done | Exists from moment of creation |
-| IP assignment document (personal → Osprey LLC) | pending | One-page doc; attorney template or Docracy boilerplate |
-| Add `© 2026 Osprey Strategic Holdings LLC` to all repo READMEs | pending | Do with IP assignment |
+| IP assignment document (personal → Osprey LLC) | draft prepared 2026-08-19 | Covers GEE + time.loc; see [`docs/reviews/2026-08-19-ip-assignment-draft.md`](2026-08-19-ip-assignment-draft.md). Not executed — needs signature (attorney review recommended before signing) |
+| Add `© 2026 Osprey Strategic Holdings LLC` to all repo READMEs | partial — confirmed done in `governed-event`, `time-loc` (2026-08-19) | Remaining repos not yet swept |
 | US Copyright Office registration — GEE spec + Marlin-DXP bundle | pending | Enables statutory damages; $65 online filing |
 
 ---

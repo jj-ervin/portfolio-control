@@ -263,17 +263,19 @@ projects:
     path: time-loc
     group: primitives
     description: "Canonical temporal-spatial primitive (time.loc v1.2) — mandatory dependency of governed-event and all GEE records"
-    status: stable
+    status: active
     visibility: private
     branch: main
     planning:
-      notes: "Spec locked at v1.2. Python reference implementation shipped. Governance lives in eco PASS cluster 0050.xx. No standalone DEV-PLAN — eco PASSes are the authority."
+      release: time-loc/DEV-RELEASE.md
+      plan: time-loc/DEV-PLAN.md
+      notes: "Spec locked at v1.2 — eco PASS cluster 0050.xx remains spec authority. Active release track opened 2026-08-19: test suite (51 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. See DEV-RELEASE.md and DEV-PLAN.md."
 
   - name: governed-event
     path: governed-event
     group: primitives
     description: "Governed Event Envelope (GEE) v0.1 + API-E Workflow Provenance Ontology — portable, interoperable governed event record layer; Apache 2.0"
-    status: stable
+    status: active
     visibility: private
     branch: main
     depends_on:
@@ -283,7 +285,9 @@ projects:
       spec: eco/passes/0051.01.md
       api_e_authority: eco/passes/0052.00.md
       api_e_spec: eco/passes/0052.01.md
-      notes: "GEE v0.1 and API-E v0.1 locked. Python reference implementation (producer, validator, schema, examples) shipped. Governance lives in eco PASS clusters 0051.xx and 0052.xx. No standalone DEV-PLAN — eco PASSes are the authority."
+      release: governed-event/DEV-RELEASE.md
+      plan: governed-event/DEV-PLAN.md
+      notes: "GEE v0.1 and API-E v0.1 locked — eco PASS clusters 0051.xx/0052.xx remain spec authority. Active release track opened 2026-08-19: API-E validator, test suite (66 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. Standards-alignment goal: reposition as an implementation of prEN 18229-1 / ISO/IEC 24970 once either finalizes. See DEV-RELEASE.md and DEV-PLAN.md."
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 

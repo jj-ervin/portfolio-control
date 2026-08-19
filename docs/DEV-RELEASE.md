@@ -30,6 +30,8 @@ A release plan is not a roadmap. It is a commitment surface — the set of deliv
 | governance-commons | [`governance-commons/DEV-RELEASE.md`](../governance-commons/DEV-RELEASE.md) | populated — active PASS-5 public release train |
 | dxp-org | [`dxp-org/DEV-RELEASE.md`](../dxp-org/DEV-RELEASE.md) | populated — active planning coverage and stranger-test release gates |
 | eco-edge | [`eco-edge/DEV-RELEASE.md`](../eco-edge/DEV-RELEASE.md) | populated — pre-alpha proof-surface release path |
+| governed-event | [`governed-event/DEV-RELEASE.md`](../governed-event/DEV-RELEASE.md) | populated 2026-08-19 — spec locked (0051.01/0052.01), pre-PyPI, v0.1.0 planned |
+| time-loc | [`time-loc/DEV-RELEASE.md`](../time-loc/DEV-RELEASE.md) | populated 2026-08-19 — spec locked (0050.02), packaged but pre-PyPI, v1.3.0 planned |
 
 Repos not listed here either inherit release gates from an owning product, are scaffolds with planning coverage but no release contract, or are archives/reference material.
 
