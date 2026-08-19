@@ -262,3 +262,52 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   DEV-ACCORD.03.md`'s ecosystem overview table. That's a governance-commons
   PASS document requiring the full DEV-ACCORD.06 change playbook to edit —
   out of scope for a same-session fix. Flag for a future PASS.
+- 2026-08-19 — Cockpit/Marlin/vault integration: scoping "could Cockpit host
+  vault + KeePassXC safely" surfaced four separate threads, none actioned
+  this session, each needing its own future conversation:
+  1. **Cockpit provider-executable tamper-detection gap.** Cockpit's
+     `ProviderRegistry.register()` cannot detect a provider executable
+     swapped after Marlin's install — `package_digest` only covers the
+     pre-extraction archive, not the extracted executable. Already tracked
+     as an explicit open gap in `cockpit/DEV-PLAN.md` (CKP.17.00 closure,
+     deliberately out of that PASS's scope), with a known closure path
+     (Marlin would need to attest a digest of the extracted executable — a
+     new attestation-schema field). Recommend Cockpit closes this, or
+     records a deliberate accept-the-risk decision, before taking on any
+     new provider — more providers means more surface resting on the same
+     unclosed gap.
+  2. **Portfolio sequencing for a Cockpit-hosted vault CLI/GUI.** Preferred
+     order: `devxtoolkit-v2-x` (currently `status: scaffold` per
+     `projects.yaml` — a research track, not actively being raced to
+     completion) developed first, then Cockpit, then Marlin "if needed,"
+     before a vault-style tool becomes usable through both its own CLI and
+     Cockpit's GUI. A real prioritization call given Marlin/Cockpit already
+     have substantial in-flight work of their own (MarlinSetup bootstrap,
+     Doctor INIT.30.xx, the gap in item 1) — not something to decide as a
+     side effect of a vault feature request.
+  3. **`vault` itself stays private, personal, name likely unchanged.** No
+     public release, no public-facing "vault" brand.
+  4. **New product concept: a distributable "structured local registry +
+     external secret-store" template/pattern.** If the SQLite-registry +
+     KeePassXC-style hybrid can work safely as a Cockpit provider (own CLI
+     as implementation authority, Cockpit as GUI host, secrets never
+     touched by any agent or by Cockpit's rendering layer), that pattern
+     is generalizable beyond vault's specific schema and could become its
+     own distributable template/app later. Needs its own name — collides
+     with `dxp-org/doc-vault-plane`'s existing namespace otherwise, and
+     vault's own name shouldn't become a public brand per item 3.
+     Explicitly downstream of items 1 and 2, not a parallel track to start
+     now.
+
+  Also: this thread is concrete counter-evidence against advice received
+  elsewhere that an agent cannot safely work with both a SQLite database
+  and a KeePassXC-style secret store in the same workflow. This session
+  built a full CRUD registry, a KeePassXC-boundary reconciliation tool, and
+  survived an independent adversarial review (one real exploit found and
+  fixed) — all while the agent never touched a password or `.kdbx` file,
+  via strict separation (agent handles SQLite/CLI/logic; the human runs
+  every password-touching command in their own terminal). Cockpit's own
+  real, tested provider architecture independently arrived at the same
+  separation (a formal `secrets` capability with host-managed injection
+  that never reaches requests, results, or logs) — validating the pattern
+  independently of this session.
