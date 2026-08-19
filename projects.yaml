@@ -306,7 +306,7 @@ projects:
   - name: devxtoolkit-v2-x
     path: dxp-org/devxtoolkit-v2-x
     group: dev-tools
-    description: "DevXToolkit v2.x — semantic layer over DevXToolkit: filesystem/language command grammar, command registry, and introspection"
+    description: "DevXToolkit v2.x — semantic layer over DevXToolkit: filesystem/language command grammar, command registry, introspection, and output styling"
     status: active
     visibility: private
     branch: main
@@ -314,7 +314,7 @@ projects:
     planning:
       canonical: dxp-org/devxtoolkit-v2-x/DEV-PLAN.md
       path: dxp-org/devxtoolkit-v2-x/DEV-PATH.md
-      notes: "2026-08-19: real implementation as of a scope-correction migration from devxtoolkit-v1-x — 11 functions (filesystem/language command grammar, Get-DevCommand/Show-DevGrammar introspection, the Get-DevXToolkitGrammar registry) that v1.5/v1.6 built despite this repo's own 2026-07-08 architecture brief having reserved that scope for v2. Real module (DevXToolkit2, v2.0.0), 35/35 Pester passing, own capability contract declared. Not yet published to GitHub/PowerShell Gallery."
+      notes: "2026-08-19: real implementation as of a scope-correction migration from devxtoolkit-v1-x — 11 functions (filesystem/language command grammar, Get-DevCommand/Show-DevGrammar introspection, the Get-DevXToolkitGrammar registry) that v1.5/v1.6 built despite this repo's own 2026-07-08 architecture brief having reserved that scope for v2. Same day, DTK2.07 (output styling — Write-DevStatus, colors/glyphs/progress bar) landed as v2.1.0 — the one original v2 pillar never built anywhere in the portfolio until now, wired into New-PythonProject as proof. Real module (DevXToolkit2, v2.1.0), 46/46 Pester passing, own capability contract declared (now 4 capabilities). Not yet published to GitHub/PowerShell Gallery."
 
   - name: devx-toolkit
     path: dxp-org/devx-toolkit
