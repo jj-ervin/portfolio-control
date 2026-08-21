@@ -311,3 +311,139 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   separation (a formal `secrets` capability with host-managed injection
   that never reaches requests, results, or logs) — validating the pattern
   independently of this session.
+- 2026-08-19 — Scoping follow-up to queued-idea item 4 above (distributable
+  local-registry + external-secret-store template): a same-day scoping
+  conversation separated two things that had been bundled together. Vault's
+  actual pattern (SQLite reference registry + KeePassXC, CLI-mediated,
+  human-only secret-touching) is a standalone pattern requiring no host.
+  Cockpit's `secrets` capability (`cockpit/docs/specifications/
+  cockpit-provider-v1.md`) solves a different problem — runtime secret
+  injection into a running provider process, not durable reference
+  storage. Conclusion: item 4's downstream dependency on items 1 (Cockpit
+  provider-attestation gap) and 2 (portfolio sequencing) applies only to a
+  future *Cockpit-hosted* version of this product, not to a standalone
+  template/CLI extraction, which can proceed independently of both.
+  Decision: v1 ships standalone-only (own CLI, no Cockpit dependency),
+  matching the precedent already set for Lasso (must work standalone
+  before any eco integration; integration is additive, never required).
+  A later version may add Cockpit display/integration as a non-breaking
+  bump once items 1 and 2 actually clear. Recommendation, not yet
+  actioned: treat this as a template extraction from vault's schema/CLI
+  rather than a new product initiative with its own `MARKET.md`/`DIST.md`
+  — the schema is already generic (`entities` is a data table, not a
+  hardcoded enum, so there's no Osprey-specific structure to remove, only
+  seed data and dev-docs), but positioning/naming/distribution work
+  should wait for a second real consumer of the template. Still needs its
+  own name — "vault" is unavailable both as a personal-brand rule
+  (`ADR-026` in `vault/dev-docs/VAULT-DECISIONS-001.md`) and because it
+  collides with HashiCorp Vault, not just `dxp-org/doc-vault-plane`. No
+  implementation work started; this is a scoping record only.
+- 2026-08-19 — Naming, location, and feature scoping locked for the queued
+  template product above (still no repo created, no implementation
+  started — scoping record only):
+  - **Name: Cairn.** A cairn is a trail marker (stacked stones) that
+    points to a location without being what it marks — matches the
+    reference-vs-secret relationship between the registry and KeePassXC.
+  - **Location: root `apps` group, standalone** — not `dxp-org/`. Decided
+    against tying it to the DevXToolkit brand: nothing in Cairn's design
+    actually depends on DevXToolkit tooling, standalone is easier to
+    maintain and release independently, and DevXToolkit's own pitch
+    (governed multi-agent portfolio development) requires buy-in to a
+    category before it means anything to someone, where Cairn's pitch —
+    track credentials without handing them to a cloud vendor — is legible
+    in one sentence to a much broader audience. Open risk to have a sharp
+    answer for before marketing: "why not just use folders/tags in my
+    existing password manager" — the answer is real relational structure
+    (asset/environment/account binding, full audit history, staleness
+    tracking), not something the name communicates on its own.
+  - **Feature adoption from Doppler / Infisical / Bitwarden Secrets
+    Manager, reviewed deliberately:**
+    - Already converges, no new work needed: environment-scoped secrets
+      (`secret_refs.environment`), one secret referenced by multiple
+      bindings, full audit history via triggers, staleness tracking
+      (`secrets list --stale-days`) — vault's schema independently
+      arrived at the same structural primitives those tools center on.
+    - Worth adopting, targeted for v1.x/v2 (not the initial extraction):
+      runtime injection (`cairn run -- <command>`, pulling a live value
+      and injecting it into a child process's env without writing to
+      disk). Compatible with the existing trust model as long as it stays
+      strictly human-invoked — the invariant is "no agent touches secret
+      values," not "no CLI command ever does."
+    - Explicitly rejected: dynamic/short-lived credential issuance and
+      multi-user RBAC/service accounts. Both would turn Cairn into a
+      hosted, higher-trust authority competing with Vault/Doppler on
+      their own terms, requiring a server component and a much heavier
+      security bar — breaks the core pitch that nobody has to trust Cairn
+      with live secret material.
+  - **Positioning: no governance-philosophy framing.** Cairn should not
+    be marketed with DevXToolkit/GC-style governance vocabulary — that's
+    a different audience that has to buy into a framework first. The
+    underlying discipline (plan before generate, human approves before
+    anything applies, full audit trail, agent never touches secret
+    values) stays as engineering rigor, just not exposed to customers as
+    "governance."
+  - **New feature, requested this session: agent-assisted schema design.**
+    Bring-your-own LLM (Claude, GPT, Gemini, or local Ollama) helps a
+    user design their registry's structure — entities, tables, columns,
+    normalization — for their specific project/client needs, while never
+    receiving secret values. This productizes the exact workflow already
+    used to build vault itself (agent proposed schema, human approved,
+    agent built migrations/CLI, agent never touched a secret). Scoped for
+    v1.x/v2, not the initial extraction, with three conditions carried
+    forward from vault's own `AGENTS.md` role model and `ADR-003`'s
+    Plan → Generate → Audit → Approve → Record boundary: (1) the
+    boundary must be structural — the agent-facing code path must be
+    physically unable to read `secret_refs` values or reach KeePassXC,
+    not merely instructed not to; (2) agent-proposed schema changes
+    require explicit human approval before applying, never autonomous;
+    (3) Cairn should not become a keeper of its own provider API keys —
+    read them from an env var at call time rather than storing them, and
+    default to local Ollama where a shared secret with a cloud LLM
+    vendor isn't wanted at all.
+- 2026-08-19 — Cairn v0.1 template extraction completed and pushed. User
+  had already created the `jj-ervin/cairn` GitHub repo and a local
+  `c:\dev\cairn` directory; extraction proceeded from vault's schema/CLI
+  per the scoping above. Schema (3 migrations, no seed data), CLI
+  (`scripts/cairn_cli.py`), backup/recovery (`scripts/cairn_backup.py`,
+  carrying the path-traversal hardening from vault's adversarial review),
+  secret-pattern scan, reconciliation tool, `AGENTS.md` role model
+  (Cairn Owner/Agent/Operator/Auditor), `DEV-PATH.md`, `DEV-PLAN.md`, and
+  `dev-docs/README.md` (provenance record — what carried over from vault
+  and what changed) are in place. All 33 tests pass. Own git repo
+  initialized at `c:\dev\cairn`, committed, and pushed to `origin/main`
+  with the user's explicit go-ahead. Registered in `projects.yaml`
+  (`apps` group, `successor_to: vault`). Still open: v1.x/v2 features
+  (`cairn run`, agent-assisted schema design) not started; no
+  `MARKET.md`/`DIST.md`; Cockpit integration remains gated on the two
+  items noted above. See `cairn/DEV-PLAN.md` for the project's own
+  active work queue going forward — this portfolio-level entry will not
+  be updated further as Cairn's own planning docs now own that.
+- 2026-08-20 — Cockpit platform-boundary work (see
+  `cockpit/docs/specifications/cockpit-platform-boundary.md` and
+  `cockpit/DEV-PLAN.md`'s cross-reference) named four integration modes
+  and found mode 4 ("simple provider," no governance stack) has only a
+  partial, unproven occupant: Niji's `CockpitAdapter`
+  (`cockpit/src/cockpit/adapters/niji.py`) is real and wired into
+  `host-web`'s snapshot builder, but its own test suite exercises a
+  `FakeNijiAdapter`, never the real `niji` package — so mode 4 is not
+  actually proven live the way mode-1/3 (Marlin's audit chain) is.
+  **User named this as the priority Cockpit work immediately after Cairn
+  v1.5 closes** (per the priority sequencing in
+  `governance-commons`-adjacent memory / `project_cockpit_priority_shift_
+  20260820`) — explicitly not to be started before then. Scope agreed:
+  wire Cockpit to Niji's real installed/package/provider path (no
+  `FakeNijiAdapter` anywhere in the proof path); expose a small
+  read-only or low-risk action surface; render real palette/provider
+  data in Cockpit; prove discover → display/action → artifact/export if
+  Niji's real package supports export; keep Niji provider-owned with
+  Cockpit only owning host/render/trust chrome; explicitly do **not**
+  build toward mode 2 (Cockpit-derived standalone app) as part of this
+  — that stays a separate, later, unproven gap. Acceptance: no
+  `FakeNijiAdapter` in the proof path; a demo note a stranger could read
+  that says plainly "this is not governance, this is a normal
+  creative/tool provider"; a real test or smoke proof that Cockpit loads
+  the real Niji provider and renders useful data; docs updated only
+  enough to mark mode 4 proven, not to claim mode 2 is proven too.
+  Rationale for going first: mode 4 is cheap and closes an already-named
+  admitted gap; mode 2 is strategically more interesting but needs a
+  real provider/app underneath it first or it becomes fog again.

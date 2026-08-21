@@ -356,7 +356,7 @@ projects:
     visibility: private
     branch: main
     planning:
-      notes: "Canonical private implementation repository. Standalone dev-tools utility with no dependency on eco/Cockpit/marlin. Release-safe source is copied to the public claude-budget-bar repository. v0.2.0 adds adaptive auto-compact warnings and validation fixtures; documented local 5-hour/7-day quota capture is planned for v0.3.0."
+      notes: "Canonical private implementation repository. Standalone dev-tools utility with no dependency on eco/Cockpit/marlin. Release-safe source is copied to the public claude-budget-bar repository. v0.3.0 adds documented local 5-hour/7-day quota capture. Planned v0.4.0 introduces COBB (Context Budget Bar / Context Budget Controller): manual preflight context forecasts, projected end-of-task context, threshold/overrun policy, and local calibration before any wrapper/hook automation."
 
   - name: claude-budget-bar
     path: claude-budget-bar
@@ -366,7 +366,7 @@ projects:
     visibility: public
     branch: main
     planning:
-      notes: "Public repo: jj-ervin/claude-budget-bar. Marketplace listing: hbl-creative-studios.claude-budget-bar. v0.1.0 was published to the Visual Studio Marketplace on 2026-08-15 and the public GitHub repo was pushed 2026-08-16; a git tag and GitHub Release are still outstanding."
+      notes: "Public release repository: jj-ervin/claude-budget-bar. Marketplace listing: hbl-creative-studios.claude-budget-bar. The installed extension should be treated as a packaged release artifact, not the source of truth. Current implementation planning lives in claude-budget-bar-vscode; sync only release-safe source and docs here after private validation."
 
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 
@@ -446,6 +446,19 @@ projects:
     branch: main
     planning:
       notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md, VAULT-BACKUP-RUNBOOK-001.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, a stdlib CLI (scripts/vault_cli.py), and a verified backup/recovery tool (scripts/backup_vault.py) on top."
+
+  - name: cairn
+    path: cairn
+    group: apps
+    description: "Distributable local-first operational registry (assets/releases/deployments/accounts + non-secret credential references); external secret store, KeePassXC by default, remains the secret of record"
+    status: active
+    visibility: private
+    branch: main
+    successor_to: vault
+    planning:
+      canonical: cairn/DEV-PLAN.md
+      path: cairn/DEV-PATH.md
+      notes: "v0.1 template extraction from vault, pushed 2026-08-19 (jj-ervin/cairn). Schema/CLI/audit/backup/secret-scan generalized: no seed data, renamed scripts (cairn_cli.py, cairn_backup.py), own role model. 33/33 tests passing. Standalone-only v1 (no Cockpit dependency); no MARKET.md/DIST.md yet. Full provenance: cairn/dev-docs/README.md."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
