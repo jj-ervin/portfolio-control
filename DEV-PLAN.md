@@ -447,3 +447,49 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   Rationale for going first: mode 4 is cheap and closes an already-named
   admitted gap; mode 2 is strategically more interesting but needs a
   real provider/app underneath it first or it becomes fog again.
+- 2026-08-21 — **Cockpit provider-executable integrity gap closed, after
+  an independent Codex review caught three real gaps in the first pass**
+  (item 1 of the 2026-08-19 Cockpit/Marlin/vault scoping entry above).
+  User's stated goal — "Cairn installable and with UI and AI" — needs a
+  Cockpit-hosted Cairn provider next, and this gap was the named
+  precondition before adding any new provider. First pass added an
+  `executable_digest` checked once at registration; Codex's review (run
+  before anything was committed) found it was checked only at
+  registration and not re-verified before each spawn (a TOCTOU window,
+  since Cockpit's provider registry is built once and reused for a
+  process's lifetime), that inferring the file to hash from "the last
+  entry in `args`" was not a sound general contract (breaks on an
+  ordinary `script.js --flag` command, and an invalid target crashed
+  discovery instead of failing one provider), and that the original
+  write-up overstated the claim — the digest is unauthenticated
+  (`signature` stays null), so it only catches accidental drift, not a
+  fully compromised local write path. All three fixed: Cockpit now
+  re-verifies integrity immediately before every provider spawn, not
+  just at registration; the digest target is an explicit
+  `executable_digest_target` attestation field Marlin declares (never
+  inferred positionally), with Marlin enforcing install-root containment
+  on it and Cockpit converting a bad target into an ordinary
+  registration error instead of crashing; and every description of this
+  check now names it correctly as unauthenticated integrity/drift
+  detection, with a test recording that limitation explicitly rather
+  than letting it pass as "secure." Full detail, code paths, and the
+  full adversarial test list: `cockpit/DEV-PLAN.md`'s "Provider-
+  Executable Integrity Gap — Closed After Codex Review" entry. Full
+  suites green: 184 Cockpit Python tests (1 pre-existing unrelated
+  skip), 385 Marlin/marlin-dxp vitest tests. A second Codex pass found
+  one more HIGH, non-blocking gap: Marlin's own producer side never
+  enforced the same contract it was asking Cockpit to check — an empty/
+  non-string `integrityTarget` could reach `resolveVars` unvalidated,
+  and `issueProviderAttestation` didn't require the target to actually
+  equal `executable`/a declared `args` entry or be a regular file.
+  Fixed to mirror Cockpit's consumer check exactly, plus 4 new tests
+  (2 parser, 2 installer); full suite re-verified at 389 Marlin/
+  marlin-dxp vitest tests, both packages' `tsc --noEmit` clean, both
+  repos' `git diff --check` clean. Codex marked this ready to commit.
+  Item 2 (portfolio sequencing) is effectively answered by the user's
+  own stated priority; item 3 (vault stays private) and item 4 (Cairn as
+  the distributable template) already stand. Next queued: build Cairn's
+  first Cockpit provider slice — Plan (schema design) and Entry (data
+  entry) surfaces only, reusing Cairn's existing safe logic; vault
+  mediation and broader AI-in-UI work explicitly deferred to a separate
+  checkpoint, per the user's own sequencing.
