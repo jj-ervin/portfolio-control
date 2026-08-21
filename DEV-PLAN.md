@@ -655,3 +655,21 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
     superseded by or related to the Sealdex version line.
   Full closeout record: `cairn/DEV-PLAN.md`'s "Sealdex v0.2.0 release
   closeout" entry.
+
+- **Portfolio closeout: INIT.19.06 click-install approval proof (2026-08-21)**
+  Marlin now exposes a read-only `marlin.package.resolve` provider
+  command, and Cockpit's package-search panel turns a click on "Install"
+  into resolve -> approval block (name, version, source, checksum,
+  provider) -> Confirm Install, the only action in the flow allowed to
+  send `confirm: true`. Browser-level test coverage added
+  (`host-web/tests/webInstallApproval.test.js`, jsdom against the real
+  bundle). Manually proven against the real hosted Marlin registry and
+  the real published Sealdex v0.2.0 release, from a disposable
+  `MARLIN_HOME`, via a real Chromium browser driven by Playwright: the
+  click flow installed Sealdex through Cockpit, and the resulting
+  on-disk provider attestation's checksum and executable digest were
+  independently re-verified (not just read back from the UI's own
+  claim). Update and remove mutation UI remain out of scope. `marlin`
+  and `cockpit` are not root gitlinks, so this entry is the only root
+  record of the work; full detail lives in `marlin/DEV-PLAN.md`,
+  `marlin/passes/init/INIT.19.06.md`, and `cockpit/DEV-PLAN.md`.
