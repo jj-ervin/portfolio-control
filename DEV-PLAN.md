@@ -619,3 +619,39 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   that say "Cairn" are the accurate historical record of work done under
   that name and are not rewritten. Nothing here has been pushed to any
   remote yet.
+
+- 2026-08-21 — **Portfolio closeout: Sealdex v0.2.0 released.** Following
+  the truth-sync entry above, a real tag/release collision surfaced
+  between the planned first Sealdex version (`v0.1.0`) and the retired
+  Cairn line's own already-published `v0.1.0` release on the same
+  (in-place-renamed) GitHub repo. Resolved by moving Sealdex's first
+  public version to `v0.2.0` rather than touching that history; full
+  detail in `cairn/DEV-PLAN.md`'s "Version collision" and "Renamed:
+  Cairn -> Sealdex, Phase 2" entries. Publication is now complete:
+  - Released: `github.com/jj-ervin/sealdex/releases/tag/v0.2.0`, asset
+    `sealdex-0.2.0.zip`, sha256
+    `880f500659899d4dc4f07bca5778de2c99bb99cbb9ef881760797f77ae697912`.
+  - Hosted registry: `jj-ervin/marlin-registry` commit `99d65b3` adds a
+    `sealdex@0.2.0` manifest and index entry; `niji` and the retired
+    `cairn@0.1.5` entry are untouched.
+  - Hosted install proof, from a brand-new disposable `MARLIN_HOME`:
+    `marlin search sealdex` and `marlin install sealdex` both resolved
+    with `source: "hosted"` (not the bundled fallback); checksum
+    independently verified; provider attested as `sealdex`/`Sealdex`/
+    `0.2.0`.
+  - Cockpit proof: real discovery found `sealdex@0.2.0` with zero
+    warnings, and a real `invoke_provider_command` round trip
+    (`sealdex.entry.tables`) against the hosted-installed provider
+    succeeded.
+  - Child repo pointers updated to their final pushed commits: `cairn`
+    gitlink -> `5b5641e8cc16bc2c80c8f006848c971cd2f1cd87`, `vault`
+    gitlink -> `aa1123ea0a88dfa2c8221ee17a57544b654dd2b5` (unchanged from
+    the truth-sync entry above). `marlin` and `cockpit` are not root
+    gitlinks; their own release-line commits are recorded in their own
+    DEV-PLAN.md files.
+  - Old Cairn releases `v0.1.0` through `v0.1.5` on `jj-ervin/sealdex`
+    (published under the repo's prior name before the in-place GitHub
+    rename) remain exactly as published -- retired, historical, not
+    superseded by or related to the Sealdex version line.
+  Full closeout record: `cairn/DEV-PLAN.md`'s "Sealdex v0.2.0 release
+  closeout" entry.
