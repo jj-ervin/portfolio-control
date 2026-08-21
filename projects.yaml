@@ -458,7 +458,7 @@ projects:
     planning:
       canonical: cairn/DEV-PLAN.md
       path: cairn/DEV-PATH.md
-      notes: "v0.1 template extraction from vault, pushed 2026-08-19 (jj-ervin/cairn). Schema/CLI/audit/backup/secret-scan generalized: no seed data, renamed scripts (cairn_cli.py, cairn_backup.py), own role model. 33/33 tests passing. Standalone-only v1 (no Cockpit dependency); no MARKET.md/DIST.md yet. Full provenance: cairn/dev-docs/README.md."
+      notes: "v0.1 template extraction from vault, pushed 2026-08-19 (jj-ervin/cairn). Schema/CLI/audit/backup/secret-scan generalized: no seed data, renamed scripts (cairn_cli.py, cairn_backup.py), own role model. 33/33 tests passing. Standalone-only v1 (no Cockpit dependency); no MARKET.md/DIST.md yet. Full provenance: cairn/dev-docs/README.md. 2026-08-21: public identity renamed Cairn -> Sealdex (GitHub repo jj-ervin/cairn -> jj-ervin/sealdex already done; local path and this entry's name/path deliberately kept as `cairn` -- see cairn/DEV-PLAN.md's rename entry); not yet pushed."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 

@@ -493,3 +493,129 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   entry) surfaces only, reusing Cairn's existing safe logic; vault
   mediation and broader AI-in-UI work explicitly deferred to a separate
   checkpoint, per the user's own sequencing.
+- 2026-08-21 — **Cairn's first Cockpit provider slice built: Plan +
+  Entry, reusing the existing generic provider path.** One new
+  `cairn.provider.json` manifest (five commands) served by a new
+  `cairn/scripts/provider.py` stdio entry point that calls straight into
+  `schema_agent.py`'s and `data_entry.py`'s existing stage functions —
+  no reimplementation. Plan is two commands (`propose`/`apply`) because
+  `schema_agent.py`'s interactive human checkpoint can't survive one
+  stdio round trip; Cockpit's own requires_confirmation + bound-approval
+  dialog (reused a third time, one shared dialog for all three of
+  Cairn's mutating commands) stands in for it, and a failed post-write
+  dry run auto-removes the migration file rather than prompting twice.
+  `data_entry.py`'s `insert_row` no longer calls `sys.exit` on a
+  rejected write (it raises `ValueError`; the CLI's own `die()` behavior
+  is preserved by translating it back at the call site) — necessary so
+  the long-lived provider process survives a rejected insert instead of
+  dying mid-session; a new shared `import_rows()` serves both the CLI's
+  file-based import and the provider's string-based one. Added a
+  360s timeout entry for `cairn.schema.propose` (it calls an LLM,
+  documented up to 205s on local CPU-only Ollama) mirroring the existing
+  `marlin.doctor.agents.run.execute` pattern.
+
+  **A Codex NO-GO on the first pass caught three real gaps**, all now
+  fixed (full detail in `cockpit/DEV-PLAN.md`'s "Cairn's First Cockpit
+  Provider Slice" entry): (1) **not installable/discoverable** — genuinely
+  fixed, not worked around: built a compiled `cairn-provider.exe` via a
+  new `cairn-provider.spec` (mirrors `niji-provider.spec`; Marlin's
+  attestation step requires a real in-package hashable executable, which
+  a bare system Python interpreter can never be), `build_release.py` now
+  bundles it plus `providers/cairn.provider.json` into the release zip,
+  Cairn bumped to `v0.1.6` with a real Windows `provider:` stanza in
+  `marlin.pkg.yaml` and a new bundled-registry entry
+  (`marlin/packages/marlin/registry/manifests/cairn.yaml`). Verified
+  locally with real artifacts, not just asserted: extracted the real
+  built zip, called Marlin's real `issueProviderAttestation()` against
+  it, ran the real compiled provider — new opt-in
+  `marlin/packages/marlin/tests/cairn-real-artifact.test.ts` does exactly
+  this. Publishing the actual `v0.1.6` GitHub release is the one
+  remaining step, deliberately not done here (a real external action
+  outside what an agent should do unilaterally). (2) **"no Cairn browser
+  test"** — checked against the live tree and was false at review time;
+  strengthened anyway with a new opt-in real-provider browser test
+  (discovers the real compiled exe, not a fixture) since the underlying
+  ask (prove the full workflow) was legitimate. (3) **stale pre-write
+  checks** — `cairn.schema.apply` now requires the caller to echo back
+  the exact `checks` list `propose` returned and rejects as
+  `stale-proposal` if a fresh recomputation differs, rather than silently
+  writing under changed schema conditions the human never reviewed. Also
+  fixed the High finding (LLM/DB/filesystem errors could crash the
+  provider process instead of returning a structured result) — and while
+  fixing it, found and fixed a real pre-existing secret-leak bug it
+  surfaced: `agent_loop.py`'s Gemini calls embed the API key in the
+  request URL, and a network failure's error message embedded that raw
+  URL — now redacted at the source. Full suites re-verified: Cairn
+  130/130, Cockpit Python 188/1 skipped, `host-web` 36/36, Marlin
+  `packages/marlin` 85/85 + `packages/marlin-dxp` 262/262, both packages'
+  typecheck clean, all three repos' `git diff --check` clean.
+
+  **A third Codex pass caught the release pipeline itself was
+  fail-open:** `build_release.py` would silently ship a "CLI-only" zip
+  when the compiled provider was missing, even though `marlin.pkg.yaml`
+  unconditionally declared a `provider:` stanza — a valid-looking
+  release Marlin couldn't actually install a provider from. It also
+  flagged that the real-artifact test derived its "expected" checksum by
+  hashing the zip itself, proving nothing about whether either
+  manifest's *declared* checksum is actually correct. Fixed:
+  `build_release.py` now refuses to build at all (non-zero exit) if a
+  declared `provider:` stanza can't be satisfied, or if the requested
+  version doesn't match `marlin.pkg.yaml`'s/`providers/
+  cairn.provider.json`'s own declared version; new
+  `cairn/scripts/verify_release.py` is a mandatory (non-skippable)
+  release gate confirming the built zip contains both provider files and
+  its real sha256 matches both `marlin.pkg.yaml`'s and Marlin's own
+  bundled registry manifest's declared checksums; Marlin's
+  `cairn-real-artifact.test.ts` now asserts the real hash against both
+  declared values before using it, instead of trusting a self-derived
+  one. Verified: the build correctly refuses with the provider dir
+  renamed away and with a mismatched version argument; the verification
+  gate correctly fails when a manifest checksum is deliberately
+  corrupted (tested, then reverted) and passes clean against the real
+  `v0.1.6` artifact.
+
+  **A fourth Codex pass asked for the stale-artifact hole to be closed
+  mechanically, not just detected after the fact.** Rebuilt as one
+  atomic, fail-closed command: `build_release.py` now runs the
+  PyInstaller compile itself — clean, into a throwaway temp directory
+  (`dist/cairn-provider/` no longer persists as an artifact at all,
+  removing the entire class of "forgot to rebuild it" bug) — records a
+  sha256 fingerprint of every source file the compile drew from into a
+  `provider/BUILD-MANIFEST.json` shipped inside the zip, and only
+  atomically replaces the previous release archive once the whole
+  build+zip has fully succeeded, so a failed rebuild can never corrupt or
+  silently replace a previously-published good one.
+  `verify_release.py` now byte-compares every packaged source file
+  against current workspace (catching stale source, including a stale
+  archived provider manifest, without needing to know what changed),
+  schema-validates the archived provider manifest against Cockpit's real
+  schema, and rejects a provider executable whose recorded build
+  fingerprint no longer matches current source. 13 new regression tests
+  against a fully isolated fake repo tree cover exactly the four asked-for
+  scenarios (stale source, stale archived manifest, failed-build
+  old-output preservation, version/checksum mismatch) plus tamper and
+  schema-violation cases. Regenerated a real `v0.1.6` zip through the new
+  pipeline from a clean slate and re-verified: Cairn 143/143, Cockpit
+  188/1 skipped + browser 3/3, host-web 36/36, Marlin 85/85 +
+  marlin-dxp 262/262, both typechecks clean, all repos' `git diff --check`
+  clean, `verify_release.py 0.1.6` clean against the fresh checksums.
+
+  Stopping here for Codex review before committing, as scoped — vault
+  mediation, broader AI-in-UI work, and the actual GitHub release remain
+  out of scope / not done here. Marlin's registry update stays local and
+  uncommitted, not pushed until the real `v0.1.6` release is published
+  and a clean `marlin install cairn` succeeds against the hosted asset.
+
+- 2026-08-21 — **Truth-sync: Cairn renamed to Sealdex.** Public identity
+  renamed Cairn -> Sealdex across three same-day, not-yet-pushed commits:
+  `cairn` (`ac280ce`, in-repo rename, Phase 1), `marlin` (`fe584bb`,
+  bundled registry entry added under `sealdex`), `cockpit` (`a987a18`,
+  provider integration renamed, Phase 2). Full rationale (name-collision
+  clearance search) and scope: `cairn/DEV-PLAN.md`'s "Renamed: Cairn ->
+  Sealdex, Phase 1" entry. The local directory `c:\dev\cairn` and
+  `projects.yaml`'s `cairn` entry are deliberately NOT renamed -- public
+  identity is Sealdex, the portfolio's internal path stays `cairn`, same
+  pattern already used inside cockpit/marlin. Prior entries above this one
+  that say "Cairn" are the accurate historical record of work done under
+  that name and are not rewritten. Nothing here has been pushed to any
+  remote yet.
