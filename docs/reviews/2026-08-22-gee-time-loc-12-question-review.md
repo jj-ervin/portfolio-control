@@ -288,3 +288,55 @@ Proceed with the paired release sequence:
 8. Update GEE README/release records.
 
 Do not claim release-complete until the public install verification steps pass.
+
+---
+
+## Second-Pass Review Notes
+
+Added after a sharper Q1-Q12 review pass on 2026-08-22.
+
+### Corrections To The Release Record
+
+- `time-loc==1.2.0` has now been published to PyPI and clean-install verified. Earlier "PyPI pending" statements remain true for `governed-event`, not for `time-loc`.
+- JSON Schemas do exist in both repos: `time-loc/python/time_loc_schema.json` and `governed-event/python/governed_event_schema.json`. The real gap is discoverability/package posture: schemas are repo files, not clearly published as a stable schema URL or packaged as language-neutral conformance assets.
+- Tests total 117 across the pair (`time-loc` 51 + `governed-event` 66). They are good correctness tests, but do not yet include fuzz/property-based/adversarial malformed-input coverage for canonical string and delimiter/Unicode edge cases.
+
+### Sharpened Findings
+
+- **Q1 Regulatory:** time.loc geolocation fields can become personal data when tied to a natural person. Add adopter guidance on minimization, retention, and use of `geo.source: unavailable` / declared location when precise GPS is unnecessary.
+- **Q2 Standards:** do not claim prEN 18229-1 or ISO/IEC 24970 conformance. Both still need field-level mapping. The specs also need a formal RFC 2119 pass before being positioned as standards-track documents.
+- **Q3/Q8 Interoperability:** CloudEvents is the strongest comparable/de facto event envelope. GEE should avoid competing with it directly; the higher-leverage path is a CloudEvents extension or mapping for compliance/audit logging. OpenTelemetry mapping is the second interop target.
+- **Q4/Q5 Security:** add `SECURITY.md`; document HMAC key rotation, replay risk, unsigned-record semantics, and verifier expectations.
+- **Q7 Developer Experience:** `time-loc` has crossed the PyPI install gate; `governed-event` has not. A CLI validator remains a useful post-release adoption improvement.
+- **Q9 Process:** no public RFC/conformance process exists for third-party GEE/time.loc implementations.
+- **Q10 Docs:** a short positioning note should explain GEE vs CloudEvents vs W3C PROV-O for a cold reader.
+- **Q11 Testing:** property-based/fuzz coverage for canonical serialization and integrity verification is the highest-value next testing increment.
+- **Q12 Ahead Of Curve:** GEE's required/optional/prohibited field-profile pattern is distinctive. Packaging it as a CloudEvents-compatible compliance-logging extension would amplify that advantage.
+
+### Updated Cheap-First Backlog
+
+1. Publish/discover JSON Schemas as stable language-neutral assets, not only Python-adjacent files.
+2. Add RFC 2119 keyword discipline to specs.
+3. Write a CloudEvents interop mapping.
+4. Add `SECURITY.md` with key-rotation and replay guidance.
+5. Finish `governed-event` PyPI publish and public install verification.
+6. Add property-based/fuzz tests for integrity canonicalization.
+7. Wire GEE/time.loc into Cockpit as the first real consumer.
+
+### Release Impact
+
+These findings do not require yanking or revising `time-loc==1.2.0`. They do suggest a small pre-publication polish pass before `governed-event==0.1.0`, especially `SECURITY.md` and CloudEvents positioning, because GEE is the public event-envelope claim surface.
+
+### time.loc-Specific Distinctions
+
+time.loc should not be reviewed only as GEE's dependency. It has its own standards and adoption surface as a timestamp + geolocation provenance primitive.
+
+- **Q1 Regulatory:** geolocation is central to time.loc, not incidental. Precise location can be sensitive personal information under CCPA-style state regimes and personal data under GDPR when tied to a person. time.loc should document minimization, retention, and consent-basis considerations for adopters.
+- **Q2 Standards:** verify timestamp formatting against RFC 3339. Separately compare `geo.lat`, `geo.lon`, and `geo.alt` against GeoJSON/geospatial conventions and document whether the flat dot-key shape is an intentional audit-format choice.
+- **Q3 De facto standards:** EXIF GPS geotagging is a stronger time.loc comparable than CloudEvents. Add an EXIF/device-location mapping note if time.loc is used in media, inspection, or evidence workflows.
+- **Q5 Security posture:** `geo.source: declared` is unverifiable by construction. The enum communicates provenance but does not prove truth; specs should state this trust caveat explicitly.
+- **Q7/Q8 DX and interoperability:** time.loc should be easy to embed outside Python and outside GEE. Add language-neutral examples and fixtures.
+- **Q11 Testing:** the compact base58 codec should get property-based round-trip tests across nulls, delimiters, Unicode, and numeric edge cases.
+- **Q12 Ahead of curve:** time.loc's addressable use cases include chain-of-custody, legal evidence, field operations, inspections, and compliance sampling. That is broader than AI logging and broader than GEE.
+
+This backlog has been appended to `time-loc/DEV-PLAN.md` under queued ideas.
