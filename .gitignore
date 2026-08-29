@@ -47,6 +47,7 @@ _test-tmp/
 node_modules/
 _tmp/
 .test-tmp-*/
+tmp/npm-cache/
 __pycache__/
 *.pyc
 *.pyo
