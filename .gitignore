@@ -32,6 +32,8 @@ marlin/
 marlin-registry/
 niji/
 powershell/
+resume/
+resume-private/
 tools/
 trust-but-verify/
 trust-but-verify-companion-cli/
