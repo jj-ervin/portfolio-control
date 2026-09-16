@@ -596,6 +596,20 @@ projects:
       path: marlin/DEV-PATH.md
       notes: "Redirect-only legacy entry. Do not start new feature work in dxp-init; use marlin/ for all current Marlin planning and implementation."
 
+  # ─── RESUME / I2O ────────────────────────────────────────────────────────────
+
+  - name: resume
+    path: resume
+    group: resume
+    description: "Resume Tailoring Framework — evidence-first resume-building schemas, invariants, and prompts. Job Intake, Candidate Evidence, Match, Formatting, and Presentation schemas built; Humanization and QC unbuilt."
+    status: wip
+    visibility: private
+    branch: main
+    planning:
+      canonical: resume/DEV-PLAN.md
+      path: resume/DEV-PATH.md
+      notes: "DEV-DOCS live directly in-repo per DEV-ACCORD.08 (repo confirmed private on GitHub). DEV-WORKFLOW.md added 2026-09-15, instantiating the portfolio's canonical dev-docs/_root/DEV-WORKFLOW.md template."
+
   # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
   - name: lasso_archive
