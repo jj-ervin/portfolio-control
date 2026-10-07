@@ -161,7 +161,7 @@ projects:
     path: cockpit
     group: cockpit
     description: "Portable, backend-agnostic UI/UX host — works with eco, Marlin, and future backends via the adapter/bridge pattern; not eco-runtime-bound"
-    status: scaffold
+    status: active
     visibility: private
     branch: main
     registry: cockpit/passes/passes.registry.json
@@ -500,7 +500,7 @@ projects:
       path: trust-but-verify/DEV-PATH.md
       market: trust-but-verify/MARKET.md
       dist: trust-but-verify/DIST.md
-      notes: "Content-complete, v1.0 frozen. Not yet listed on Gumroad — cover art and per-workflow icons in progress."
+      notes: "Content-complete, v1.0 frozen; DEV-PLAN records August 2026 Gumroad publication. Current listing/sales require separate verification. Release Engineering Preflight is a draft addendum outside v1.0 builds."
 
   - name: trust-but-verify-companion-vscode
     path: trust-but-verify-companion-vscode
@@ -528,12 +528,12 @@ projects:
     path: trust-but-verify-companion-cli
     group: apps
     description: "Companion to trust-but-verify — CLI operationalizing the 5-stage Plan/Generate/Audit/Approve/Record workflow. Core engine for the whole companion family; other surfaces (VS Code, future Obsidian/Cockpit) shell out to it rather than reimplementing the workflow."
-    status: scaffold
+    status: wip
     visibility: private
     branch: main
     planning:
       canonical: trust-but-verify-companion-cli/DEV-PLAN.md
-      notes: "Scaffold only as of 2026-08-15, no functional code yet. Public release surface is trust-but-verify-companion-cli-registry, following the bare-repo/-registry split used elsewhere in the portfolio. 2026-08-15 architecture decision: this CLI is the core engine — trust-but-verify-companion-vscode and any future surface (Obsidian plugin, Cockpit UI) are thin wrappers around it, not independent implementations. Build order: CLI ships first."
+      notes: "Partial CLI foundation verified 2026-10-06: list/start implemented; approval/record and other later commands are stubs. Public release surface is trust-but-verify-companion-cli-registry, following the bare-repo/-registry split used elsewhere in the portfolio. Unresolved local/remote architecture split: the local 2026-08-15 decision proposes this CLI as the core engine — trust-but-verify-companion-vscode and any future surface (Obsidian plugin, Cockpit UI) are thin wrappers around it, not independent implementations. Build order: CLI ships first."
 
   - name: trust-but-verify-companion-cli-registry
     path: trust-but-verify-companion-cli-registry
@@ -627,3 +627,45 @@ projects:
     status: archive
     visibility: private
     branch: master
+
+
+  # Evidence-first intelligence and downstream market research — 2026-10-05
+  - name: signal-radar
+    path: signal-radar
+    group: apps
+    description: "Evidence-first event intelligence; observations, derivations, context, and interpretation remain distinct"
+    status: wip
+    visibility: private
+    branch: main
+    remote: https://github.com/jj-ervin/signal-radar
+    planning:
+      canonical: signal-radar/docs/experiment-plan.md
+      roadmap: signal-radar/docs/roadmap.md
+      notes: "MOVE → EXPLAIN validation experiment is the current product test; profitable edge and execution are not established."
+
+  - name: edge-lab
+    path: edge-lab
+    group: apps
+    description: "Downstream market-edge hypothesis, experiment, and validation lab"
+    status: scaffold
+    visibility: private
+    branch: main
+    remote: https://github.com/jj-ervin/edge-lab
+    planning:
+      canonical: edge-lab/DEV-PLAN.md
+      path: edge-lab/DEV-PATH.md
+      notes: "Documentation foundation; first hypothesis/data source remains to be selected. No strategy, backtest result, validated edge, or execution integration is implemented."
+
+
+  - name: governance-commons
+    path: governance-commons
+    group: governance-commons
+    description: "Governance Commons umbrella standards and portfolio governance tooling"
+    status: active
+    visibility: private
+    branch: main
+    planning:
+      canonical: governance-commons/DEV-PLAN.md
+      path: governance-commons/DEV-PATH.md
+      tracks: governance-commons/DEV-TRACKS.md
+      release: governance-commons/DEV-RELEASE.md

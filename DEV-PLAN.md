@@ -673,3 +673,20 @@ Deliverables: configured DCP instance, custom `projects.yaml` schema, agent rout
   and `cockpit` are not root gitlinks, so this entry is the only root
   record of the work; full detail lives in `marlin/DEV-PLAN.md`,
   `marlin/passes/init/INIT.19.06.md`, and `cockpit/DEV-PLAN.md`.
+
+## 2026-10-05 — DCP.92.00 portfolio recovery and Classic reconciliation (working name; not yet registered)
+
+Recovered the portfolio-root identity from the preserved `96e0594` commit and corrected origin to `jj-ervin/dev`. The accidental Signal Radar root tree and Git metadata were preserved in the recovery evidence before restoration. Child-owned repository files and unfinished local work were retained.
+
+Current project state is grounded in local source and the inspected remote main commits. Signal Radar is the evidence-first event intelligence layer; EdgeLab is the downstream market-edge research/validation lab. EdgeLab begins as documentation scaffolding, with its first hypothesis still unselected.
+
+The root registry now includes Signal Radar and EdgeLab, records Cockpit as active, and follows TBV's later publication record. Project histories and queued ideas remain preserved. The reconciliation evidence records the exact synchronization results, tests, and any remaining blockers. Public publication and runtime proof remain separate from source/documentation recovery.
+
+Recovery receipt: all eight named clean checkouts synchronized; 122 planning pointers resolve; five scoped diffs pass; SDK source edits preserved byte-for-byte. Portfolio-wide governance closure remains blocked by existing bootstrap/planning failures and unchecked release gates. No commit, push, publication, or trading execution occurred. DCP.92.00 remains an OPEN local working contract pending separately scoped governance remediation; see PLAY.jsonl and the saved recovery evidence.
+
+
+## 2026-10-05 — Local reconciliation receipt
+
+Authorized continuation: Jesse directed "DO IT" for the recommended Governance Commons reconciliation and governance debt work. Changes remain local and uncommitted. Current SDK remote 0.2.0 supersedes the older local working tree as canonical implementation; the unpublished local TypeScript parity/version draft is preserved separately. Agent Matrix examples are aligned with current schemas; the unsupported additional compliance event mapping remains queued. ONS lint whitespace and bootstrap authority pointers are repaired. GC-AUDIT recognizes public-safe stubs, existing local onboarding authority and registry-selected planning owners, with regression tests. Protected histories and queued ideas are retained. No RFC activation gate, release gate, public publication or trading action is completed by this work.
+
+Reconciliation validation receipt (2026-10-05): SDK 219 Python tests and Node checks pass; Matrix nine CI validations and 232 tests pass; ONS validation and lint pass; 13 new authority regression fixtures plus 19 existing fixtures pass with compatible Pester runtimes. SDK draft files and 24 stale generated files are preserved; final wheel/sdist/npm archives exclude unpublished drafts. Bootstrap: zero errors, eight warnings. Planning: two errors, twelve warnings, both errors at protected Kinjuu DEV-PATH header. Registry: 126 pointers resolve. Governed closure remains OPEN; unchecked release gates remain unchecked. No commit or push.

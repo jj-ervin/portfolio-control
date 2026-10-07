@@ -72,3 +72,7 @@ evidence/
 # c-dev.code-workspace
 # .github/
 # docs/
+
+# Independent evidence/research repositories
+signal-radar/
+edge-lab/
