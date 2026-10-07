@@ -97,3 +97,9 @@ This appendix records execution after the dated recovery snapshot. The 74-row fi
 Fresh proportional checks included eco-vscode's build and six regression tests, eco-slate website's six-route production build, eOS's seven focused tests, Agent Matrix's 232 tests, APO's 113 tests, Niji's 213 tests, Doc Vault Plane's nine-question YAML check, scoped whitespace checks, and live upstream ancestry checks. Earlier isolated proofs in the dated reports remain the evidence for larger unchanged suites.
 
 Final follow-up: reviewed portfolio-control-plane state was committed and pushed as `d2d885e` after 126 pointer checks, planning validation with zero errors, and bootstrap validation with zero errors. TBV companion reconciliation remained documentation-only: CLI `fdd49fb` was pushed; the unrelated local VS Code lineage `c643980` and its local registry receipt `489eaa5` were committed locally but cannot be synchronized because neither checkout has a configured remote. No architecture was adopted or merged.
+
+### Follow-up investigation and Git pointer synchronization
+
+The subsequent investigation checked dotgovernance's tracked tree, PLAY receipt, reflog, archived recovery records and live remote main. All 17 missing files remain tracked at local and remote `972021e`; the July triage receipt describes identical-content index refresh, not file removal. The October archive explicitly calls these deletions pre-existing and preserves them without a disposition decision. No evidence establishes removal intent, so the deletion state remains untouched pending the owner's decision.
+
+Eight existing portfolio Git pointers were advanced to the already published reconciliation heads: cairn, DevXToolkit v1, v1 registry, v2, Doc Vault Plane, Governed Event, time.loc and Vault. Each child HEAD matched its configured upstream before staging. This completes the remaining pointer synchronization without staging dotgovernance files or unrelated work.
