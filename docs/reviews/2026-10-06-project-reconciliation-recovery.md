@@ -81,3 +81,17 @@ Both moves retained the same file counts and byte totals, and sentinel hashes ma
 6. **Low-priority hygiene:** redirects/archive decisions for stale personal Governance Commons surfaces, plus dormant remote-only projects, only when they materially obstruct active work.
 
 This recovery ends the broad portfolio-audit phase. Further work should use the final inventory as a navigation aid and return to implementation rather than extending the reconciliation bureaucracy.
+
+## Commit-and-sync closure — 2026-10-06
+
+This appendix records execution after the dated recovery snapshot. The 74-row final inventory and the individual reconciliation reports remain unchanged historical evidence; current Git truth is the repository state and commits below.
+
+- Previously completed checkpoints were verified at their upstream heads: portfolio evidence `21a7ac4`, Cockpit `491c061`, Trust But Verify `2d4ce23`, and Core Economy `eb0897b`.
+- The preserved `dev-docs` commit `19f69d6` was pushed to `origin/main` without rewriting it.
+- Reviewed reconciliation changes were committed and pushed on their existing `main` branches: `.eco` `dc77355`; Arche `3ce9ee9`; Sealdex `db306dd`; CXP `72eac65`; DCP template `8a77f8a`; DevXToolkit v1 `549f2c9`; v1 registry `a6f23e2`; v2 `0fae2f6`; Doc Vault Plane `df82db6`; eco-edge `bb8288a`; eco-slate `e3dda11`; eco-slate website `fdd8222`; eco-vscode `7650138`; EdgeLab `754b9db`; Elan `423645e`; eOS `e6e5947`; Agent Matrix `41ef980`; Agent Project Orchestrator `5cefac0`; Governance Commons SDK `bd786fd`; ONS `61a4029`; Governed Event `44cda56`; Kinjuu `4446f2a`; LASSO `c37794d`; Marlin `ea2e163`; Niji `5b5d4c8`; Signal Radar `a8f5d24`; time.loc `7dd4f90`; and Vault `b4454d1`.
+- Each published root was rechecked at zero ahead/zero behind its configured upstream. EdgeLab's already-existing unborn `main` became its first commit and was pushed as `origin/main`; no alternate branch or worktree was created.
+- Signal Radar's duplicate checkout was preserved. `signal-radardeactivate` head `e31fcc9` is an ancestor of the canonical checkout with no unique commits; the canonical checkout's pre-existing `docs/architecture.md` edit remains uncommitted and untouched.
+- `reddit-publisher` and `resume-private` still resolve to the portfolio Git root rather than independent local roots. Neither was staged or inspected as project content.
+- `dotgovernance`'s 17 deletions, TBV companion-history edits, new TBV agent-skills work, ignored/private planning content, vault data, and unrelated portfolio-root changes remain preserved and excluded.
+
+Fresh proportional checks included eco-vscode's build and six regression tests, eco-slate website's six-route production build, eOS's seven focused tests, Agent Matrix's 232 tests, APO's 113 tests, Niji's 213 tests, Doc Vault Plane's nine-question YAML check, scoped whitespace checks, and live upstream ancestry checks. Earlier isolated proofs in the dated reports remain the evidence for larger unchanged suites.
