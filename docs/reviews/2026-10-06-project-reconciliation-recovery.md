@@ -107,3 +107,11 @@ Eight existing portfolio Git pointers were advanced to the already published rec
 ### dotgovernance restoration — owner approved
 
 After reviewing the missing files as the package README, installer, ignore file, seven blank starter files and seven illustrative template files, Jesse agreed to restore the existing kit. All 17 files were restored in the working tree from `972021e3cdb242c77ce83b0af5614e835a92df4a`. The independent dotgovernance checkout is now clean, its index is unchanged, and its branch remains zero ahead/zero behind upstream. No new dotgovernance commit or push was needed because the restored content was already published. The installer was not executed.
+
+### Final disposition — 2026-10-06
+
+Jesse clarified that `resume-private` is personal information used as test material and structure for i2o. Its current local placement is retained as an owner-confirmed data boundary; lack of an independent local Git root is not a reconciliation repair requirement. No personal content was inspected or synchronized.
+
+Signal Radar's remaining architecture documentation was reconciled with the implemented adapter fields and the outstanding provider/pipeline interface gap, then committed and pushed as `9aeda89`. Its checkout is clean and matches upstream. The two local TBV companion checkouts remain clean at `c643980` and `489eaa5`, with no remotes; their documentation already records the unrelated histories and unresolved architecture choice. They are preserved local artifacts, with no automatic remote assignment or architecture adoption required for reconciliation closure.
+
+All ready reconciliation changes are committed and synchronized. Remaining product implementation, release/adoption gates, and any future TBV architecture selection are separate work. Historical snapshots above remain unchanged.
