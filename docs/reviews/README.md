@@ -15,3 +15,4 @@ Future tool: `dcp review *` and `dcp audit *` commands (see DCP DEV-PLAN Track K
 | 2026-06-29 | Portfolio deliverability review | [2026-06-29-deliverable-review.md](2026-06-29-deliverable-review.md) |
 | 2026-06-29 | Repository license audit | [2026-06-29-license-audit.md](2026-06-29-license-audit.md) |
 | 2026-06-29 | IP protection checklist | [2026-06-29-ip-checklist.md](2026-06-29-ip-checklist.md) |
+| 2026-10-06 | Portfolio reconciliation recovery and final 74-entry classification | [2026-10-06-project-reconciliation-recovery.md](2026-10-06-project-reconciliation-recovery.md) |
