@@ -103,3 +103,7 @@ Final follow-up: reviewed portfolio-control-plane state was committed and pushed
 The subsequent investigation checked dotgovernance's tracked tree, PLAY receipt, reflog, archived recovery records and live remote main. All 17 missing files remain tracked at local and remote `972021e`; the July triage receipt describes identical-content index refresh, not file removal. The October archive explicitly calls these deletions pre-existing and preserves them without a disposition decision. No evidence establishes removal intent, so the deletion state remains untouched pending the owner's decision.
 
 Eight existing portfolio Git pointers were advanced to the already published reconciliation heads: cairn, DevXToolkit v1, v1 registry, v2, Doc Vault Plane, Governed Event, time.loc and Vault. Each child HEAD matched its configured upstream before staging. This completes the remaining pointer synchronization without staging dotgovernance files or unrelated work.
+
+### dotgovernance restoration — owner approved
+
+After reviewing the missing files as the package README, installer, ignore file, seven blank starter files and seven illustrative template files, Jesse agreed to restore the existing kit. All 17 files were restored in the working tree from `972021e3cdb242c77ce83b0af5614e835a92df4a`. The independent dotgovernance checkout is now clean, its index is unchanged, and its branch remains zero ahead/zero behind upstream. No new dotgovernance commit or push was needed because the restored content was already published. The installer was not executed.
