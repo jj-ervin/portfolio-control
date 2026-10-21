@@ -669,3 +669,39 @@ projects:
       path: governance-commons/DEV-PATH.md
       tracks: governance-commons/DEV-TRACKS.md
       release: governance-commons/DEV-RELEASE.md
+
+  - name: observatory-core
+    path: observatory-core
+    group: governance-commons
+    description: "Evidence-first publication contracts and approved checksum-pinned exports for the Governance Commons Observatory"
+    status: scaffold
+    visibility: public
+    branch: main
+    remote: https://github.com/jj-ervin/observatory-core
+    depends_on: governance-commons
+    planning:
+      notes: "Contract and test bootstrap only; no benchmark execution or live publication pipeline is implemented."
+
+  - name: governance-commons-app
+    path: governance-commons/governance-commons-app
+    group: governance-commons
+    description: "Bootstrap repository for the Governance Commons application"
+    status: scaffold
+    visibility: private
+    branch: main
+    remote: https://github.com/governancecommons/governance-commons-app
+    depends_on: governance-commons
+    planning:
+      notes: "README-only initial bootstrap; no implementation or standalone planning documents yet."
+
+  - name: governance-commons-portal
+    path: governance-commons/governance-commons-portal
+    group: governance-commons
+    description: "Private invite-only Governance Commons workspace for evidence, editorial review, adoption intake, and release approvals"
+    status: wip
+    visibility: private
+    branch: main
+    remote: https://github.com/governancecommons/governance-commons-portal
+    depends_on: governance-commons
+    planning:
+      notes: "Foundation and policy tests exist, but the portal is not deployed; authenticated runtime, persistence, integration, and production launch gates remain open."
