@@ -447,8 +447,8 @@ projects:
     planning:
       notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md, VAULT-BACKUP-RUNBOOK-001.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, a stdlib CLI (scripts/vault_cli.py), and a verified backup/recovery tool (scripts/backup_vault.py) on top."
 
-  - name: cairn
-    path: cairn
+  - name: sealdex
+    path: sealdex
     group: apps
     description: "Distributable local-first operational registry (assets/releases/deployments/accounts + non-secret credential references); external secret store, KeePassXC by default, remains the secret of record"
     status: active
@@ -456,9 +456,19 @@ projects:
     branch: main
     successor_to: vault
     planning:
-      canonical: cairn/DEV-PLAN.md
-      path: cairn/DEV-PATH.md
-      notes: "v0.1 template extraction from vault, pushed 2026-08-19 (jj-ervin/cairn). Schema/CLI/audit/backup/secret-scan generalized: no seed data, renamed scripts (cairn_cli.py, cairn_backup.py), own role model. 33/33 tests passing. Standalone-only v1 (no Cockpit dependency); no MARKET.md/DIST.md yet. Full provenance: cairn/dev-docs/README.md. 2026-08-21: public identity renamed Cairn -> Sealdex (GitHub repo jj-ervin/cairn -> jj-ervin/sealdex already done; local path and this entry's name/path deliberately kept as `cairn` -- see cairn/DEV-PLAN.md's rename entry); not yet pushed."
+      canonical: sealdex/DEV-PLAN.md
+      path: sealdex/DEV-PATH.md
+      notes: "Originally extracted from vault and published as Cairn in 2026-08; historical Cairn releases and provenance remain intact. Product, repository, and local checkout are now consistently Sealdex (`C:/dev/sealdex`, `jj-ervin/sealdex`). Schema/CLI/audit/backup/secret-scan are generalized with no seed data; KeePassXC remains the secret store. Current package line is 0.2.1; current release, CI, installer, and human-adoption proof remain separate gates in sealdex/DEV-PLAN.md."
+
+  - name: sealdex-registry
+    path: sealdex-registry
+    group: apps
+    description: "Public Sealdex registry repository; currently a README-only scaffold"
+    status: scaffold
+    visibility: public
+    branch: main
+    planning:
+      notes: "Created as jj-ervin/sealdex-registry on 2026-10-21. Main currently contains only README.md; no package manifests, release pipeline, or adoption proof are claimed."
 
   # ─── DOCS ────────────────────────────────────────────────────────────────────
 
