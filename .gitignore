@@ -44,11 +44,16 @@ trust-but-verify-companion-vscode-registry/
 hoodie-boom-labs/
 claude-budget-bar/
 claude-budget-bar-vscode/
+core-economy/
+team-kilo/
 
 # ── Generated / debug artifacts ──
 _test-tmp/
 node_modules/
 _tmp/
+tmp/
+core-economy_WRONG-LOCAL_2026-09-13/
+how origin
 .test-tmp-*/
 tmp/npm-cache/
 __pycache__/
@@ -76,4 +81,5 @@ evidence/
 
 # Independent evidence/research repositories
 signal-radar/
+signal-radardeactivate/
 edge-lab/
