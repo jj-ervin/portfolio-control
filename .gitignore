@@ -47,6 +47,11 @@ claude-budget-bar-vscode/
 core-economy/
 team-kilo/
 
+# Independent UI Rescue repositories and pre-split rollback bundle
+publishing/ui-rescue-prompt-pack/
+services/ui-rescue-service/
+archive/income-experiments-pre-split-20261024.bundle
+
 # ── Generated / debug artifacts ──
 _test-tmp/
 node_modules/
