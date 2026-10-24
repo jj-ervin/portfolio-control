@@ -83,3 +83,11 @@ Detect drift with [`validate-file-ownership.ps1`](validate-file-ownership.ps1); 
 with [`normalize-file-ownership.ps1`](normalize-file-ownership.ps1) (requires an
 elevated/Administrator shell — `SeTakeOwnershipPrivilege` is not available even to an
 Administrators-group account without elevation).
+
+## Repository location update — 2026-10-24
+
+The portfolio-control source repository now lives at `C:\dev\portfolio-control`.
+`C:\dev` remains the workspace root that contains the control plane and the
+independent studio repositories. Earlier references to `C:\dev` as the portfolio
+root continue to mean that workspace boundary; they do not make the workspace a
+single Git repository.
