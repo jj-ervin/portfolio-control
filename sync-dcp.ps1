@@ -34,7 +34,7 @@ if ($Help) {
 }
 
 $Src  = $PSScriptRoot
-$Dest = Join-Path $Src "dxp-org\devx-control-plane"
+$Dest = Join-Path (Split-Path -Parent $Src) "studio\platforms\devx-control-plane"
 
 if (-not (Test-Path $Dest)) {
     Write-Host "ERROR: $Dest not found. Run: New-Item -ItemType Directory $Dest" -ForegroundColor Red

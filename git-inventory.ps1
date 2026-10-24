@@ -1,16 +1,18 @@
+$PortfolioRoot = Split-Path -Parent $PSScriptRoot
+
 $paths = @(
-    "C:\dev",
+    $PortfolioRoot,
     ".eco",
     "arche",
     "cockpit",
     "cxp",
     "dev-docs",
-    "dxp-org\devx-control-plane",
-    "dxp-org\devxtoolkit-v1-x",
-    "dxp-org\devxtoolkit-v1-x-registry",
-    "dxp-org\devxtoolkit-v2-x",
-    "dxp-org\doc-vault-plane",
-    "dxp-org\dotgovernance",
+    "studio\platforms\devx-control-plane",
+    "studio\platforms\devxtoolkit-v1-x",
+    "studio\platforms\devxtoolkit-v1-x-registry",
+    "studio\platforms\devxtoolkit-v2-x",
+    "studio\platforms\doc-vault-plane",
+    "studio\platforms\dotgovernance",
     "eco",
     "eco-edge",
     "eco-edge\remote",
@@ -46,7 +48,7 @@ $paths = @(
     "time-loc",
     "tools\flutter",
     "trust-but-verify",
-    "_archive\devtoolkit-legacy-archived"
+    "archive\legacy-reconciliation-evidence\devtoolkit-legacy-archived"
 )
 
 $results = @()
@@ -55,7 +57,7 @@ foreach ($p in $paths) {
     if ([System.IO.Path]::IsPathRooted($p)) {
         $absPath = $p
     } else {
-        $absPath = [System.IO.Path]::GetFullPath((Join-Path "C:\dev" $p))
+        $absPath = [System.IO.Path]::GetFullPath((Join-Path $PortfolioRoot $p))
     }
     
     if (-not (Test-Path $absPath -PathType Container)) {

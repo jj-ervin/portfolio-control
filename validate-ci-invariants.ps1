@@ -1,10 +1,10 @@
 param(
     [string] $Project = "",
-    [string] $TargetPath = ".",
+    [string] $TargetPath = $PSScriptRoot,
     [switch] $Help
 )
 
-$tool = Join-Path $PSScriptRoot "governance-commons\gc-audit\tools\validate-ci-invariants.ps1"
+$tool = Join-Path (Split-Path -Parent $PSScriptRoot) "governance-commons\gc-audit\tools\validate-ci-invariants.ps1"
 $argsList = @("-NoProfile", "-File", $tool, "-TargetPath", $TargetPath)
 if ($Project) {
     $argsList += @("-Project", $Project)

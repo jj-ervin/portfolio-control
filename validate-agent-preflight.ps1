@@ -13,7 +13,7 @@ param(
     [switch]$Help
 )
 
-$tool = Join-Path $PSScriptRoot "governance-commons\gc-audit\tools\validate-agent-preflight.ps1"
+$tool = Join-Path (Split-Path -Parent $PSScriptRoot) "governance-commons\gc-audit\tools\validate-agent-preflight.ps1"
 
 if ($PSCmdlet.ParameterSetName -eq 'Text') {
     & pwsh -NoProfile -File $tool -Text $Text -Mode $Mode -SearchWindow $SearchWindow -Help:$Help

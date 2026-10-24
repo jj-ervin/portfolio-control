@@ -1,11 +1,11 @@
 param(
-    [string] $TargetPath = ".",
+    [string] $TargetPath = $PSScriptRoot,
     [string] $FilePath = "",
     [switch] $Strict,
     [switch] $Help
 )
 
-$tool = Join-Path $PSScriptRoot "governance-commons\gc-audit\tools\validate-playbook.ps1"
+$tool = Join-Path (Split-Path -Parent $PSScriptRoot) "governance-commons\gc-audit\tools\validate-playbook.ps1"
 $argsList = @("-NoProfile", "-File", $tool, "-TargetPath", $TargetPath)
 if ($FilePath) {
     $argsList += @("-FilePath", $FilePath)

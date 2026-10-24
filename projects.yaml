@@ -25,19 +25,19 @@ projects:
   # ─── DEVX CONTROL PLANE ─────────────────────────────────────────────────────
 
   - name: devx-control-plane
-    path: dxp-org/devx-control-plane
+    path: ../studio/platforms/devx-control-plane
     group: dcp
     description: "DevX Control Plane — distributable product repo (clean stub of C:\\dev)"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: dxp-org/devx-control-plane/DEV-PLAN.md
-      path: dxp-org/devx-control-plane/DEV-PATH.md
-      review_grammar: dxp-org/devx-control-plane/docs/REVIEW-GRAMMAR.md
+      canonical: ../studio/platforms/devx-control-plane/DEV-PLAN.md
+      path: ../studio/platforms/devx-control-plane/DEV-PATH.md
+      review_grammar: ../studio/platforms/devx-control-plane/docs/REVIEW-GRAMMAR.md
 
   - name: doc-vault-plane
-    path: dxp-org/doc-vault-plane
+    path: ../studio/platforms/doc-vault-plane
     group: dcp
     description: "Doc Vault Plane — business document control plane for governed document repositories; business-facing counterpart to DCP"
     status: scaffold
@@ -45,27 +45,27 @@ projects:
     branch: main
     depends_on: governance-commons
     planning:
-      canonical: dxp-org/doc-vault-plane/DEV-PLAN.md
-      path: dxp-org/doc-vault-plane/DEV-PATH.md
+      canonical: ../studio/platforms/doc-vault-plane/DEV-PLAN.md
+      path: ../studio/platforms/doc-vault-plane/DEV-PATH.md
       notes: "Scaffold — concept and gap analysis complete; no implementation. Osprey LLC vault is the live reference."
 
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
 
   - name: eco
-    path: eco
+    path: ../eco
     group: eco-ecosystem
     description: "Governed execution platform for operational and AI-assisted workflows"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: eco/DEV-PLAN.md
-      path: eco/DEV-PATH.md
-      tracks: eco/DEV-TRACKS.md
+      canonical: ../eco/DEV-PLAN.md
+      path: ../eco/DEV-PATH.md
+      tracks: ../eco/DEV-TRACKS.md
       notes: "Owns master eco product/release planning; child track files live under eco/tracks/."
 
   - name: eco-edge
-    path: eco-edge
+    path: ../eco-edge
     group: eco-ecosystem
     description: "Edge runtime layer for eco"
     status: active
@@ -74,13 +74,13 @@ projects:
     runtime_of: eco
     depends_on: governance-commons
     planning:
-      canonical: eco-edge/DEV-PLAN.md
-      path: eco-edge/DEV-PATH.md
-      release: eco-edge/DEV-RELEASE.md
+      canonical: ../eco-edge/DEV-PLAN.md
+      path: ../eco-edge/DEV-PATH.md
+      release: ../eco-edge/DEV-RELEASE.md
       notes: "Own canonical plan as of 2026-08-09. Governance proof-path repo, separate from the eco monorepo's Track A physical device layer. eco/tracks/TRACK-A.md remains authoritative for the physical device layer itself (Agrilogik, eco.air, eco.sub). v0.1 blocked on governance-commons v1.2.0 PyPI/npm publish."
 
   - name: eco-slate
-    path: eco-slate
+    path: ../eco-slate
     group: eco-ecosystem
     description: "Governance companion for eco OS — docs, registry rules, roadmap stewardship"
     status: active
@@ -88,10 +88,10 @@ projects:
     branch: main
     governance_package: eco
     planning:
-      roadmap: eco-slate/docs/roadmap.md
+      roadmap: ../eco-slate/docs/roadmap.md
 
   - name: eco-slate-www
-    path: eco-slate-www
+    path: ../eco-slate-www
     group: eco-ecosystem
     description: "Public web presence for eco-slate"
     status: active
@@ -99,11 +99,11 @@ projects:
     branch: main
     site_for: eco-slate
     planning:
-      canonical: eco-slate-www/docs/DEV-PLAN.md
-      path: eco-slate-www/docs/DEV-PATH.md
+      canonical: ../eco-slate-www/docs/DEV-PLAN.md
+      path: ../eco-slate-www/docs/DEV-PATH.md
 
   - name: eco-vscode
-    path: eco-vscode
+    path: ../eco-vscode
     group: eco-ecosystem
     description: "VS Code extension layer for eco governance awareness, diagnostics, SKU detection, and approved editor actions"
     status: wip
@@ -111,14 +111,14 @@ projects:
     branch: main
     runtime_of: eco
     planning:
-      canonical: eco-vscode/DEV-PLAN.md
-      path: eco-vscode/DEV-PATH.md
+      canonical: ../eco-vscode/DEV-PLAN.md
+      path: ../eco-vscode/DEV-PATH.md
       authority: eco/passes/EV.00.md
       track: eco/tracks/TRACK-B.md
       notes: "Top-level standalone preview formerly named eco.vs; reconcile with eco/surfaces/vscode/eco-vs before Marketplace packaging."
 
   - name: .eco
-    path: .eco
+    path: ../.eco
     group: eco-ecosystem
     description: "eco governance kernel — runtime config, models, and enforcement rules"
     status: active
@@ -126,12 +126,12 @@ projects:
     branch: main
     governance_package: eco
     planning:
-      path: .eco/DEV-PATH.md
-      changelog: .eco/passchangelog.md
+      path: ../.eco/DEV-PATH.md
+      changelog: ../.eco/passchangelog.md
       notes: "Runtime-kernel path only; not the eco product roadmap."
 
   - name: eos
-    path: eos
+    path: ../eos
     group: eco-ecosystem
     description: "eOS — bootable front door for the .eco governance kernel and eco environment"
     status: active
@@ -139,12 +139,12 @@ projects:
     branch: main
     runtime_of: eco
     planning:
-      canonical: eos/DEV-PLAN.md
-      path: eos/DEV-PATH.md
+      canonical: ../eos/DEV-PLAN.md
+      path: ../eos/DEV-PATH.md
       notes: "Own canonical plan as of 2026-08-09. Thin CLI front door only (boot/health/route); distinct from the larger execution/orchestration substrate in eco/docs/specifications/eos-spec.md and the eco/src/eco/core/eos/ STUB — see eos/DEV-PATH.md Phase 0 for the naming-collision note."
 
   - name: ons
-    path: governance-commons/ons
+    path: ../governance-commons/ons
     group: eco-ecosystem
     description: "Ontic Namespace Structure — canonical naming and validation rule IDs"
     status: stable
@@ -158,7 +158,7 @@ projects:
   # UI/UX layer for eco — portable across apps, mods, platforms, and devices
 
   - name: cockpit
-    path: cockpit
+    path: ../cockpit
     group: cockpit
     description: "Portable, backend-agnostic UI/UX host — works with eco, Marlin, and future backends via the adapter/bridge pattern; not eco-runtime-bound"
     status: active
@@ -167,8 +167,8 @@ projects:
     registry: cockpit/passes/passes.registry.json
     namespace: CKP
     planning:
-      canonical: cockpit/DEV-PLAN.md
-      path: cockpit/DEV-PATH.md
+      canonical: ../cockpit/DEV-PLAN.md
+      path: ../cockpit/DEV-PATH.md
       track: eco/tracks/TRACK-B.md
       notes: "Packaging is underway (CKP.08 - UI extraction). CKP: is Cockpit's own CANON.01 external-adopter namespace as of 2026-07-02, registered in cockpit/passes/passes.registry.json; CK.00/CK.01/CK.02 in eco remain the original spec lineage Cockpit's Python adapters were recovered from, not a runtime dependency."
 
@@ -176,19 +176,19 @@ projects:
   # Open standards for agent governance, orchestration, and runtime contracts
 
   - name: agent-dossier
-    path: governance-commons/agent-dossier
+    path: ../governance-commons/agent-dossier
     group: governance-commons
     description: "Per-agent contract spec — what an orchestrator reads before assigning work"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: governance-commons/agent-dossier/DEV-PLAN.md
-      path: governance-commons/agent-dossier/DEV-PATH.md
-      tracks: governance-commons/agent-dossier/DEV-TRACKS.md
+      canonical: ../governance-commons/agent-dossier/DEV-PLAN.md
+      path: ../governance-commons/agent-dossier/DEV-PATH.md
+      tracks: ../governance-commons/agent-dossier/DEV-TRACKS.md
 
   - name: agent-dossier-www
-    path: governance-commons/agent-dossier-www
+    path: ../governance-commons/agent-dossier-www
     group: governance-commons
     description: "Public web presence for Agent Dossier"
     status: active
@@ -196,22 +196,22 @@ projects:
     branch: main
     site_for: agent-dossier
     planning:
-      domain_plan: governance-commons/agent-dossier-www/GOVERNANCE_COMMONS_DOMAIN_PLAN.md
+      domain_plan: ../governance-commons/agent-dossier-www/GOVERNANCE_COMMONS_DOMAIN_PLAN.md
 
   - name: agent-matrix
-    path: governance-commons/agent-matrix
+    path: ../governance-commons/agent-matrix
     group: governance-commons
     description: "Capability, routing, trust, and safety model for agent orchestration"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: governance-commons/agent-matrix/DEV-PLAN.md
-      path: governance-commons/agent-matrix/DEV-PATH.md
-      tracks: governance-commons/agent-matrix/DEV-TRACKS.md
+      canonical: ../governance-commons/agent-matrix/DEV-PLAN.md
+      path: ../governance-commons/agent-matrix/DEV-PATH.md
+      tracks: ../governance-commons/agent-matrix/DEV-TRACKS.md
 
   - name: agent-team-protocol
-    path: governance-commons/agent-team-protocol
+    path: ../governance-commons/agent-team-protocol
     group: governance-commons
     description: "Fleet-level governance — agent delegation, trust topology, shared audit trail, fleet escalation"
     status: scaffold
@@ -222,7 +222,7 @@ projects:
       notes: "Planned. Successor spec to agent-matrix for fleet governance. DCP.40 Team Kit is the human-governance counterpart."
 
   - name: governance-commons-www
-    path: governance-commons/governance-commons-www
+    path: ../governance-commons/governance-commons-www
     group: governance-commons
     description: "Public web presence for Governance Commons"
     status: active
@@ -232,47 +232,47 @@ projects:
       notes: "No active standalone plan found; site direction currently follows Governance Commons standards publishing needs."
 
   - name: governance-commons-sdk
-    path: governance-commons/governance-commons-sdk
+    path: ../governance-commons/governance-commons-sdk
     group: governance-commons
     description: "Code-level implementation of Governance Commons standards"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: governance-commons/governance-commons-sdk/DEV-PLAN.md
-      path: governance-commons/governance-commons-sdk/DEV-PATH.md
+      canonical: ../governance-commons/governance-commons-sdk/DEV-PLAN.md
+      path: ../governance-commons/governance-commons-sdk/DEV-PATH.md
       notes: "Reference SDK repo exists; package publication pending."
 
   - name: agent-project-orchestrator
-    path: governance-commons/agent-project-orchestrator
+    path: ../governance-commons/agent-project-orchestrator
     group: governance-commons
     description: "Runtime orchestration contract — task graph, dispatch, handoff, audit"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: governance-commons/agent-project-orchestrator/DEV-PLAN.md
-      path: governance-commons/agent-project-orchestrator/DEV-PATH.md
-      tracks: governance-commons/agent-project-orchestrator/DEV-TRACKS.md
+      canonical: ../governance-commons/agent-project-orchestrator/DEV-PLAN.md
+      path: ../governance-commons/agent-project-orchestrator/DEV-PATH.md
+      tracks: ../governance-commons/agent-project-orchestrator/DEV-TRACKS.md
 
   # ─── PRIMITIVES ──────────────────────────────────────────────────────────────
   # Independently licensed, extractable primitive specs with Python reference implementations.
   # Governance lives in eco PASS clusters; no standalone DEV-PLAN needed while spec is locked.
 
   - name: time-loc
-    path: time-loc
+    path: ../time-loc
     group: primitives
     description: "Canonical temporal-spatial primitive (time.loc v1.2) — mandatory dependency of governed-event and all GEE records"
     status: active
     visibility: private
     branch: main
     planning:
-      release: time-loc/DEV-RELEASE.md
+      release: ../time-loc/DEV-RELEASE.md
       plan: time-loc/DEV-PLAN.md
       notes: "Spec locked at v1.2 — eco PASS cluster 0050.xx remains spec authority. Active release track opened 2026-08-19: test suite (51 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. See DEV-RELEASE.md and DEV-PLAN.md."
 
   - name: governed-event
-    path: governed-event
+    path: ../governed-event
     group: primitives
     description: "Governed Event Envelope (GEE) v0.1 + API-E Workflow Provenance Ontology — portable, interoperable governed event record layer; Apache 2.0"
     status: active
@@ -285,26 +285,26 @@ projects:
       spec: eco/passes/0051.01.md
       api_e_authority: eco/passes/0052.00.md
       api_e_spec: eco/passes/0052.01.md
-      release: governed-event/DEV-RELEASE.md
+      release: ../governed-event/DEV-RELEASE.md
       plan: governed-event/DEV-PLAN.md
       notes: "GEE v0.1 and API-E v0.1 locked — eco PASS clusters 0051.xx/0052.xx remain spec authority. Active release track opened 2026-08-19: API-E validator, test suite (66 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. Standards-alignment goal: reposition as an implementation of prEN 18229-1 / ISO/IEC 24970 once either finalizes. See DEV-RELEASE.md and DEV-PLAN.md."
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 
   - name: devxtoolkit-v1-x
-    path: dxp-org/devxtoolkit-v1-x
+    path: ../studio/platforms/devxtoolkit-v1-x
     group: dev-tools
     description: "DevXToolkit v1.x — PowerShell developer workflow toolkit"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: dxp-org/devxtoolkit-v1-x/DEV-PLAN.md
-      path: dxp-org/devxtoolkit-v1-x/DEV-PATH.md
+      canonical: ../studio/platforms/devxtoolkit-v1-x/DEV-PLAN.md
+      path: ../studio/platforms/devxtoolkit-v1-x/DEV-PATH.md
       notes: "2026-08-19: v1.7.0 scope-correction rollback (local, unpublished) — filesystem/language command grammar, grammar introspection, and the command registry (v1.5/v1.6 scope) migrated back to devxtoolkit-v2-x, where that scope was originally reserved. v1 returns to its original 13-command entry-level surface. Last published release remains v1.6.0 (Gallery/GitHub cannot be erased)."
 
   - name: devxtoolkit-v2-x
-    path: dxp-org/devxtoolkit-v2-x
+    path: ../studio/platforms/devxtoolkit-v2-x
     group: dev-tools
     description: "DevXToolkit v2.x — semantic layer over DevXToolkit: filesystem/language command grammar, command registry, introspection, and output styling"
     status: active
@@ -312,12 +312,12 @@ projects:
     branch: main
     successor_to: devxtoolkit-v1-x
     planning:
-      canonical: dxp-org/devxtoolkit-v2-x/DEV-PLAN.md
-      path: dxp-org/devxtoolkit-v2-x/DEV-PATH.md
+      canonical: ../studio/platforms/devxtoolkit-v2-x/DEV-PLAN.md
+      path: ../studio/platforms/devxtoolkit-v2-x/DEV-PATH.md
       notes: "2026-08-19: real implementation as of a scope-correction migration from devxtoolkit-v1-x — 11 functions (filesystem/language command grammar, Get-DevCommand/Show-DevGrammar introspection, the Get-DevXToolkitGrammar registry) that v1.5/v1.6 built despite this repo's own 2026-07-08 architecture brief having reserved that scope for v2. Same day, DTK2.07 (output styling — Write-DevStatus, colors/glyphs/progress bar) landed as v2.1.0 — the one original v2 pillar never built anywhere in the portfolio until now, wired into New-PythonProject as proof. Real module (DevXToolkit2, v2.1.0), 46/46 Pester passing, own capability contract declared (now 4 capabilities). Not yet published to GitHub/PowerShell Gallery."
 
   - name: devx-toolkit
-    path: dxp-org/devx-toolkit
+    path: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit
     group: dev-tools
     description: "Historical TypeScript CLI origin for DevXToolkit v1/v2; reference only"
     status: archive
@@ -325,11 +325,11 @@ projects:
     branch: ~
     depends_on: eco
     planning:
-      project: dxp-org/devx-toolkit/governance/project.yaml
-      changelog: dxp-org/devx-toolkit/governance/passchangelog.md
+      project: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/project.yaml
+      changelog: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/passchangelog.md
 
   - name: powershell
-    path: powershell
+    path: ../powershell
     group: dev-tools
     description: "PowerShell scripts and shell utilities"
     status: active
@@ -339,7 +339,7 @@ projects:
       notes: "No active direction doc found in scan."
 
   - name: tools
-    path: tools
+    path: ../tools
     group: dev-tools
     description: "General-purpose tooling and scripts"
     status: wip
@@ -349,7 +349,7 @@ projects:
       notes: "No active direction doc found; external tool repos should stay outside default planning health."
 
   - name: claude-budget-bar-vscode
-    path: claude-budget-bar-vscode
+    path: ../claude-budget-bar-vscode
     group: dev-tools
     description: "Private development repository for the Claude Budget Bar VS Code extension"
     status: active
@@ -359,7 +359,7 @@ projects:
       notes: "Canonical private implementation repository. Standalone dev-tools utility with no dependency on eco/Cockpit/marlin. Release-safe source is copied to the public claude-budget-bar repository. v0.3.0 adds documented local 5-hour/7-day quota capture. Planned v0.4.0 introduces COBB (Context Budget Bar / Context Budget Controller): manual preflight context forecasts, projected end-of-task context, threshold/overrun policy, and local calibration before any wrapper/hook automation."
 
   - name: claude-budget-bar
-    path: claude-budget-bar
+    path: ../claude-budget-bar
     group: dev-tools
     description: "Public release repository for the Claude Budget Bar VS Code extension"
     status: active
@@ -371,19 +371,19 @@ projects:
   # ─── APPS & PRODUCTS ─────────────────────────────────────────────────────────
 
   - name: kinjuu
-    path: kinjuu
+    path: ../kinjuu
     group: apps
     description: "Flutter app for obligation tracking — bills, subscriptions, reminders"
     status: active
     visibility: private
     branch: main
     planning:
-      path: kinjuu/DEV-PATH.md
-      project: kinjuu/project.yaml
-      changelog: kinjuu/passchangelog.md
+      path: ../kinjuu/DEV-PATH.md
+      project: ../kinjuu/project.yaml
+      changelog: ../kinjuu/passchangelog.md
 
   - name: niji
-    path: niji
+    path: ../niji
     group: apps
     description: "Deterministic color palette module for eco"
     status: active
@@ -391,54 +391,54 @@ projects:
     branch: main
     publishes_to: eco
     planning:
-      canonical: niji/DEV-PLAN.md
-      path: niji/DEV-PATH.md
-      tracks: niji/DEV-TRACKS.md
-      release: niji/DEV-RELEASE.md
+      canonical: ../niji/DEV-PLAN.md
+      path: ../niji/DEV-PATH.md
+      tracks: ../niji/DEV-TRACKS.md
+      release: ../niji/DEV-RELEASE.md
       docs: niji/DOCS.md
 
   - name: elan
-    path: elan
+    path: ../elan
     group: apps
     description: "eco deterministic orchestration language for asset flow, validation flow, dependency context, and runtime coordination"
     status: scaffold
     visibility: private
     branch: main
     planning:
-      canonical: elan/DEV-PLAN.md
-      path: elan/DEV-PATH.md
+      canonical: ../elan/DEV-PLAN.md
+      path: ../elan/DEV-PATH.md
       authority: eco/docs/specifications/elan-language-spec.md
       notes: "Standalone repo is scaffold; current authoritative spec lives in eco/docs/specifications/elan-language-spec.md. DevXToolkit command grammar is the semantic seed."
 
   - name: arche
-    path: arche
+    path: ../arche
     group: apps
     description: "eco foundational environment semantics layer defining meaning, structure, boundaries, transitions, and capabilities for every eco environment"
     status: scaffold
     visibility: private
     branch: main
     planning:
-      canonical: arche/DEV-PLAN.md
-      path: arche/DEV-PATH.md
+      canonical: ../arche/DEV-PLAN.md
+      path: ../arche/DEV-PATH.md
       authority: eco/passes/arche/ARCHE.00.md
       source_spec: eco/arche/ARCHE.spec.md
       notes: "Standalone repo is scaffold; ARCHE.00 is accepted in eco. eco/arche/ARCHE.spec.md remains the ARCHE v1.0 source spec."
 
   - name: cxp
-    path: cxp
+    path: ../cxp
     group: apps
     description: "Coach Experience Platform — coaching operations workspace under 20Amp Labs (basketball first); Cockpit shell + eco.ai assistant, sport-neutral play/practice engine"
     status: scaffold
     visibility: private
     branch: main
     planning:
-      canonical: cxp/DEV-PLAN.md
-      path: cxp/DEV-PATH.md
-      release: cxp/DEV-RELEASE.md
+      canonical: ../cxp/DEV-PLAN.md
+      path: ../cxp/DEV-PATH.md
+      release: ../cxp/DEV-RELEASE.md
       notes: "Scaffold — full scoping conversation captured in cxp/CXP-OVERVIEW.md (2026-07-10). No implementation, no committed architecture yet; architecture week recommended before code starts."
 
   - name: vault
-    path: vault
+    path: ../vault
     group: apps
     description: "Private operational registry for assets, releases, deployments, and non-secret account/credential references; KeePassXC remains the secret store"
     status: active
@@ -448,7 +448,7 @@ projects:
       notes: "No DEV-PATH.md/DEV-PLAN.md yet; decision history lives in vault/dev-docs/ (VAULT-DECISIONS-001.md, VAULT-SCHEMA-002.md, VAULT-BACKUP-RUNBOOK-001.md). Seven-table SQLite schema (entities/assets/releases/accounts/asset_accounts/deployments/secret_refs) accepted and applied 2026-08-19, with audit logging, a role model, a stdlib CLI (scripts/vault_cli.py), and a verified backup/recovery tool (scripts/backup_vault.py) on top."
 
   - name: sealdex
-    path: sealdex
+    path: ../sealdex
     group: apps
     description: "Distributable local-first operational registry (assets/releases/deployments/accounts + non-secret credential references); external secret store, KeePassXC by default, remains the secret of record"
     status: active
@@ -456,12 +456,12 @@ projects:
     branch: main
     successor_to: vault
     planning:
-      canonical: sealdex/DEV-PLAN.md
-      path: sealdex/DEV-PATH.md
+      canonical: ../sealdex/DEV-PLAN.md
+      path: ../sealdex/DEV-PATH.md
       notes: "Originally extracted from vault and published as Cairn in 2026-08; historical Cairn releases and provenance remain intact. Product, repository, and local checkout are now consistently Sealdex (`C:/dev/sealdex`, `jj-ervin/sealdex`). Schema/CLI/audit/backup/secret-scan are generalized with no seed data; KeePassXC remains the secret store. Current package line is 0.2.1; current release, CI, installer, and human-adoption proof remain separate gates in sealdex/DEV-PLAN.md."
 
   - name: sealdex-registry
-    path: sealdex-registry
+    path: ../sealdex-registry
     group: apps
     description: "Public Sealdex registry repository; currently a README-only scaffold"
     status: scaffold
@@ -486,7 +486,7 @@ projects:
   # ─── PRODUCTS ────────────────────────────────────────────────────────────────
 
   - name: lasso
-    path: lasso
+    path: ../lasso
     group: apps
     description: "Human-facing multi-agent collaboration portal"
     status: active
@@ -494,26 +494,26 @@ projects:
     branch: main
     depends_on: eco
     planning:
-      canonical: lasso/DEV-PLAN.md
-      path: lasso/DEV-PATH.md
+      canonical: ../lasso/DEV-PLAN.md
+      path: ../lasso/DEV-PATH.md
       vision: lasso/docs/architecture/vision.md
 
   - name: trust-but-verify
-    path: trust-but-verify
+    path: ../trust-but-verify
     group: apps
     description: "Trust, But Verify — commercial PDF field guide teaching a 5-stage governed AI workflow methodology (Plan/Generate/Audit/Approve/Record) across 10 developer situations; first public release from Governance Commons"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: trust-but-verify/DEV-PLAN.md
-      path: trust-but-verify/DEV-PATH.md
-      market: trust-but-verify/MARKET.md
-      dist: trust-but-verify/DIST.md
+      canonical: ../trust-but-verify/DEV-PLAN.md
+      path: ../trust-but-verify/DEV-PATH.md
+      market: ../trust-but-verify/MARKET.md
+      dist: ../trust-but-verify/DIST.md
       notes: "Content-complete, v1.0 frozen; DEV-PLAN records August 2026 Gumroad publication. Current listing/sales require separate verification. Release Engineering Preflight is a draft addendum outside v1.0 builds."
 
   - name: trust-but-verify-companion-vscode
-    path: trust-but-verify-companion-vscode
+    path: ../trust-but-verify-companion-vscode
     group: apps
     description: "Companion to trust-but-verify — in-editor VS Code extension operationalizing the 5-stage Plan/Generate/Audit/Approve/Record workflow. Private implementation source."
     status: scaffold
@@ -521,11 +521,11 @@ projects:
     branch: main
     depends_on: trust-but-verify-companion-cli
     planning:
-      canonical: trust-but-verify-companion-vscode/DEV-PLAN.md
+      canonical: ../trust-but-verify-companion-vscode/DEV-PLAN.md
       notes: "Scaffold only as of 2026-08-15, no functional code yet. Public release surface is trust-but-verify-companion-vscode-registry, following the bare-repo/-registry split used elsewhere in the portfolio (marlin/marlin-registry, etc). 2026-08-15 architecture decision: trust-but-verify-companion-cli is the core engine (state machine + prompts + checklist + RECORD writes); this extension is a thin wrapper that shells out to it, not an independent implementation. Blocked on the CLI's command surface being defined first."
 
   - name: trust-but-verify-companion-vscode-registry
-    path: trust-but-verify-companion-vscode-registry
+    path: ../trust-but-verify-companion-vscode-registry
     group: apps
     description: "Public distribution surface for the trust-but-verify-companion-vscode VS Code extension. No implementation source."
     status: scaffold
@@ -535,18 +535,18 @@ projects:
       notes: "Scaffold only as of 2026-08-15. Version pins and distribution pointers only, once the vscode extension has a release."
 
   - name: trust-but-verify-companion-cli
-    path: trust-but-verify-companion-cli
+    path: ../trust-but-verify-companion-cli
     group: apps
     description: "Companion to trust-but-verify — CLI operationalizing the 5-stage Plan/Generate/Audit/Approve/Record workflow. Core engine for the whole companion family; other surfaces (VS Code, future Obsidian/Cockpit) shell out to it rather than reimplementing the workflow."
     status: wip
     visibility: private
     branch: main
     planning:
-      canonical: trust-but-verify-companion-cli/DEV-PLAN.md
+      canonical: ../trust-but-verify-companion-cli/DEV-PLAN.md
       notes: "Partial CLI foundation verified 2026-10-06: list/start implemented; approval/record and other later commands are stubs. Public release surface is trust-but-verify-companion-cli-registry, following the bare-repo/-registry split used elsewhere in the portfolio. Unresolved local/remote architecture split: the local 2026-08-15 decision proposes this CLI as the core engine — trust-but-verify-companion-vscode and any future surface (Obsidian plugin, Cockpit UI) are thin wrappers around it, not independent implementations. Build order: CLI ships first."
 
   - name: trust-but-verify-companion-cli-registry
-    path: trust-but-verify-companion-cli-registry
+    path: ../trust-but-verify-companion-cli-registry
     group: apps
     description: "Public distribution surface for the trust-but-verify-companion-cli CLI. No implementation source."
     status: scaffold
@@ -556,23 +556,23 @@ projects:
       notes: "Scaffold only as of 2026-08-15. Version pins and distribution pointers only, once the CLI has a release."
 
   - name: prompt-critique-repeat
-    path: prompt-critique-repeat
+    path: ../studio/publishing/prompt-critique-repeat
     group: apps
     description: "Prompt. Critique. Repeat. — A Field Guide to Better AI Images. Commercial field guide teaching the Iteration Loop, a repeatable 7-step design methodology, across 4 real AI-image workflows (hoodie, logo, book cover, app icon)"
     status: scaffold
     visibility: private
     branch: ~
     planning:
-      canonical: prompt-critique-repeat/DEV-PLAN.md
-      path: prompt-critique-repeat/DEV-PATH.md
-      market: prompt-critique-repeat/MARKET.md
-      dist: prompt-critique-repeat/DIST.md
+      canonical: ../studio/publishing/prompt-critique-repeat/DEV-PLAN.md
+      path: ../studio/publishing/prompt-critique-repeat/DEV-PATH.md
+      market: ../studio/publishing/prompt-critique-repeat/MARKET.md
+      dist: ../studio/publishing/prompt-critique-repeat/DIST.md
       notes: "Scaffold — concept and v1 scope locked 2026-08-05, no manuscript content written yet. See trust-but-verify for the content-product structure this follows."
 
   # ─── ONBOARDING ──────────────────────────────────────────────────────────────
 
   - name: marlin
-    path: marlin
+    path: ../marlin
     group: dev-tools
     description: "Marlin — universal package manager and installer family. Four lanes: marlin (apps), marlin-dxp (governance), marlin-dcp (workspace/org), marlin-ux (Cockpit GUI). Monorepo."
     status: active
@@ -581,17 +581,16 @@ projects:
     remote: https://github.com/jj-ervin/marlin
     depends_on:
       - governance-commons
-      - dxp-org
       - cockpit
     planning:
-      canonical: marlin/DEV-PLAN.md
-      path: marlin/DEV-PATH.md
-      tracks: marlin/DEV-TRACKS.md
-      release: marlin/DEV-RELEASE.md
+      canonical: ../marlin/DEV-PLAN.md
+      path: ../marlin/DEV-PATH.md
+      tracks: ../marlin/DEV-TRACKS.md
+      release: ../marlin/DEV-RELEASE.md
       notes: "Canonical Marlin planning surface. Four-lane structure: INIT.19.xx package manager, marlin-dxp governance lane, INIT.20.xx workspace manager, Cockpit-hosted marlin-ux."
 
   - name: marlin-dxp
-    path: dxp-init
+    path: ../studio/platforms/dxp-init
     group: dev-tools
     description: "Legacy Marlin-DXP source repo; Waves 0-4 preserved and migrated into marlin/packages/marlin-dxp."
     status: archive
@@ -599,31 +598,30 @@ projects:
     branch: main
     depends_on:
       - governance-commons
-      - dxp-org
     planning:
-      redirect: dxp-init/REDIRECT.md
-      canonical: marlin/DEV-PLAN.md
-      path: marlin/DEV-PATH.md
+      redirect: ../studio/platforms/dxp-init/REDIRECT.md
+      canonical: ../marlin/DEV-PLAN.md
+      path: ../marlin/DEV-PATH.md
       notes: "Redirect-only legacy entry. Do not start new feature work in dxp-init; use marlin/ for all current Marlin planning and implementation."
 
   # ─── RESUME / I2O ────────────────────────────────────────────────────────────
 
   - name: resume
-    path: resume
+    path: ../resume
     group: resume
     description: "Resume Tailoring Framework — evidence-first resume-building schemas, invariants, and prompts. Job Intake, Candidate Evidence, Match, Formatting, and Presentation schemas built; Humanization and QC unbuilt."
     status: wip
     visibility: private
     branch: main
     planning:
-      canonical: resume/DEV-PLAN.md
-      path: resume/DEV-PATH.md
+      canonical: ../resume/DEV-PLAN.md
+      path: ../resume/DEV-PATH.md
       notes: "DEV-DOCS live directly in-repo per DEV-ACCORD.08 (repo confirmed private on GitHub). DEV-WORKFLOW.md added 2026-09-15, instantiating the portfolio's canonical dev-docs/_root/DEV-WORKFLOW.md template."
 
   # ─── ARCHIVES ────────────────────────────────────────────────────────────────
 
   - name: lasso_archive
-    path: lasso_archive
+    path: ../lasso_archive
     group: archive
     description: "Lasso archive"
     status: archive
@@ -631,7 +629,7 @@ projects:
     branch: main
 
   - name: lasso-mvp_archive
-    path: lasso-mvp_archive
+    path: ../lasso-mvp_archive
     group: archive
     description: "Lasso MVP archive"
     status: archive
@@ -641,7 +639,7 @@ projects:
 
   # Evidence-first intelligence and downstream market research — 2026-10-05
   - name: signal-radar
-    path: signal-radar
+    path: ../signal-radar
     group: apps
     description: "Evidence-first event intelligence; observations, derivations, context, and interpretation remain distinct"
     status: wip
@@ -649,12 +647,12 @@ projects:
     branch: main
     remote: https://github.com/jj-ervin/signal-radar
     planning:
-      canonical: signal-radar/docs/experiment-plan.md
-      roadmap: signal-radar/docs/roadmap.md
+      canonical: ../signal-radar/docs/experiment-plan.md
+      roadmap: ../signal-radar/docs/roadmap.md
       notes: "MOVE → EXPLAIN validation experiment is the current product test; profitable edge and execution are not established."
 
   - name: edge-lab
-    path: edge-lab
+    path: ../edge-lab
     group: apps
     description: "Downstream market-edge hypothesis, experiment, and validation lab"
     status: scaffold
@@ -662,26 +660,26 @@ projects:
     branch: main
     remote: https://github.com/jj-ervin/edge-lab
     planning:
-      canonical: edge-lab/DEV-PLAN.md
-      path: edge-lab/DEV-PATH.md
+      canonical: ../edge-lab/DEV-PLAN.md
+      path: ../edge-lab/DEV-PATH.md
       notes: "Documentation foundation; first hypothesis/data source remains to be selected. No strategy, backtest result, validated edge, or execution integration is implemented."
 
 
   - name: governance-commons
-    path: governance-commons
+    path: ../governance-commons
     group: governance-commons
     description: "Governance Commons umbrella standards and portfolio governance tooling"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: governance-commons/DEV-PLAN.md
-      path: governance-commons/DEV-PATH.md
-      tracks: governance-commons/DEV-TRACKS.md
-      release: governance-commons/DEV-RELEASE.md
+      canonical: ../governance-commons/DEV-PLAN.md
+      path: ../governance-commons/DEV-PATH.md
+      tracks: ../governance-commons/DEV-TRACKS.md
+      release: ../governance-commons/DEV-RELEASE.md
 
   - name: observatory-core
-    path: observatory-core
+    path: ../observatory-core
     group: governance-commons
     description: "Evidence-first publication contracts and approved checksum-pinned exports for the Governance Commons Observatory"
     status: scaffold
@@ -693,7 +691,7 @@ projects:
       notes: "Contract and test bootstrap only; no benchmark execution or live publication pipeline is implemented."
 
   - name: governance-commons-app
-    path: governance-commons/governance-commons-app
+    path: ../governance-commons/governance-commons-app
     group: governance-commons
     description: "Bootstrap repository for the Governance Commons application"
     status: scaffold
@@ -705,7 +703,7 @@ projects:
       notes: "README-only initial bootstrap; no implementation or standalone planning documents yet."
 
   - name: governance-commons-portal
-    path: governance-commons/governance-commons-portal
+    path: ../governance-commons/governance-commons-portal
     group: governance-commons
     description: "Private invite-only Governance Commons workspace for evidence, editorial review, adoption intake, and release approvals"
     status: wip

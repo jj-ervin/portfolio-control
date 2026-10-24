@@ -18,10 +18,10 @@ Installs missing declared PowerShell modules at CurrentUser scope.
 Emits the final readiness result as JSON.
 
 .EXAMPLE
-pwsh -NoProfile -File C:\dev\tools\dev-environment.ps1 -ProjectPath C:\dev\dxp-org\devxtoolkit-v1-x
+pwsh -NoProfile -File C:\dev\portfolio-control\dev-environment.ps1 -ProjectPath C:\dev\studio\platforms\devxtoolkit-v1-x
 
 .EXAMPLE
-pwsh -NoProfile -File C:\dev\tools\dev-environment.ps1 -ProjectPath C:\dev\dxp-org\devxtoolkit-v1-x -Install
+pwsh -NoProfile -File C:\dev\portfolio-control\dev-environment.ps1 -ProjectPath C:\dev\studio\platforms\devxtoolkit-v1-x -Install
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
