@@ -182,7 +182,6 @@ projects:
     planning:
       canonical: ../cockpit-gui/DEV-PLAN.md
       path: ../cockpit-gui/DEV-PATH.md
-      notes: "CKP-GUI-001 and CKP-GUI-002 completed; CKP-GUI-003 paused pending GC onboarding. CKP-GUI-GOV-001 is a work item, not a registered GC PASS. Project-local plans must be created privately before adoption is complete."
 
   # ─── GOVERNANCE COMMONS ──────────────────────────────────────────────────────
   # Open standards for agent governance, orchestration, and runtime contracts
