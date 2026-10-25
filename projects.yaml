@@ -172,6 +172,17 @@ projects:
       track: eco/tracks/TRACK-B.md
       notes: "Packaging is underway (CKP.08 - UI extraction). CKP: is Cockpit's own CANON.01 external-adopter namespace as of 2026-07-02, registered in cockpit/passes/passes.registry.json; CK.00/CK.01/CK.02 in eco remain the original spec lineage Cockpit's Python adapters were recovered from, not a runtime dependency."
 
+  - name: cockpit-gui
+    path: ../cockpit-gui
+    group: cockpit
+    description: "Standalone Cockpit GUI component library; independently governed and versioned, with no implicit sibling-repository dependency"
+    status: wip
+    visibility: private
+    branch: main
+    planning:
+      canonical: ../cockpit-gui/DEV-PLAN.md
+      path: ../cockpit-gui/DEV-PATH.md
+
   # ─── GOVERNANCE COMMONS ──────────────────────────────────────────────────────
   # Open standards for agent governance, orchestration, and runtime contracts
 
