@@ -267,3 +267,14 @@ Recovery receipt: all eight named clean checkouts synchronized; 122 planning poi
 Authorized continuation: Jesse directed "DO IT" for the recommended Governance Commons reconciliation and governance debt work. Changes remain local and uncommitted. Current SDK remote 0.2.0 supersedes the older local working tree as canonical implementation; the unpublished local TypeScript parity/version draft is preserved separately. Agent Matrix examples are aligned with current schemas; the unsupported additional compliance event mapping remains queued. ONS lint whitespace and bootstrap authority pointers are repaired. GC-AUDIT recognizes public-safe stubs, existing local onboarding authority and registry-selected planning owners, with regression tests. Protected histories and queued ideas are retained. No RFC activation gate, release gate, public publication or trading action is completed by this work.
 
 Reconciliation validation receipt (2026-10-05): SDK 219 Python tests and Node checks pass; Matrix nine CI validations and 232 tests pass; ONS validation and lint pass; 13 new authority regression fixtures plus 19 existing fixtures pass with compatible Pester runtimes. SDK draft files and 24 stale generated files are preserved; final wheel/sdist/npm archives exclude unpublished drafts. Bootstrap: zero errors, eight warnings. Planning: two errors, twelve warnings, both errors at protected Kinjuu DEV-PATH header. Registry: 126 pointers resolve. Governed closure remains OPEN; unchecked release gates remain unchecked. No commit or push.
+
+## 2026-10-27 — Separate checkout path resolution
+
+The local control-plane checkout is `C:\dev\portfolio-control`; independent
+project repositories remain siblings under `C:\dev` or descendants of its
+studio lanes. Registry paths are resolved from the control-plane checkout.
+The command wrapper discovers GC-AUDIT from an explicit configured path,
+an embedded distribution, or the sibling Governance Commons checkout. The
+planning validator accepts an explicit outer portfolio boundary so registered
+sibling planning documents can be checked without weakening its default
+single-root containment rule.

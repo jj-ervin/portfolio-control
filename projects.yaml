@@ -25,19 +25,19 @@ projects:
   # ─── DEVX CONTROL PLANE ─────────────────────────────────────────────────────
 
   - name: devx-control-plane
-    path: ../studio/platforms/devx-control-plane
+    path: ../devx-control-plane
     group: dcp
     description: "DevX Control Plane — distributable product repo (clean stub of C:\\dev)"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: ../studio/platforms/devx-control-plane/DEV-PLAN.md
-      path: ../studio/platforms/devx-control-plane/DEV-PATH.md
-      review_grammar: ../studio/platforms/devx-control-plane/docs/REVIEW-GRAMMAR.md
+      canonical: ../devx-control-plane/DEV-PLAN.md
+      path: ../devx-control-plane/DEV-PATH.md
+      review_grammar: ../devx-control-plane/docs/REVIEW-GRAMMAR.md
 
   - name: doc-vault-plane
-    path: ../studio/platforms/doc-vault-plane
+    path: ../doc-vault-plane
     group: dcp
     description: "Doc Vault Plane — business document control plane for governed document repositories; business-facing counterpart to DCP"
     status: scaffold
@@ -45,8 +45,8 @@ projects:
     branch: main
     depends_on: governance-commons
     planning:
-      canonical: ../studio/platforms/doc-vault-plane/DEV-PLAN.md
-      path: ../studio/platforms/doc-vault-plane/DEV-PATH.md
+      canonical: ../doc-vault-plane/DEV-PLAN.md
+      path: ../doc-vault-plane/DEV-PATH.md
       notes: "Scaffold — concept and gap analysis complete; no implementation. Osprey LLC vault is the live reference."
 
   # ─── ECO ECOSYSTEM ───────────────────────────────────────────────────────────
@@ -113,8 +113,8 @@ projects:
     planning:
       canonical: ../eco-vscode/DEV-PLAN.md
       path: ../eco-vscode/DEV-PATH.md
-      authority: eco/passes/EV.00.md
-      track: eco/tracks/TRACK-B.md
+      authority: ../eco/passes/EV.00.md
+      track: ../eco/tracks/TRACK-B.md
       notes: "Top-level standalone preview formerly named eco.vs; reconcile with eco/surfaces/vscode/eco-vs before Marketplace packaging."
 
   - name: .eco
@@ -169,7 +169,7 @@ projects:
     planning:
       canonical: ../cockpit/DEV-PLAN.md
       path: ../cockpit/DEV-PATH.md
-      track: eco/tracks/TRACK-B.md
+      track: ../eco/tracks/TRACK-B.md
       notes: "Packaging is underway (CKP.08 - UI extraction). CKP: is Cockpit's own CANON.01 external-adopter namespace as of 2026-07-02, registered in cockpit/passes/passes.registry.json; CK.00/CK.01/CK.02 in eco remain the original spec lineage Cockpit's Python adapters were recovered from, not a runtime dependency."
 
   - name: cockpit-gui
@@ -279,7 +279,7 @@ projects:
     branch: main
     planning:
       release: ../time-loc/DEV-RELEASE.md
-      plan: time-loc/DEV-PLAN.md
+      plan: ../time-loc/DEV-PLAN.md
       notes: "Spec locked at v1.2 — eco PASS cluster 0050.xx remains spec authority. Active release track opened 2026-08-19: test suite (51 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. See DEV-RELEASE.md and DEV-PLAN.md."
 
   - name: governed-event
@@ -292,30 +292,30 @@ projects:
     depends_on:
       - time-loc
     planning:
-      authority: eco/passes/0051.00.md
-      spec: eco/passes/0051.01.md
-      api_e_authority: eco/passes/0052.00.md
-      api_e_spec: eco/passes/0052.01.md
+      authority: ../eco/passes/0051.00.md
+      spec: ../eco/passes/0051.01.md
+      api_e_authority: ../eco/passes/0052.00.md
+      api_e_spec: ../eco/passes/0052.01.md
       release: ../governed-event/DEV-RELEASE.md
-      plan: governed-event/DEV-PLAN.md
+      plan: ../governed-event/DEV-PLAN.md
       notes: "GEE v0.1 and API-E v0.1 locked — eco PASS clusters 0051.xx/0052.xx remain spec authority. Active release track opened 2026-08-19: API-E validator, test suite (66 tests), pyproject.toml dev extras, CI, isolated venv shipped; PyPI publication and IP checklist items (copyright/assignment) are the open blockers. Standards-alignment goal: reposition as an implementation of prEN 18229-1 / ISO/IEC 24970 once either finalizes. See DEV-RELEASE.md and DEV-PLAN.md."
 
   # ─── DEV TOOLS ───────────────────────────────────────────────────────────────
 
   - name: devxtoolkit-v1-x
-    path: ../studio/platforms/devxtoolkit-v1-x
+    path: ../devxtoolkit-v1-x
     group: dev-tools
     description: "DevXToolkit v1.x — PowerShell developer workflow toolkit"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: ../studio/platforms/devxtoolkit-v1-x/DEV-PLAN.md
-      path: ../studio/platforms/devxtoolkit-v1-x/DEV-PATH.md
+      canonical: ../devxtoolkit-v1-x/DEV-PLAN.md
+      path: ../devxtoolkit-v1-x/DEV-PATH.md
       notes: "2026-08-19: v1.7.0 scope-correction rollback (local, unpublished) — filesystem/language command grammar, grammar introspection, and the command registry (v1.5/v1.6 scope) migrated back to devxtoolkit-v2-x, where that scope was originally reserved. v1 returns to its original 13-command entry-level surface. Last published release remains v1.6.0 (Gallery/GitHub cannot be erased)."
 
   - name: devxtoolkit-v2-x
-    path: ../studio/platforms/devxtoolkit-v2-x
+    path: ../devxtoolkit-v2-x
     group: dev-tools
     description: "DevXToolkit v2.x — semantic layer over DevXToolkit: filesystem/language command grammar, command registry, introspection, and output styling"
     status: active
@@ -323,12 +323,12 @@ projects:
     branch: main
     successor_to: devxtoolkit-v1-x
     planning:
-      canonical: ../studio/platforms/devxtoolkit-v2-x/DEV-PLAN.md
-      path: ../studio/platforms/devxtoolkit-v2-x/DEV-PATH.md
+      canonical: ../devxtoolkit-v2-x/DEV-PLAN.md
+      path: ../devxtoolkit-v2-x/DEV-PATH.md
       notes: "2026-08-19: real implementation as of a scope-correction migration from devxtoolkit-v1-x — 11 functions (filesystem/language command grammar, Get-DevCommand/Show-DevGrammar introspection, the Get-DevXToolkitGrammar registry) that v1.5/v1.6 built despite this repo's own 2026-07-08 architecture brief having reserved that scope for v2. Same day, DTK2.07 (output styling — Write-DevStatus, colors/glyphs/progress bar) landed as v2.1.0 — the one original v2 pillar never built anywhere in the portfolio until now, wired into New-PythonProject as proof. Real module (DevXToolkit2, v2.1.0), 46/46 Pester passing, own capability contract declared (now 4 capabilities). Not yet published to GitHub/PowerShell Gallery."
 
   - name: devx-toolkit
-    path: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit
+    path: ../zz-archive/legacy-dxp-org-workspace-20261024/devx-toolkit
     group: dev-tools
     description: "Historical TypeScript CLI origin for DevXToolkit v1/v2; reference only"
     status: archive
@@ -336,8 +336,8 @@ projects:
     branch: ~
     depends_on: eco
     planning:
-      project: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/project.yaml
-      changelog: ../archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/passchangelog.md
+      project: ../zz-archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/project.yaml
+      changelog: ../zz-archive/legacy-dxp-org-workspace-20261024/devx-toolkit/governance/passchangelog.md
 
   - name: powershell
     path: ../powershell
@@ -406,7 +406,7 @@ projects:
       path: ../niji/DEV-PATH.md
       tracks: ../niji/DEV-TRACKS.md
       release: ../niji/DEV-RELEASE.md
-      docs: niji/DOCS.md
+      docs: ../niji/DOCS.md
 
   - name: elan
     path: ../elan
@@ -418,7 +418,7 @@ projects:
     planning:
       canonical: ../elan/DEV-PLAN.md
       path: ../elan/DEV-PATH.md
-      authority: eco/docs/specifications/elan-language-spec.md
+      authority: ../eco/docs/specifications/elan-language-spec.md
       notes: "Standalone repo is scaffold; current authoritative spec lives in eco/docs/specifications/elan-language-spec.md. DevXToolkit command grammar is the semantic seed."
 
   - name: arche
@@ -431,8 +431,8 @@ projects:
     planning:
       canonical: ../arche/DEV-PLAN.md
       path: ../arche/DEV-PATH.md
-      authority: eco/passes/arche/ARCHE.00.md
-      source_spec: eco/arche/ARCHE.spec.md
+      authority: ../eco/passes/arche/ARCHE.00.md
+      source_spec: ../eco/arche/ARCHE.spec.md
       notes: "Standalone repo is scaffold; ARCHE.00 is accepted in eco. eco/arche/ARCHE.spec.md remains the ARCHE v1.0 source spec."
 
   - name: cxp
@@ -507,20 +507,20 @@ projects:
     planning:
       canonical: ../lasso/DEV-PLAN.md
       path: ../lasso/DEV-PATH.md
-      vision: lasso/docs/architecture/vision.md
+      vision: ../lasso/docs/architecture/vision.md
 
   - name: trust-but-verify
-    path: ../trust-but-verify
+    path: ../studio/publishing/trust-but-verify
     group: apps
     description: "Trust, But Verify — commercial PDF field guide teaching a 5-stage governed AI workflow methodology (Plan/Generate/Audit/Approve/Record) across 10 developer situations; first public release from Governance Commons"
     status: active
     visibility: private
     branch: main
     planning:
-      canonical: ../trust-but-verify/DEV-PLAN.md
-      path: ../trust-but-verify/DEV-PATH.md
-      market: ../trust-but-verify/MARKET.md
-      dist: ../trust-but-verify/DIST.md
+      canonical: ../studio/publishing/trust-but-verify/DEV-PLAN.md
+      path: ../studio/publishing/trust-but-verify/DEV-PATH.md
+      market: ../studio/publishing/trust-but-verify/MARKET.md
+      dist: ../studio/publishing/trust-but-verify/DIST.md
       notes: "Content-complete, v1.0 frozen; DEV-PLAN records August 2026 Gumroad publication. Current listing/sales require separate verification. Release Engineering Preflight is a draft addendum outside v1.0 builds."
 
   - name: trust-but-verify-companion-vscode
@@ -601,7 +601,7 @@ projects:
       notes: "Canonical Marlin planning surface. Four-lane structure: INIT.19.xx package manager, marlin-dxp governance lane, INIT.20.xx workspace manager, Cockpit-hosted marlin-ux."
 
   - name: marlin-dxp
-    path: ../studio/platforms/dxp-init
+    path: ../dxp-init
     group: dev-tools
     description: "Legacy Marlin-DXP source repo; Waves 0-4 preserved and migrated into marlin/packages/marlin-dxp."
     status: archive
@@ -610,7 +610,7 @@ projects:
     depends_on:
       - governance-commons
     planning:
-      redirect: ../studio/platforms/dxp-init/REDIRECT.md
+      redirect: ../dxp-init/REDIRECT.md
       canonical: ../marlin/DEV-PLAN.md
       path: ../marlin/DEV-PATH.md
       notes: "Redirect-only legacy entry. Do not start new feature work in dxp-init; use marlin/ for all current Marlin planning and implementation."

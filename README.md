@@ -8,7 +8,16 @@
 
 DCP is the governance and operational layer that sits above a collection of project repos. It is not a monorepo. It is not an application project. It is the root from which projects are indexed, navigated, validated, and operated.
 
-This repo is the portable Core template. Clone it into a portfolio root, edit `projects.yaml`, and run the dashboard.
+This checkout lives at `C:\dev\portfolio-control`. Its `projects.yaml` paths are
+resolved relative to this repository, so `../sealdex` selects the sibling
+`C:\dev\sealdex` checkout. It indexes and validates those independent Git
+repositories; it does not absorb their files or Git histories.
+
+Run `pwsh -NoProfile -File .\dcp.ps1 validate` from this checkout to check the
+registered planning files. GC-AUDIT is resolved from an embedded
+`governance-commons/gc-audit`, the sibling `../governance-commons/gc-audit`, or
+an explicitly configured `DCP_GC_AUDIT_ROOT` directory. The local archive
+pointers in `projects.yaml` require the preserved `C:\dev\zz-archive` tree.
 
 ---
 

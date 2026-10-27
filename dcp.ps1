@@ -16,7 +16,7 @@ param(
     [string]$Command = "help",
 
     # shared
-    [string]$TargetPath  = ".",
+    [string]$TargetPath  = $PSScriptRoot,
     [switch]$Force,
     [switch]$NoHook,
     [switch]$DryRun,
@@ -43,15 +43,20 @@ param(
 )
 
 $TemplateRoot = $PSScriptRoot
-$AuditToolRoot = Join-Path $TemplateRoot "governance-commons\gc-audit\tools"
+$AuditCandidates = @()
+if ($env:DCP_GC_AUDIT_ROOT) { $AuditCandidates += $env:DCP_GC_AUDIT_ROOT }
+$AuditCandidates += (Join-Path $TemplateRoot "governance-commons\gc-audit")
+$AuditCandidates += (Join-Path (Split-Path -Parent $TemplateRoot) "governance-commons\gc-audit")
+$AuditRoot = $AuditCandidates | Where-Object {
+    Test-Path (Join-Path $_ "GC-AUDIT-REGISTRY.yaml")
+} | Select-Object -First 1
+$AuditToolRoot = if ($AuditRoot) { Join-Path $AuditRoot "tools" } else { $null }
 
 function Assert-AuditToolsAvailable {
-    $registry = Join-Path $TemplateRoot "governance-commons\gc-audit\GC-AUDIT-REGISTRY.yaml"
-    if ((Test-Path $AuditToolRoot) -and (Test-Path $registry)) { return }
+    if ($AuditToolRoot -and (Test-Path $AuditToolRoot)) { return }
 
-    Write-Host "GC-AUDIT tools are not installed under this control plane root." -ForegroundColor Red
-    Write-Host "Expected: $registry" -ForegroundColor Yellow
-    Write-Host "Run dcp init from a complete DCP distribution, or copy governance-commons\gc-audit into this root." -ForegroundColor Yellow
+    Write-Host "GC-AUDIT tools were not found for this control plane." -ForegroundColor Red
+    Write-Host "Set DCP_GC_AUDIT_ROOT to the gc-audit directory, or place governance-commons beside or inside this checkout." -ForegroundColor Yellow
     exit 1
 }
 
@@ -252,7 +257,7 @@ switch ($Command) {
         Assert-AuditToolsAvailable
         $t = $TargetPath
         & (Join-Path $AuditToolRoot "validate-bootstrap.ps1")       -TargetPath $t; if (-not $?) { exit 1 }
-        & (Join-Path $AuditToolRoot "validate-planning.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
+        & (Join-Path $AuditToolRoot "validate-planning.ps1")        -TargetPath $t -PortfolioBoundary (Split-Path -Parent $TemplateRoot); if (-not $?) { exit 1 }
         & (Join-Path $AuditToolRoot "validate-pointers.ps1")        -TargetPath $t; if (-not $?) { exit 1 }
         & (Join-Path $AuditToolRoot "validate-review-grammar.ps1")  -TargetPath $t; if (-not $?) { exit 1 }
         & (Join-Path $AuditToolRoot "validate-debt.ps1")            -TargetPath $t
@@ -265,7 +270,7 @@ switch ($Command) {
 
     "validate-planning" {
         Assert-AuditToolsAvailable
-        & (Join-Path $AuditToolRoot "validate-planning.ps1") -TargetPath $TargetPath
+        & (Join-Path $AuditToolRoot "validate-planning.ps1") -TargetPath $TargetPath -PortfolioBoundary (Split-Path -Parent $TemplateRoot)
     }
 
     "validate-review" {
