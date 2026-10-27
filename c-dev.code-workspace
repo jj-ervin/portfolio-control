@@ -95,11 +95,11 @@
     // ── Dev Tools ─────────────────────────────────────────────────────────────
     {
       "name": "🔧 devxtoolkit-v1-x",
-      "path": "../studio/platforms/devxtoolkit-v1-x"
+      "path": "../devxtoolkit-v1-x"
     },
     {
       "name": "🔧 devxtoolkit-v2-x",
-      "path": "../studio/platforms/devxtoolkit-v2-x"
+      "path": "../devxtoolkit-v2-x"
     },
     {
       "name": "🔧 tools",
@@ -167,7 +167,7 @@
         "label": "git: status all projects",
         "type": "shell",
         "command": ".\\dev-status.ps1",
-        "options": { "shell": { "executable": "pwsh", "args": ["-Command"] } },
+        "options": { "cwd": "${workspaceFolder:📄 docs}/..", "shell": { "executable": "pwsh", "args": ["-Command"] } },
         "group": "none",
         "presentation": { "reveal": "always", "panel": "shared" },
         "problemMatcher": []
@@ -176,7 +176,7 @@
         "label": "git: fetch all projects",
         "type": "shell",
         "command": "$items = Select-String -Path .\\projects.yaml -Pattern '^\\s+path:\\s+(.+)$' | ForEach-Object { $_.Matches[0].Groups[1].Value.Trim().Trim('\"').Trim(\"'\") } | Where-Object { $_ -and $_ -ne '~' }; foreach ($path in $items) { if (Test-Path (Join-Path $path '.git')) { Write-Host \"`n=== $path ===\" -ForegroundColor Cyan; git -C $path fetch --prune 2>&1 } }",
-        "options": { "shell": { "executable": "pwsh", "args": ["-Command"] } },
+        "options": { "cwd": "${workspaceFolder:📄 docs}/..", "shell": { "executable": "pwsh", "args": ["-Command"] } },
         "group": "none",
         "presentation": { "reveal": "always", "panel": "shared" },
         "problemMatcher": []
@@ -185,7 +185,7 @@
         "label": "git: log recent (all projects)",
         "type": "shell",
         "command": "$items = Select-String -Path .\\projects.yaml -Pattern '^\\s+path:\\s+(.+)$' | ForEach-Object { $_.Matches[0].Groups[1].Value.Trim().Trim('\"').Trim(\"'\") } | Where-Object { $_ -and $_ -ne '~' }; foreach ($path in $items) { if (Test-Path (Join-Path $path '.git')) { $log = git -C $path log --oneline -3 2>$null; if ($log) { Write-Host \"`n=== $path ===\" -ForegroundColor Cyan; $log } } }",
-        "options": { "shell": { "executable": "pwsh", "args": ["-Command"] } },
+        "options": { "cwd": "${workspaceFolder:📄 docs}/..", "shell": { "executable": "pwsh", "args": ["-Command"] } },
         "group": "none",
         "presentation": { "reveal": "always", "panel": "shared" },
         "problemMatcher": []

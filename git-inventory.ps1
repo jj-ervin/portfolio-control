@@ -7,12 +7,12 @@ $paths = @(
     "cockpit",
     "cxp",
     "dev-docs",
-    "studio\platforms\devx-control-plane",
-    "studio\platforms\devxtoolkit-v1-x",
-    "studio\platforms\devxtoolkit-v1-x-registry",
-    "studio\platforms\devxtoolkit-v2-x",
-    "studio\platforms\doc-vault-plane",
-    "studio\platforms\dotgovernance",
+    "devx-control-plane",
+    "devxtoolkit-v1-x",
+    "devxtoolkit-v1-x-registry",
+    "devxtoolkit-v2-x",
+    "doc-vault-plane",
+    "dotgovernance",
     "eco",
     "eco-edge",
     "eco-edge\remote",
@@ -47,8 +47,8 @@ $paths = @(
     "powershell",
     "time-loc",
     "tools\flutter",
-    "trust-but-verify",
-    "archive\legacy-reconciliation-evidence\devtoolkit-legacy-archived"
+    "studio\publishing\trust-but-verify",
+    "zz-archive\legacy-reconciliation-evidence\devtoolkit-legacy-archived"
 )
 
 $results = @()

@@ -1,11 +1,11 @@
 # sync-dcp.ps1
-# Copies distributable DCP files from this portfolio root to
-# dxp-org\devx-control-plane (clean distribution repo).
+# Copies distributable DCP files from this checkout and sibling GC to
+# C:\dev\devx-control-plane (clean distribution repo).
 #
 # Usage:
 #   .\sync-dcp.ps1              — sync and show diff summary
 #   .\sync-dcp.ps1 -DryRun      — preview what would change, no writes
-#   .\sync-dcp.ps1 -Commit      — sync and auto-commit in dxp-org\devx-control-plane
+#   .\sync-dcp.ps1 -Commit      — sync and auto-commit in C:\dev\devx-control-plane
 #   .\sync-dcp.ps1 -Help        — show this help
 
 param(
@@ -16,14 +16,14 @@ param(
 
 if ($Help) {
     Write-Host ""
-    Write-Host "  sync-dcp.ps1 — sync this portfolio root → dxp-org\devx-control-plane distribution repo" -ForegroundColor White
+    Write-Host "  sync-dcp.ps1 — sync this portfolio root → C:\dev\devx-control-plane distribution repo" -ForegroundColor White
     Write-Host ""
     Write-Host "  USAGE" -ForegroundColor Cyan
     Write-Host "    .\sync-dcp.ps1 [flags]"
     Write-Host ""
     Write-Host "  FLAGS" -ForegroundColor Cyan
     Write-Host "    -DryRun    Preview changes without writing"
-    Write-Host "    -Commit    Auto-commit in dxp-org\devx-control-plane after sync"
+    Write-Host "    -Commit    Auto-commit in C:\dev\devx-control-plane after sync"
     Write-Host "    -Help      Show this help"
     Write-Host ""
     Write-Host "  WHAT IS SYNCED" -ForegroundColor Cyan
@@ -34,10 +34,11 @@ if ($Help) {
 }
 
 $Src  = $PSScriptRoot
-$Dest = Join-Path (Split-Path -Parent $Src) "studio\platforms\devx-control-plane"
+$PortfolioRoot = Split-Path -Parent $Src
+$Dest = Join-Path $PortfolioRoot "devx-control-plane"
 
-if (-not (Test-Path $Dest)) {
-    Write-Host "ERROR: $Dest not found. Run: New-Item -ItemType Directory $Dest" -ForegroundColor Red
+if (-not (Test-Path $Dest -PathType Container) -or -not (Test-Path (Join-Path $Dest '.git'))) {
+    Write-Host "ERROR: existing DCP distribution Git checkout required at $Dest" -ForegroundColor Red
     exit 1
 }
 
@@ -134,7 +135,8 @@ if ($DryRun) {
 }
 
 foreach ($rel in $SyncFiles) {
-    $srcFile  = Join-Path $Src $rel
+    $sourceRoot = if ($rel.StartsWith("governance-commons\", [StringComparison]::OrdinalIgnoreCase)) { $PortfolioRoot } else { $Src }
+    $srcFile  = Join-Path $sourceRoot $rel
     $destFile = Join-Path $Dest $rel
 
     if (-not (Test-Path $srcFile)) {
@@ -179,7 +181,7 @@ if ($DryRun -or $changed.Count -eq 0) {
 
 # ── Git status in dest ────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "  dxp-org\devx-control-plane git status:" -ForegroundColor Cyan
+Write-Host "  C:\dev\devx-control-plane git status:" -ForegroundColor Cyan
 $status = git -C $Dest status --short 2>$null
 if ($status) {
     $status | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
@@ -195,9 +197,9 @@ if ($Commit -and $changed.Count -gt 0) {
     git -C $Dest add -A
     git -C $Dest commit -m $msg
     if ($LASTEXITCODE -eq 0) {
-        Write-Host "  Committed in dxp-org\devx-control-plane." -ForegroundColor Green
+        Write-Host "  Committed in C:\dev\devx-control-plane." -ForegroundColor Green
     } else {
-        Write-Host "  Commit failed — check dxp-org\devx-control-plane manually." -ForegroundColor Red
+        Write-Host "  Commit failed — check C:\dev\devx-control-plane manually." -ForegroundColor Red
     }
     Write-Host ""
 }
